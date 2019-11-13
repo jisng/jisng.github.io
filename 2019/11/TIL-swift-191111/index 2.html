@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="조건문, 제어문 github.io 배우기 전 Notion에 정리한 내용 업로드.    Conditional Statements  if123456789if condition &amp;#123;   code &amp;#125;  if condition &amp;#123;   statements &amp;#125; else &amp;#123;   statements &amp;#125;    conditi">
+<meta name="keywords" content="swift, if, swithc, for-in, while, repeat-while">
+<meta property="og:type" content="article">
+<meta property="og:title" content="TIL-swift-191111">
+<meta property="og:url" content="http:&#x2F;&#x2F;jisng.github.io&#x2F;2019&#x2F;11&#x2F;TIL-swift-191111&#x2F;index.html">
+<meta property="og:site_name" content="jisng">
+<meta property="og:description" content="조건문, 제어문 github.io 배우기 전 Notion에 정리한 내용 업로드.    Conditional Statements  if123456789if condition &amp;#123;   code &amp;#125;  if condition &amp;#123;   statements &amp;#125; else &amp;#123;   statements &amp;#125;    conditi">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-11-13T14:10:44.574Z">
+<meta name="twitter:card" content="summary">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>TIL-swift-191111</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/projects_url">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2019/11/TIL-swift-191113/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2019/11/TIL-191111-191112/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://jisng.github.io/2019/11/TIL-swift-191111/" target="_blank" rel="noopener"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://jisng.github.io/2019/11/TIL-swift-191111/&text=TIL-swift-191111" target="_blank" rel="noopener"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://jisng.github.io/2019/11/TIL-swift-191111/&title=TIL-swift-191111" target="_blank" rel="noopener"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://jisng.github.io/2019/11/TIL-swift-191111/&is_video=false&description=TIL-swift-191111" target="_blank" rel="noopener"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=TIL-swift-191111&body=Check out this article: http://jisng.github.io/2019/11/TIL-swift-191111/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://jisng.github.io/2019/11/TIL-swift-191111/&title=TIL-swift-191111" target="_blank" rel="noopener"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://jisng.github.io/2019/11/TIL-swift-191111/&title=TIL-swift-191111" target="_blank" rel="noopener"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://jisng.github.io/2019/11/TIL-swift-191111/&title=TIL-swift-191111" target="_blank" rel="noopener"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://jisng.github.io/2019/11/TIL-swift-191111/&title=TIL-swift-191111" target="_blank" rel="noopener"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://jisng.github.io/2019/11/TIL-swift-191111/&name=TIL-swift-191111&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#조건문-제어문"><span class="toc-number">1.</span> <span class="toc-text">조건문, 제어문</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Conditional-Statements"><span class="toc-number">2.</span> <span class="toc-text">Conditional Statements</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#if"><span class="toc-number">2.1.</span> <span class="toc-text">if</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#switch"><span class="toc-number">2.2.</span> <span class="toc-text">switch</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Tip"><span class="toc-number">2.2.1.</span> <span class="toc-text">Tip</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Early-Exit-guard"><span class="toc-number">2.3.</span> <span class="toc-text">Early Exit : guard</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Loops"><span class="toc-number">3.</span> <span class="toc-text">Loops</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#For-in"><span class="toc-number">3.1.</span> <span class="toc-text">For - in</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#While"><span class="toc-number">3.2.</span> <span class="toc-text">While</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#repeat-while"><span class="toc-number">3.3.</span> <span class="toc-text">repeat ~ while</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Control-Transfer-Statement"><span class="toc-number">4.</span> <span class="toc-text">Control Transfer Statement</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#continue"><span class="toc-number">4.1.</span> <span class="toc-text">continue</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#return"><span class="toc-number">4.2.</span> <span class="toc-text">return</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#break"><span class="toc-number">4.3.</span> <span class="toc-text">break</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Labeled-Statements"><span class="toc-number">4.4.</span> <span class="toc-text">Labeled Statements</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        TIL-swift-191111
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">jisng</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2019-11-13T01:32:51.000Z" itemprop="datePublished">2019-11-13</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/swift-if-swithc-for-in-while-repeat-while/" rel="tag">swift, if, swithc, for-in, while, repeat-while</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h1 id="조건문-제어문"><a href="#조건문-제어문" class="headerlink" title="조건문, 제어문"></a>조건문, 제어문</h1><blockquote>
+<p>github.io 배우기 전 Notion에 정리한 내용 업로드.</p>
+</blockquote>
+<br>
+
+<h1 id="Conditional-Statements"><a href="#Conditional-Statements" class="headerlink" title="Conditional Statements"></a>Conditional Statements</h1><br>
+
+<h2 id="if"><a href="#if" class="headerlink" title="if"></a>if</h2><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> condition &#123;</span><br><span class="line">   code</span><br><span class="line"> &#125;</span><br><span class="line"> </span><br><span class="line"> <span class="keyword">if</span> condition &#123;</span><br><span class="line">   statements</span><br><span class="line"> &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">   statements</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>condition 은 Bool 값 (true, false)</p>
+<br>
+
+<h2 id="switch"><a href="#switch" class="headerlink" title="switch"></a>switch</h2><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">switch</span> value &#123;</span><br><span class="line"><span class="keyword">case</span> value <span class="number">1</span>:</span><br><span class="line">    respond to value <span class="number">1</span></span><br><span class="line"><span class="keyword">case</span> value <span class="number">2</span>,</span><br><span class="line">     value <span class="number">3</span>:</span><br><span class="line">    respond to value <span class="number">2</span> or <span class="number">3</span></span><br><span class="line"><span class="keyword">default</span>:</span><br><span class="line">    otherwise, <span class="keyword">do</span> something <span class="keyword">else</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>switch 문은 가능한 모든 사례를 반드시 다루어야 함 (Switch must be exhaustive)</p>
+<br>
+
+<h3 id="Tip"><a href="#Tip" class="headerlink" title="Tip"></a>Tip</h3><ul>
+<li>if문에서는 (&amp;&amp;) == ( , )</li>
+<li>switch문에서는 ( || ) == ( , )</li>
+</ul>
+<br>
+
+<h2 id="Early-Exit-guard"><a href="#Early-Exit-guard" class="headerlink" title="Early Exit : guard"></a>Early Exit : guard</h2><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">guard</span> condition <span class="keyword">else</span> &#123;</span><br><span class="line">	code</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<ul>
+<li>조건에 맞지 않으면 바로 종료</li>
+<li>들여쓰기 중첩 방지</li>
+</ul>
+<br>
+
+<hr>
+<h1 id="Loops"><a href="#Loops" class="headerlink" title="Loops"></a>Loops</h1><br>
+
+<h2 id="For-in"><a href="#For-in" class="headerlink" title="For - in"></a>For - in</h2><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> 루프상수 <span class="keyword">in</span> items &#123;</span><br><span class="line">	code</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>🌱 풀어보기</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// for 문을 이용하여 3의 10제곱에 대한 결과값을 포현</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// for 문을 이용하여 10부터 1까지 내림차순으로 출력하</span></span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h2 id="While"><a href="#While" class="headerlink" title="While"></a>While</h2><br>
+
+<ul>
+<li>조건이 거짓이 될 때까지 반복</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> condition &#123;</span><br><span class="line">	code</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>🌱 풀어보기</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 2~9 사이의 숫자를 입력받아 해당 숫자에 해당하는 구구단</span></span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h2 id="repeat-while"><a href="#repeat-while" class="headerlink" title="repeat ~ while"></a>repeat ~ while</h2><br>
+
+<ul>
+<li>무조건 한 번은 실행되는 반복문</li>
+</ul>
+<br>
+
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">repeat</span> &#123;</span><br><span class="line">	code</span><br><span class="line">&#125; <span class="keyword">while</span> condition</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>🌱 풀어보기</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 자연수 하나를 입력받아 1부터 해당 숫자 사이의 모든 숫자의 합을 반환</span></span><br></pre></td></tr></table></figure>
+
+<br>
+
+<hr>
+<h1 id="Control-Transfer-Statement"><a href="#Control-Transfer-Statement" class="headerlink" title="Control Transfer Statement"></a>Control Transfer Statement</h1><br>
+
+<ul>
+<li>특정 코드에서 다른 코드로 제어 이전, 코드 실행 순서 변경한다.</li>
+<li>continue : 반복문에서 사용 / 현재 반복문의 작업을 중단하고 다음 반복 아이템에 대한 작업 수행</li>
+<li>break : 반복문, swith문에서 사용 / break가 포함된 해당 제어문의 흐름을 즉각 중단</li>
+<li>fallthrough : switch문에서 사용 / switch case의 실행이 종료된 후 그 다음 case가 실행되도록 함</li>
+<li>return : 함수에서 사용 / 함수 즉시 종료 및 return type에 해당하는 자료 반환</li>
+</ul>
+<br>
+
+<h2 id="continue"><a href="#continue" class="headerlink" title="continue"></a>continue</h2><br>
+
+<p>🌱 풀어보기</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> num <span class="keyword">is</span> <span class="number">0</span>...<span class="number">15</span> &#123;</span><br><span class="line">	<span class="keyword">if</span> num % <span class="number">2</span> == <span class="number">0</span> &#123;</span><br><span class="line">		<span class="keyword">continue</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">print</span> (num)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h2 id="return"><a href="#return" class="headerlink" title="return"></a>return</h2><br>
+
+<p>🌱 풀어보기</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">isEven</span><span class="params">(num: Int)</span></span> -&gt; <span class="type">Bool</span> &#123;</span><br><span class="line">	<span class="keyword">if</span> num % <span class="number">2</span> ==<span class="number">0</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">isEven(num: <span class="number">1</span>)</span><br><span class="line">isEven(num: <span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+
+<p>🌱 풀어보기</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">returnFunction</span><span class="params">()</span></span> -&gt; <span class="type">Int</span> &#123;</span><br><span class="line">  <span class="keyword">var</span> sum = <span class="number">0</span></span><br><span class="line">  </span><br><span class="line">  <span class="keyword">for</span> <span class="number">_</span> <span class="keyword">in</span> <span class="number">1</span>...<span class="number">100</span> &#123;</span><br><span class="line">    sum += <span class="number">20</span></span><br><span class="line">    <span class="keyword">return</span> sum</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">7</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(returnFunction())</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h2 id="break"><a href="#break" class="headerlink" title="break"></a>break</h2><br>
+
+<p>🌱 풀어보기</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="number">1</span>...<span class="number">100</span> &#123;</span><br><span class="line">  <span class="built_in">print</span>(i)</span><br><span class="line">  <span class="keyword">break</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>🌱 풀어보기</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> num <span class="keyword">in</span> <span class="number">0</span>...<span class="number">8</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> num % <span class="number">2</span> == <span class="number">0</span> &#123;</span><br><span class="line">    <span class="keyword">break</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">print</span>(num)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>🌱 풀어보기</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="number">0</span>...<span class="number">3</span> &#123;</span><br><span class="line">  <span class="keyword">for</span> j <span class="keyword">in</span> <span class="number">0</span>...<span class="number">3</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> i &gt; <span class="number">1</span> &#123;</span><br><span class="line">      <span class="keyword">break</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"  inner \(j)"</span>)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"outer \(i)"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Labeled-Statements"><a href="#Labeled-Statements" class="headerlink" title="Labeled Statements"></a>Labeled Statements</h2><br>
+
+<p>🌱 풀어보기</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">OUTER</span>: <span class="keyword">for</span> i <span class="keyword">in</span> <span class="number">0</span> ... <span class="number">3</span> &#123;</span><br><span class="line">  <span class="type">INNER</span>: <span class="keyword">for</span> j <span class="keyword">in</span> <span class="number">0</span>...<span class="number">3</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> i &gt; <span class="number">1</span> &#123;</span><br><span class="line">      <span class="built_in">print</span>(<span class="string">"j :"</span>, j)</span><br><span class="line">      <span class="keyword">break</span> <span class="type">OUTER</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"  inner \(j)"</span>)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"outer \(i)"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/projects_url">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#조건문-제어문"><span class="toc-number">1.</span> <span class="toc-text">조건문, 제어문</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Conditional-Statements"><span class="toc-number">2.</span> <span class="toc-text">Conditional Statements</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#if"><span class="toc-number">2.1.</span> <span class="toc-text">if</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#switch"><span class="toc-number">2.2.</span> <span class="toc-text">switch</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Tip"><span class="toc-number">2.2.1.</span> <span class="toc-text">Tip</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Early-Exit-guard"><span class="toc-number">2.3.</span> <span class="toc-text">Early Exit : guard</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Loops"><span class="toc-number">3.</span> <span class="toc-text">Loops</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#For-in"><span class="toc-number">3.1.</span> <span class="toc-text">For - in</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#While"><span class="toc-number">3.2.</span> <span class="toc-text">While</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#repeat-while"><span class="toc-number">3.3.</span> <span class="toc-text">repeat ~ while</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Control-Transfer-Statement"><span class="toc-number">4.</span> <span class="toc-text">Control Transfer Statement</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#continue"><span class="toc-number">4.1.</span> <span class="toc-text">continue</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#return"><span class="toc-number">4.2.</span> <span class="toc-text">return</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#break"><span class="toc-number">4.3.</span> <span class="toc-text">break</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Labeled-Statements"><span class="toc-number">4.4.</span> <span class="toc-text">Labeled Statements</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://jisng.github.io/2019/11/TIL-swift-191111/" target="_blank" rel="noopener"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://jisng.github.io/2019/11/TIL-swift-191111/&text=TIL-swift-191111" target="_blank" rel="noopener"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://jisng.github.io/2019/11/TIL-swift-191111/&title=TIL-swift-191111" target="_blank" rel="noopener"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://jisng.github.io/2019/11/TIL-swift-191111/&is_video=false&description=TIL-swift-191111" target="_blank" rel="noopener"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=TIL-swift-191111&body=Check out this article: http://jisng.github.io/2019/11/TIL-swift-191111/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://jisng.github.io/2019/11/TIL-swift-191111/&title=TIL-swift-191111" target="_blank" rel="noopener"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://jisng.github.io/2019/11/TIL-swift-191111/&title=TIL-swift-191111" target="_blank" rel="noopener"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://jisng.github.io/2019/11/TIL-swift-191111/&title=TIL-swift-191111" target="_blank" rel="noopener"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://jisng.github.io/2019/11/TIL-swift-191111/&title=TIL-swift-191111" target="_blank" rel="noopener"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://jisng.github.io/2019/11/TIL-swift-191111/&name=TIL-swift-191111&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2019 jisng
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/projects_url">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+    <!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<!-- clipboard -->
+
+  <script src="/lib/clipboard/clipboard.min.js"></script>
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight .code pre").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      target: function(trigger) {
+        return trigger.nextElementSibling;
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>
