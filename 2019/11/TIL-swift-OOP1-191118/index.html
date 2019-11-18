@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="OOP : Object-Oriented-Programming  Value Type : struct, enum ( Stack에 저장) Reference Type : class ( Heap 에 저장)        x y z    Stack 5 0x5F17 0x2C90          0x2C90 0x5F16 0x517   Heap z’s user data So">
+<meta name="keywords" content="swift,TIL,class,property,OOP">
+<meta property="og:type" content="article">
+<meta property="og:title" content="TIL-swift-OOP1-191118">
+<meta property="og:url" content="http:&#x2F;&#x2F;jisng.github.io&#x2F;2019&#x2F;11&#x2F;TIL-swift-OOP1-191118&#x2F;index.html">
+<meta property="og:site_name" content="jisng">
+<meta property="og:description" content="OOP : Object-Oriented-Programming  Value Type : struct, enum ( Stack에 저장) Reference Type : class ( Heap 에 저장)        x y z    Stack 5 0x5F17 0x2C90          0x2C90 0x5F16 0x517   Heap z’s user data So">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-11-18T09:00:08.849Z">
+<meta name="twitter:card" content="summary">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>TIL-swift-OOP1-191118</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">홈</a></li>
+         
+          <li><a href="/about/">소개</a></li>
+         
+          <li><a href="/archives/">목록</a></li>
+         
+          <li><a href="/projects_url">프로젝트</a></li>
+         
+          <li><a href="/tags/">tags</a></li>
+         
+          <li><a href="/categories/">categories</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" href="/2019/11/TIL-contribution-191116/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">이전</span>
+      <span id="i-next" class="info" style="display:none;">다음</span>
+      <span id="i-top" class="info" style="display:none;">맨 위로</span>
+      <span id="i-share" class="info" style="display:none;">공유</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://jisng.github.io/2019/11/TIL-swift-OOP1-191118/" target="_blank" rel="noopener"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://jisng.github.io/2019/11/TIL-swift-OOP1-191118/&text=TIL-swift-OOP1-191118" target="_blank" rel="noopener"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://jisng.github.io/2019/11/TIL-swift-OOP1-191118/&title=TIL-swift-OOP1-191118" target="_blank" rel="noopener"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://jisng.github.io/2019/11/TIL-swift-OOP1-191118/&is_video=false&description=TIL-swift-OOP1-191118" target="_blank" rel="noopener"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=TIL-swift-OOP1-191118&body=Check out this article: http://jisng.github.io/2019/11/TIL-swift-OOP1-191118/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://jisng.github.io/2019/11/TIL-swift-OOP1-191118/&title=TIL-swift-OOP1-191118" target="_blank" rel="noopener"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://jisng.github.io/2019/11/TIL-swift-OOP1-191118/&title=TIL-swift-OOP1-191118" target="_blank" rel="noopener"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://jisng.github.io/2019/11/TIL-swift-OOP1-191118/&title=TIL-swift-OOP1-191118" target="_blank" rel="noopener"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://jisng.github.io/2019/11/TIL-swift-OOP1-191118/&title=TIL-swift-OOP1-191118" target="_blank" rel="noopener"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://jisng.github.io/2019/11/TIL-swift-OOP1-191118/&name=TIL-swift-OOP1-191118&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#OOP-Object-Oriented-Programming"><span class="toc-number">1.</span> <span class="toc-text">OOP : Object-Oriented-Programming</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Equatablem-Identical"><span class="toc-number">1.1.</span> <span class="toc-text">Equatablem, Identical</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Class"><span class="toc-number">1.2.</span> <span class="toc-text">Class</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Class-Initilalize"><span class="toc-number">1.2.1.</span> <span class="toc-text">Class Initilalize</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Property"><span class="toc-number">1.3.</span> <span class="toc-text">Property</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Stored-Property"><span class="toc-number">1.3.1.</span> <span class="toc-text">Stored Property</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Lazy-Stored-Property"><span class="toc-number">1.3.2.</span> <span class="toc-text">Lazy Stored Property</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Computed-Property"><span class="toc-number">1.3.3.</span> <span class="toc-text">Computed Property</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Property-Observer"><span class="toc-number">1.3.3.1.</span> <span class="toc-text">Property Observer</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Type-Property"><span class="toc-number">1.3.3.2.</span> <span class="toc-text">Type Property</span></a></li></ol></li></ol></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        TIL-swift-OOP1-191118
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">jisng</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2019-11-18T08:59:04.000Z" itemprop="datePublished">2019-11-18</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/TIL/">TIL</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/OOP/" rel="tag">OOP</a>, <a class="tag-link" href="/tags/TIL/" rel="tag">TIL</a>, <a class="tag-link" href="/tags/class/" rel="tag">class</a>, <a class="tag-link" href="/tags/property/" rel="tag">property</a>, <a class="tag-link" href="/tags/swift/" rel="tag">swift</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h1 id="OOP-Object-Oriented-Programming"><a href="#OOP-Object-Oriented-Programming" class="headerlink" title="OOP : Object-Oriented-Programming"></a>OOP : Object-Oriented-Programming</h1><hr>
+<ul>
+<li>Value Type : struct, enum ( Stack에 저장)</li>
+<li>Reference Type : class ( Heap 에 저장)</li>
+</ul>
+<br>
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th>x</th>
+<th>y</th>
+<th>z</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Stack</td>
+<td>5</td>
+<td>0x5F17</td>
+<td>0x2C90</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>0x2C90</td>
+<td>0x5F16</td>
+<td>0x517</td>
+</tr>
+<tr>
+<td>Heap</td>
+<td>z’s user data</td>
+<td>SomeData</td>
+<td>y’s user data</td>
+</tr>
+</tbody></table>
+<br>
+
+<h2 id="Equatablem-Identical"><a href="#Equatablem-Identical" class="headerlink" title="Equatablem, Identical"></a>Equatablem, Identical</h2><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span> == <span class="number">1</span> <span class="comment">// True</span></span><br><span class="line"><span class="number">2</span> == <span class="number">1</span> <span class="comment">// False</span></span><br><span class="line"><span class="string">"ABC"</span> == <span class="string">"ABC"</span> <span class="comment">// True</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> name = <span class="string">"이순신"</span></span><br><span class="line">  <span class="keyword">let</span> age = <span class="number">30</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> person1 = <span class="type">Person</span>()</span><br><span class="line"><span class="keyword">let</span> person2 = <span class="type">Person</span>()</span><br><span class="line"></span><br><span class="line">person1 == <span class="string">"이순신"</span>    <span class="comment">// 오류, 타입이 다름</span></span><br><span class="line"></span><br><span class="line">person1 == person2   <span class="comment">// 오류, name과 age 어떤 걸 비교할지 컴파일러는 몰라요</span></span><br></pre></td></tr></table></figure>
+
+<br>
+
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span>: <span class="title">Equatable</span> </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> name = <span class="string">"이순신"</span></span><br><span class="line">  <span class="keyword">let</span> age = <span class="number">30</span></span><br><span class="line">  </span><br><span class="line">  <span class="keyword">static</span> <span class="function"><span class="keyword">func</span> ==<span class="params">(lhs: User, rhs: User)</span></span> -&gt; <span class="type">Bool</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> lhs.name == rhs.name</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> user1 = <span class="type">User</span>()</span><br><span class="line"><span class="keyword">var</span> user2 = <span class="type">User</span>()</span><br><span class="line">user1 == user2</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<ul>
+<li>Equatable Protocol.  </li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ClassName</span>: <span class="title">SuperClassName</span>, <span class="title">ProtocolName</span>... </span>&#123;</span><br><span class="line">   <span class="type">PropertyList</span></span><br><span class="line">   <span class="type">MethodList</span></span><br><span class="line"> &#125;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">let</span> objectName = <span class="type">ClassName</span>()</span><br><span class="line"> objectName. propertyName</span><br><span class="line"> objectName. functionName()</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Identical.  </li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> Identity Operators</span></span><br><span class="line"><span class="comment"> === : 두 상수 또는 변수가 동일한 인스턴스를 가르키는 경우 true 반환</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"> </span><br><span class="line">user1.name = <span class="string">"라인하르트"</span></span><br><span class="line">user2.name = <span class="string">"브리기테"</span></span><br><span class="line">user1.name   <span class="comment">// "라인하르트"</span></span><br><span class="line">user2.name   <span class="comment">// "브리기테"</span></span><br><span class="line">user1 == user2 <span class="comment">// false</span></span><br><span class="line">user1 === user2 <span class="comment">// false</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">user2 = user1 </span><br><span class="line"><span class="comment">// user2에 user2을 대입하면서, user2는 user1의 주소[Heap]를 가리키게 된다. </span></span><br><span class="line"><span class="comment">// (user2가 쓰던 주소는 컴파일러에 의해 삭제된다.) </span></span><br><span class="line"><span class="comment">// 이제 user1의 내장 프로퍼티를 바꾸면 user2의 내장 프로퍼티도 바뀐다. (같은 주소를 가리키게 되니까) </span></span><br><span class="line"><span class="comment">// 값 타입과 참조(주소) 타입의 차이 = 메모리 차이 </span></span><br><span class="line"></span><br><span class="line">user1.name <span class="comment">// 라인하르트</span></span><br><span class="line">user2.name <span class="comment">// 라인하르트</span></span><br><span class="line">user1 == user2    <span class="comment">// true</span></span><br><span class="line">user1 === user2   <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line">user2.name = <span class="string">"윈스턴"</span></span><br><span class="line">user2.name <span class="comment">// 윈스턴</span></span><br><span class="line">user1.name <span class="comment">// 윈스턴</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="Class"><a href="#Class" class="headerlink" title="Class"></a>Class</h2><br>
+
+<h3 id="Class-Initilalize"><a href="#Class-Initilalize" class="headerlink" title="Class Initilalize"></a>Class Initilalize</h3><br>
+
+<ul>
+<li>초기화(init)가 불필요한 경우 : 모든 저장 프로퍼티에 초기값이 설정되어 있음</li>
+<li>초기화(init)가 필요한 경우 : 저장 프로퍼티 중 하나 이상이 초기값 미설정됨</li>
+</ul>
+<br>
+
+<p>1.</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Hero</span> </span>&#123;</span><br><span class="line">	<span class="keyword">let</span> name = <span class="string">"mei"</span></span><br><span class="line">	<span class="keyword">let</span> color = <span class="string">"blue"</span></span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">func</span> <span class="title">attack</span><span class="params">()</span></span> &#123;</span><br><span class="line">		<span class="built_in">print</span>(<span class="string">"퍽"</span>)</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+
+<p>2.</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Here</span> </span>&#123;</span><br><span class="line">	<span class="keyword">let</span> name: <span class="type">String</span></span><br><span class="line">	<span class="keyword">let</span> color: <span class="type">String</span></span><br><span class="line">	</span><br><span class="line">	<span class="keyword">init</span>() &#123;</span><br><span class="line">		name = <span class="string">"mei"</span></span><br><span class="line">		color = <span class="string">"blue"</span></span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">func</span> <span class="title">attack</span><span class="params">()</span></span> &#123;</span><br><span class="line">		<span class="built_in">print</span>(<span class="string">"퍽"</span>)</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+
+<p>3.</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Hero</span> </span>&#123;</span><br><span class="line">	<span class="keyword">let</span> name: <span class="type">String</span></span><br><span class="line">	<span class="keyword">let</span> color: <span class="type">String</span></span><br><span class="line">	</span><br><span class="line">	<span class="keyword">init</span>(name: <span class="type">String</span>, color: <span class="type">String</span>) &#123;</span><br><span class="line">		<span class="keyword">self</span>.name = name</span><br><span class="line">		<span class="keyword">self</span>.color = color</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">func</span> <span class="title">attack</span><span class="params">()</span></span> &#123;</span><br><span class="line">		<span class="built_in">print</span>(<span class="string">"퍽"</span>)</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<hr>
+<br>
+
+<h2 id="Property"><a href="#Property" class="headerlink" title="Property"></a>Property</h2><br>
+
+
+<table>
+<thead>
+<tr>
+<th>⬇︎</th>
+<th align="center">Stored</th>
+<th align="center">Lazy</th>
+<th align="center">Computed</th>
+<th align="center">Observer</th>
+<th align="center">Type</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Class</td>
+<td align="center">⭕️</td>
+<td align="center">⭕️</td>
+<td align="center">⭕️</td>
+<td align="center">⭕️</td>
+<td align="center">⭕️</td>
+</tr>
+<tr>
+<td>Structure</td>
+<td align="center">⭕️</td>
+<td align="center">⭕️</td>
+<td align="center">⭕️</td>
+<td align="center">⭕️</td>
+<td align="center">⭕️</td>
+</tr>
+<tr>
+<td>Enum</td>
+<td align="center">❌</td>
+<td align="center">❌</td>
+<td align="center">⭕️</td>
+<td align="center">❌</td>
+<td align="center">⭕️</td>
+</tr>
+</tbody></table>
+<br>
+
+<h3 id="Stored-Property"><a href="#Stored-Property" class="headerlink" title="Stored Property"></a>Stored Property</h3><ul>
+<li>Class ⭕️</li>
+<li>Structure ⭕️</li>
+<li>Enumeration ❌</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">StoredProperty</span> </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> width = <span class="number">0.0</span></span><br><span class="line">  <span class="keyword">var</span> height = <span class="number">0.0</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> stored = <span class="type">StoredProperty</span>()</span><br><span class="line">stored.width = <span class="number">123</span></span><br><span class="line">stored.height = <span class="number">456</span></span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h3 id="Lazy-Stored-Property"><a href="#Lazy-Stored-Property" class="headerlink" title="Lazy Stored Property"></a>Lazy Stored Property</h3><ul>
+<li>Class ⭕️</li>
+<li>Structure ⭕️</li>
+<li>Enumeration ❌</li>
+<li>초기값이 인스턴스의 생성이 완료될 때까지도 알 수 없는 외부 요인에 의존할 때</li>
+<li>초기값이 복잡하거나 계산 비용이 많이 드는 설정을 필요로 할 때</li>
+<li>필요한 경우가 제한적일 때</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">LazyStoredProperty</span> </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> width = <span class="number">10.0</span></span><br><span class="line">  <span class="keyword">var</span> height = <span class="number">20.0</span></span><br><span class="line">  </span><br><span class="line">  <span class="comment">// 1. 외부 요인이나 다른 설정에 기반</span></span><br><span class="line"><span class="comment">//  var area = self.width * self.height</span></span><br><span class="line">  <span class="built_in">lazy</span> <span class="keyword">var</span> area = width * height</span><br><span class="line">  </span><br><span class="line">  <span class="comment">// 2. 계산 비용이 많이 드는 상황</span></span><br><span class="line"><span class="comment">//  var hardWork = "실행하면 약 10초 이상 걸려야 하는 작업"</span></span><br><span class="line">  </span><br><span class="line">  <span class="comment">// 3. 필요한 경우가 제한적인 상황</span></span><br><span class="line"><span class="comment">//  func ifStatement() &#123;</span></span><br><span class="line"><span class="comment">//    if true &#123;   // 10%</span></span><br><span class="line"><span class="comment">//      print(area)</span></span><br><span class="line"><span class="comment">//    &#125; else &#123;    // 90%</span></span><br><span class="line"><span class="comment">//      print(width)</span></span><br><span class="line"><span class="comment">//    &#125;</span></span><br><span class="line"><span class="comment">//  &#125;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> lazyStored = <span class="type">LazyStoredProperty</span>()</span><br><span class="line"><span class="comment">// width, height 초기화</span></span><br><span class="line">lazyStored.width = <span class="number">30</span></span><br><span class="line"><span class="comment">// area 최초 호출되는 시점에 초기화</span></span><br><span class="line">lazyStored.area</span><br><span class="line"><span class="comment">// lazy 기능</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 순서 주의</span></span><br><span class="line"><span class="keyword">let</span> lazyStored1 = <span class="type">LazyStoredProperty</span>()</span><br><span class="line">lazyStored1.area <span class="comment">// 200</span></span><br><span class="line">lazyStored1.width = <span class="number">30</span></span><br><span class="line">lazyStored1.area <span class="comment">// 이미 위에서 호출되어 초기화가 되었기 때문에, 지정된 값 그대로 나온다. // 한 번 저장되면 따로 바꿔주지 않는 이상 그대로 저장되어 있음.</span></span><br><span class="line">lazyStored1.area = <span class="number">600</span></span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h3 id="Computed-Property"><a href="#Computed-Property" class="headerlink" title="Computed Property"></a>Computed Property</h3><ul>
+<li>Class ⭕️</li>
+<li>Structure ⭕️</li>
+<li>Enumeration ⭕️ </li>
+<li>자료를 저장하지 않고 매번 호출할 때마다 새로 계산</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> name: type &#123;</span><br><span class="line">	<span class="keyword">get</span> &#123;</span><br><span class="line">		statements</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">set</span> &#123;</span><br><span class="line">		name = newValue</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ComputedProperty</span> </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> width = <span class="number">5.0</span></span><br><span class="line">  <span class="keyword">var</span> height = <span class="number">5.0</span></span><br><span class="line">  </span><br><span class="line">  <span class="built_in">lazy</span> <span class="keyword">var</span> lazyArea = width * height</span><br><span class="line">  <span class="keyword">var</span> area: <span class="type">Double</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> width * height</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">// Stored + Computed get(read), set(write)</span></span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">var</span> _koreanWon = <span class="number">0.0</span></span><br><span class="line">  <span class="keyword">var</span> wonToDollar: <span class="type">Double</span> &#123;</span><br><span class="line">    <span class="keyword">get</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> _koreanWon / <span class="number">1136.5</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">set</span> &#123;</span><br><span class="line">      _koreanWon = newValue <span class="comment">// newValue는 set에 들어오는 값을 기본적으로 담게 내장되있음</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">     set (myValue) &#123;</span></span><br><span class="line"><span class="comment">        _koreanWon = myValue</span></span><br><span class="line"><span class="comment">     &#125;</span></span><br><span class="line"><span class="comment">     </span></span><br><span class="line"><span class="comment">     이렇게도 사용할 수 있음</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> computed = <span class="type">ComputedProperty</span>()</span><br><span class="line">computed.area</span><br><span class="line">computed.lazyArea</span><br><span class="line"></span><br><span class="line">computed.width = <span class="number">10</span></span><br><span class="line">computed.area</span><br><span class="line">computed.lazyArea</span><br><span class="line"></span><br><span class="line">computed.lazyArea = <span class="number">50.0</span></span><br><span class="line">computed.lazyArea</span><br><span class="line"></span><br><span class="line">computed.width = <span class="number">20</span></span><br><span class="line">computed.height = <span class="number">20</span></span><br><span class="line">computed.area</span><br><span class="line">computed.lazyArea</span><br><span class="line"></span><br><span class="line">computed.wonToDollar</span><br><span class="line">computed.wonToDollar = <span class="number">10000</span></span><br><span class="line">computed.wonToDollar</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h4 id="Property-Observer"><a href="#Property-Observer" class="headerlink" title="Property Observer"></a>Property Observer</h4><ul>
+<li>Class ⭕️</li>
+<li>Structure ⭕️</li>
+<li>Enumeration ❌</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> name: type = value &#123;</span><br><span class="line">	<span class="keyword">willSet</span> &#123; <span class="comment">//변수에 값이 바뀌기 직전에 호출</span></span><br><span class="line">		statements</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">didSet</span> &#123; <span class="comment">// 변수에 값이 바뀐 직후에 호출</span></span><br><span class="line">		statements</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">PropertyObserver</span> </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> height = <span class="number">0.0</span></span><br><span class="line">  </span><br><span class="line">  <span class="keyword">var</span> width = <span class="number">0.0</span> &#123;</span><br><span class="line">    <span class="keyword">willSet</span> &#123;</span><br><span class="line">      <span class="built_in">print</span>(<span class="string">"willSet :"</span>, width, <span class="string">"-&gt;"</span>, <span class="string">"newValue :"</span>, newValue)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">didSet</span> &#123;</span><br><span class="line">      <span class="built_in">print</span>(<span class="string">"didSet :"</span>, oldValue, <span class="string">"-&gt;"</span>, <span class="string">"width :"</span>, width)</span><br><span class="line">      height = width / <span class="number">2</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> obs = <span class="type">PropertyObserver</span>()</span><br><span class="line">obs.height = <span class="number">456</span></span><br><span class="line">obs.width = <span class="number">123</span></span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h4 id="Type-Property"><a href="#Type-Property" class="headerlink" title="Type Property"></a>Type Property</h4><ul>
+<li>Class ⭕️</li>
+<li>Structure ⭕️</li>
+<li>Enumeration ⭕️ </li>
+<li>Shared</li>
+<li>Lazily Initialized</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">선언 - </span><br><span class="line"><span class="keyword">static</span> <span class="keyword">let</span>(<span class="keyword">var</span>) propertyName: <span class="type">Type</span></span><br><span class="line"> 또는</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">var</span> <span class="title">propertyName</span>: <span class="title">Type</span> </span>&#123; <span class="keyword">return</span> code &#125;</span><br><span class="line">       </span><br><span class="line">사용 - </span><br><span class="line"><span class="type">TypeName</span>. propertyName</span><br><span class="line"> </span><br><span class="line"> <span class="keyword">static</span>: <span class="keyword">override</span> 불가</span><br><span class="line"> <span class="class"><span class="keyword">class</span>: 클래스에서만 사용 가능하고 <span class="title">computed</span> <span class="title">property</span> 형태로 사용. 서브클래스에서 <span class="title">override</span> 가능</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TypeProperty</span> </span>&#123;</span><br><span class="line">  <span class="keyword">static</span> <span class="keyword">var</span> unit: <span class="type">String</span> = <span class="string">"cm"</span></span><br><span class="line">  <span class="keyword">var</span> width = <span class="number">5.0</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> square = <span class="type">TypeProperty</span>()</span><br><span class="line">square.width</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> square1 = <span class="type">TypeProperty</span>()</span><br><span class="line">square1.width = <span class="number">10.0</span></span><br><span class="line">square1.width</span><br><span class="line"></span><br><span class="line"><span class="type">TypeProperty</span>.unit</span><br><span class="line"><span class="built_in">print</span>(<span class="string">"\(square.width) \(TypeProperty.unit)"</span>) <span class="comment">// 5.0cm</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">"\(square1.width) \(TypeProperty.unit)"</span>)</span><br><span class="line"></span><br><span class="line"><span class="type">TypeProperty</span>.unit = <span class="string">"m"</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">"\(square.width) \(TypeProperty.unit)"</span>) <span class="comment">// 5.0m</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">"\(square1.width) \(TypeProperty.unit)"</span>)</span><br></pre></td></tr></table></figure>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">홈</a></li>
+         
+          <li><a href="/about/">소개</a></li>
+         
+          <li><a href="/archives/">목록</a></li>
+         
+          <li><a href="/projects_url">프로젝트</a></li>
+         
+          <li><a href="/tags/">tags</a></li>
+         
+          <li><a href="/categories/">categories</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#OOP-Object-Oriented-Programming"><span class="toc-number">1.</span> <span class="toc-text">OOP : Object-Oriented-Programming</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Equatablem-Identical"><span class="toc-number">1.1.</span> <span class="toc-text">Equatablem, Identical</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Class"><span class="toc-number">1.2.</span> <span class="toc-text">Class</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Class-Initilalize"><span class="toc-number">1.2.1.</span> <span class="toc-text">Class Initilalize</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Property"><span class="toc-number">1.3.</span> <span class="toc-text">Property</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Stored-Property"><span class="toc-number">1.3.1.</span> <span class="toc-text">Stored Property</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Lazy-Stored-Property"><span class="toc-number">1.3.2.</span> <span class="toc-text">Lazy Stored Property</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Computed-Property"><span class="toc-number">1.3.3.</span> <span class="toc-text">Computed Property</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Property-Observer"><span class="toc-number">1.3.3.1.</span> <span class="toc-text">Property Observer</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Type-Property"><span class="toc-number">1.3.3.2.</span> <span class="toc-text">Type Property</span></a></li></ol></li></ol></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://jisng.github.io/2019/11/TIL-swift-OOP1-191118/" target="_blank" rel="noopener"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://jisng.github.io/2019/11/TIL-swift-OOP1-191118/&text=TIL-swift-OOP1-191118" target="_blank" rel="noopener"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://jisng.github.io/2019/11/TIL-swift-OOP1-191118/&title=TIL-swift-OOP1-191118" target="_blank" rel="noopener"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://jisng.github.io/2019/11/TIL-swift-OOP1-191118/&is_video=false&description=TIL-swift-OOP1-191118" target="_blank" rel="noopener"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=TIL-swift-OOP1-191118&body=Check out this article: http://jisng.github.io/2019/11/TIL-swift-OOP1-191118/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://jisng.github.io/2019/11/TIL-swift-OOP1-191118/&title=TIL-swift-OOP1-191118" target="_blank" rel="noopener"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://jisng.github.io/2019/11/TIL-swift-OOP1-191118/&title=TIL-swift-OOP1-191118" target="_blank" rel="noopener"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://jisng.github.io/2019/11/TIL-swift-OOP1-191118/&title=TIL-swift-OOP1-191118" target="_blank" rel="noopener"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://jisng.github.io/2019/11/TIL-swift-OOP1-191118/&title=TIL-swift-OOP1-191118" target="_blank" rel="noopener"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://jisng.github.io/2019/11/TIL-swift-OOP1-191118/&name=TIL-swift-OOP1-191118&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> 메뉴</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> 공유</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> 맨 위로</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    저작권 &copy; 2019 jisng
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">홈</a></li>
+         
+          <li><a href="/about/">소개</a></li>
+         
+          <li><a href="/archives/">목록</a></li>
+         
+          <li><a href="/projects_url">프로젝트</a></li>
+         
+          <li><a href="/tags/">tags</a></li>
+         
+          <li><a href="/categories/">categories</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+    <!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<!-- clipboard -->
+
+  <script src="/lib/clipboard/clipboard.min.js"></script>
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"클립보드에 복사하였습니다!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight .code pre").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      target: function(trigger) {
+        return trigger.nextElementSibling;
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "복사하였습니다!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>
