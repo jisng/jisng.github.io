@@ -14,7 +14,7 @@
 <meta property="og:site_name" content="jisng">
 <meta property="og:description" content="AppLifeCycle  Xcode 1 : SettingAppDelegate.swift, SceneDelegate.swift SETTINGWWDC2019 대격변 업데이트로 인해 다음 중 선택해야 하는 상황이 생겼습니다.  SceneDelegate.swift 사용 :  iOS 13 미만 (현업, 개인앱 사용시) : SceneDelegate.swift, Ap">
 <meta property="og:locale" content="kr">
-<meta property="og:updated_time" content="2019-11-21T09:17:37.843Z">
+<meta property="og:updated_time" content="2019-11-21T10:02:39.947Z">
 <meta name="twitter:card" content="summary">
     
     
@@ -166,6 +166,7 @@
 <li>SceneDelegate 파일 삭제</li>
 <li>AppDelegate에서 Scene과 관련 된 코드 삭제</li>
 <li>Info.Plist &gt; Application Scene Mainfest 키 삭제</li>
+<li>AppDelegate 안에 <code>var window: UIWindw?</code> 작성</li>
 </ul>
 </li>
 </ol>
@@ -180,6 +181,12 @@
 <br>
 
 <p><strong>중요 포인트</strong></p>
+<br>
+
+<p><code>didFinshLaunchingWithOptions ~</code> func 안에 다음과 같은 코드 꼭꼭 넣어야 합니다.   </p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">window = <span class="type">UIWindow</span>(frame: <span class="type">UIScreen</span>.main.bounds)</span><br><span class="line">        </span><br><span class="line">window?.rootViewController = <span class="type">ViewController</span>()</span><br><span class="line">window?.makeKeyAndVisible()</span><br></pre></td></tr></table></figure>
+
+<p>스토리보드 파일이 없는 상태에서,<br>윈도우에게 루트뷰를 지정해주는 코드입니다. </p>
 <br>
 
 <p>스토리보드로 버튼이나 레이블을 만들 때, <code>viewDidLoad</code> 밖에다가 했었습니다.<br>코드로 짤 때는 <code>viewDidLoad</code> 안에다가 만드는데요,<br>스토리보드에서  @IBOutlet 에 해당하는 내용을 이 안에다 짜고, func은 (당연하게도) 밖에다가 짭니다.</p>
