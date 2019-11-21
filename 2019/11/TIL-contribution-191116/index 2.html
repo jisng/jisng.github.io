@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang=kr>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="오픈소스에 PR 보낸 경험   제목만 보면 엄청 대단한 걸 줄 알겠지만, 그렇지 않습니다.왜냐면 “번역” 이거든요.단어만 60개여서 번역이라고 하기도 민망하네요 ㅎ..     계기  지금 사용중인 hexo theme - cactus 에서 카테고리 메뉴를 추가 하고 싶어서, 동현님께 도움을 구하러 갔습니다.설정 방법을 확인하려고 테마의 깃헙 페이지를 열어서">
+<meta name="keywords" content="git,TIL,github,opensource">
+<meta property="og:type" content="article">
+<meta property="og:title" content="TIL-contribution-191116">
+<meta property="og:url" content="http:&#x2F;&#x2F;jisng.github.io&#x2F;2019&#x2F;11&#x2F;TIL-contribution-191116&#x2F;index.html">
+<meta property="og:site_name" content="jisng">
+<meta property="og:description" content="오픈소스에 PR 보낸 경험   제목만 보면 엄청 대단한 걸 줄 알겠지만, 그렇지 않습니다.왜냐면 “번역” 이거든요.단어만 60개여서 번역이라고 하기도 민망하네요 ㅎ..     계기  지금 사용중인 hexo theme - cactus 에서 카테고리 메뉴를 추가 하고 싶어서, 동현님께 도움을 구하러 갔습니다.설정 방법을 확인하려고 테마의 깃헙 페이지를 열어서">
+<meta property="og:locale" content="kr">
+<meta property="og:updated_time" content="2019-11-16T02:46:21.719Z">
+<meta name="twitter:card" content="summary">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>TIL-contribution-191116</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">홈</a></li>
+         
+          <li><a href="/about/">소개</a></li>
+         
+          <li><a href="/archives/">글 목록</a></li>
+         
+          <li><a href="/projects_url">프로젝트</a></li>
+         
+          <li><a href="/tags/">tags</a></li>
+         
+          <li><a href="/categories/">categories</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2019/11/TIL-swift-OOP1-191118/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2019/11/TIL-swift-Closure-191115/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">이전</span>
+      <span id="i-next" class="info" style="display:none;">다음</span>
+      <span id="i-top" class="info" style="display:none;">맨 위로</span>
+      <span id="i-share" class="info" style="display:none;">공유</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://jisng.github.io/2019/11/TIL-contribution-191116/" target="_blank" rel="noopener"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://jisng.github.io/2019/11/TIL-contribution-191116/&text=TIL-contribution-191116" target="_blank" rel="noopener"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://jisng.github.io/2019/11/TIL-contribution-191116/&title=TIL-contribution-191116" target="_blank" rel="noopener"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://jisng.github.io/2019/11/TIL-contribution-191116/&is_video=false&description=TIL-contribution-191116" target="_blank" rel="noopener"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=TIL-contribution-191116&body=Check out this article: http://jisng.github.io/2019/11/TIL-contribution-191116/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://jisng.github.io/2019/11/TIL-contribution-191116/&title=TIL-contribution-191116" target="_blank" rel="noopener"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://jisng.github.io/2019/11/TIL-contribution-191116/&title=TIL-contribution-191116" target="_blank" rel="noopener"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://jisng.github.io/2019/11/TIL-contribution-191116/&title=TIL-contribution-191116" target="_blank" rel="noopener"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://jisng.github.io/2019/11/TIL-contribution-191116/&title=TIL-contribution-191116" target="_blank" rel="noopener"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://jisng.github.io/2019/11/TIL-contribution-191116/&name=TIL-contribution-191116&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#오픈소스에-PR-보낸-경험"><span class="toc-number">1.</span> <span class="toc-text">오픈소스에 PR 보낸 경험</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#계기"><span class="toc-number">1.1.</span> <span class="toc-text">계기</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#실전"><span class="toc-number">1.2.</span> <span class="toc-text">실전</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1차-고민"><span class="toc-number">1.2.1.</span> <span class="toc-text">1차 고민.</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2차-고민"><span class="toc-number">1.2.2.</span> <span class="toc-text">2차 고민.</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3차-고민"><span class="toc-number">1.2.3.</span> <span class="toc-text">3차 고민.</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4차-고민"><span class="toc-number">1.2.4.</span> <span class="toc-text">4차 고민.</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#깨달음"><span class="toc-number">1.3.</span> <span class="toc-text">깨달음</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#정리"><span class="toc-number">1.3.1.</span> <span class="toc-text">정리</span></a></li></ol></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        TIL-contribution-191116
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">jisng</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2019-11-16T02:16:02.000Z" itemprop="datePublished">2019-11-16</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/TIL/">TIL</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/TIL/" rel="tag">TIL</a>, <a class="tag-link" href="/tags/git/" rel="tag">git</a>, <a class="tag-link" href="/tags/github/" rel="tag">github</a>, <a class="tag-link" href="/tags/opensource/" rel="tag">opensource</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h1 id="오픈소스에-PR-보낸-경험"><a href="#오픈소스에-PR-보낸-경험" class="headerlink" title="오픈소스에 PR 보낸 경험"></a>오픈소스에 PR 보낸 경험</h1><br>
+
+<blockquote>
+<p>제목만 보면 엄청 대단한 걸 줄 알겠지만, 그렇지 않습니다.<br>왜냐면 “번역” 이거든요.<br>단어만 60개여서 번역이라고 하기도 민망하네요 ㅎ.. </p>
+</blockquote>
+<br>
+
+<h2 id="계기"><a href="#계기" class="headerlink" title="계기"></a>계기</h2><br>
+
+<p>지금 사용중인 hexo theme - cactus 에서 카테고리 메뉴를 추가 하고 싶어서, 동현님께 도움을 구하러 갔습니다.<br>설정 방법을 확인하려고 테마의 깃헙 페이지를 열어서 찾아보는데, 갑자기 동현님이,<br>“어, 이거 한국어 파일 없네요?”<br>“어떻게 되어 있나 그냥 봐볼까..” 라며 열었는데,<br>아주 단순한 단어가 1줄에 1개씩, 60줄로 적혀있었어요. (문장 아니고 진짜 단어만)<br>“이거 뭐 금방 하겠는데요? 이거 만들어요!”<br>라고 얘기하시는거에요!!!   </p>
+<br>
+
+<p>안그래도 깃특강 들을 때 강사님이 테마 번역해서 기여한거 있다며 보여주셨거든요.<br>이런것도 오픈소스 기여 아니겠냐며~<br>가볍게 도전할 수 있으니 해봐라~ 라는 얘기를 하셨어요.</p>
+<br>
+
+<p><strong>해봤습니다.</strong></p>
+<br> 
+
+<p>이게 말로만 듣던 “오픈소스 기여”란 말인가 (거창)</p>
+<br>
+
+<p>낄낄</p>
+<br>
+
+<h2 id="실전"><a href="#실전" class="headerlink" title="실전"></a>실전</h2><br>
+
+<p>강사님께 배웠던 대로 일단 포크떠서 가져옵니다.<br>(깃헙 특강 정말 좋았음. 너무 명쾌해서)</p>
+<ol>
+<li>fork</li>
+<li><code>git clone ~</code></li>
+</ol>
+<br>
+
+<p>그리고 시작된 고민들.</p>
+<br>
+
+
+
+<h3 id="1차-고민"><a href="#1차-고민" class="headerlink" title="1차 고민."></a>1차 고민.</h3><ul>
+<li>마스터로 작업해야 하나?</li>
+<li>브랜치로 작업해야 하나?</li>
+</ul>
+<br>
+
+<p>분명 조별 협업 실습을 했는데, 그 때 뭔가 쫓기듯이 해서 기억이 잘 …<br>git flow 를 썼었고 … start - 작업 - finish 순서로 했는데 …<br>그 때 master 로 안보내고 develop 으로 보냈으니까 어쨌든 브랜치로 보낸거겠지 ..?  </p>
+<p>브랜치로 작업하기 결정했습니다.  </p>
+<br>
+
+<p>이 부분을 동현님께 디엠 보냈을 때, 마스터로 작업해도 된다고 하셨거든요.<br>근데 제가 디엠 보내기 전에 구글링 해보니까 브랜치로 작업한다는 내용만 보였습니다.<br><em>제가 하는 참여가 기능에 타격을 줄만한 큰 일이 아니어서 마스터에 해도 되는 거였을까요?</em>  </p>
+<br>
+
+<p>제가 내린 결론 : <strong>보통은 해당 오픈소스 기여방식이 README에 적혀있으나,</strong><br>저처럼 안적혀있는 경우, 안전하게 브랜치 작업하는게 좋지 않을까 생각됩니다. </p>
+<br>
+
+<h3 id="2차-고민"><a href="#2차-고민" class="headerlink" title="2차 고민."></a>2차 고민.</h3><ul>
+<li>Compare &amp; pull request?</li>
+<li>Pull request?</li>
+</ul>
+<br>
+
+<p>수업 시간에 사용했던 건,<br>오른쪽 상단에 작은 회색 글씨로 써져있는 ‘Pull request’ 버튼이었는데<br>깃헙 페이지에 들어가보니 그 위에 초록색 버튼이 누르고 싶게 떴어요 !!<br>‘Comepare &amp; pull request’  </p>
+<br>
+
+<p>구글링도 해보고 눌러도 봤는데, 둘이 차이가 있..나? 싶더라고요.<br>하지만 전 처음이니까 너무 불안했습니다.  </p>
+<br>
+
+<p>… 결국 강사님께 디엠 보냈습니다.</p>
+<br>
+
+<p>답이 왔어요 : <strong>둘 중 뭘 눌러도 상관없습니다.</strong></p>
+<br>
+
+<h3 id="3차-고민"><a href="#3차-고민" class="headerlink" title="3차 고민."></a>3차 고민.</h3><ul>
+<li>master 에다 보내야 하나?</li>
+<li>branch 에다 보내야 하나?</li>
+</ul>
+<p>오픈소스 브랜치를 눌러보니, 어디다 보내야 할 지 모르겠는 이름 달랑 두 개.  </p>
+<p>구글링 했을 때도, 동현님이 말씀하시기도 마스터에 보내지 말라고 했는데 ..  </p>
+<br>
+
+<p>.. 이것도 강사님께 디엠을 보냈습니다. ( 강사님 감사합니다 )</p>
+<br>
+
+<p>답이 왔어요 : <strong>마스터로 보내세요</strong></p>
+<br>
+
+<p><em>블로그 테마에, 그것도 언어 추가 정도의 작은 작업은 너무 빡빡하게 생각하지 않아도 되는건가 싶었습니다</em></p>
+<br>
+
+
+<h3 id="4차-고민"><a href="#4차-고민" class="headerlink" title="4차 고민."></a>4차 고민.</h3><ul>
+<li>이슈 쓰고 PR?</li>
+<li>PR 하고 이슈?</li>
+</ul>
+<p>아..<br>정말 하나부터 열까지 다 알려줘야 할 수 있는 나란 초보.  </p>
+<br>
+
+<p>이것 역시 강사님께 물어봤습니다. ( 실제로 디엠보낼 때 고민을 모아 한 번에 물어봤습니다. )</p>
+<br>
+
+<p>답이 왔어요 : <strong>이슈 쓰고, PR 하세요</strong></p>
+<br>
+
+<h2 id="깨달음"><a href="#깨달음" class="headerlink" title="깨달음"></a>깨달음</h2><br>
+
+<p><strong>인생은 실전이다.</strong></p>
+<br> 
+
+<p>이번 계기로 오픈소스 기여 방식에 대해 조금 알게 된 것 같습니다.<br>특강 들으면서 “아 뭐~ 이렇게 하는구나~” 했던 것들은 알고 있는게 아니였어요.. 난 아무것도 몰라..  </p>
+<p>아무튼 기여에 대해 제대로 알기 위해서는, 오픈소스에서 기능을 건드리는 참여를 하게 될 때 알게 될 것 같습니다.  </p>
+<br>
+
+<p><em>그런 날이 올까요..?</em></p>
+<br>
+
+<h3 id="정리"><a href="#정리" class="headerlink" title="정리"></a>정리</h3><br>
+
+<p>참여하고 싶은 오픈소스가 있나요?</p>
+<ol>
+<li>README.md 정독 : <em>참여 방식을 숙지합니다.</em></li>
+<li>fork</li>
+<li><code>git clone ~</code></li>
+<li><code>git branch ~</code> : <em>오픈소스마다 다르겠죠?</em></li>
+<li><code>git checkout ~</code></li>
+<li>영차-영차- 작업 중..</li>
+<li><code>git add ~</code></li>
+<li><code>git commit</code> : <em>커밋 작성법도 나와 있을 수 있으니, 다시 한 번 확인</em></li>
+<li><code>git push origin ~</code></li>
+<li>issue 등록 : <em>이슈 역시 작성법이 있을 수 있으니, 또 확인</em></li>
+<li>Pull Request : <em>Compare&amp;pull request 눌러도 상관 없습니다</em></li>
+<li>끝 :) </li>
+</ol>
+<br>
+
+<p>받아줄런지 말런지는 모르겠지만,<br>이런 경험을 해봤다는게 저한텐 큰 자산이고,<br>무엇보다 이번 일을 통해서 얼른 오픈소스 기능 개발에 참여하고 싶어졌습니다.<br>기여한다는건 무척 설레는 일이군요 ㅠㅠ   </p>
+<p>엄청난 동기부여.  </p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">홈</a></li>
+         
+          <li><a href="/about/">소개</a></li>
+         
+          <li><a href="/archives/">글 목록</a></li>
+         
+          <li><a href="/projects_url">프로젝트</a></li>
+         
+          <li><a href="/tags/">tags</a></li>
+         
+          <li><a href="/categories/">categories</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#오픈소스에-PR-보낸-경험"><span class="toc-number">1.</span> <span class="toc-text">오픈소스에 PR 보낸 경험</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#계기"><span class="toc-number">1.1.</span> <span class="toc-text">계기</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#실전"><span class="toc-number">1.2.</span> <span class="toc-text">실전</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1차-고민"><span class="toc-number">1.2.1.</span> <span class="toc-text">1차 고민.</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2차-고민"><span class="toc-number">1.2.2.</span> <span class="toc-text">2차 고민.</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3차-고민"><span class="toc-number">1.2.3.</span> <span class="toc-text">3차 고민.</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4차-고민"><span class="toc-number">1.2.4.</span> <span class="toc-text">4차 고민.</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#깨달음"><span class="toc-number">1.3.</span> <span class="toc-text">깨달음</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#정리"><span class="toc-number">1.3.1.</span> <span class="toc-text">정리</span></a></li></ol></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://jisng.github.io/2019/11/TIL-contribution-191116/" target="_blank" rel="noopener"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://jisng.github.io/2019/11/TIL-contribution-191116/&text=TIL-contribution-191116" target="_blank" rel="noopener"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://jisng.github.io/2019/11/TIL-contribution-191116/&title=TIL-contribution-191116" target="_blank" rel="noopener"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://jisng.github.io/2019/11/TIL-contribution-191116/&is_video=false&description=TIL-contribution-191116" target="_blank" rel="noopener"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=TIL-contribution-191116&body=Check out this article: http://jisng.github.io/2019/11/TIL-contribution-191116/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://jisng.github.io/2019/11/TIL-contribution-191116/&title=TIL-contribution-191116" target="_blank" rel="noopener"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://jisng.github.io/2019/11/TIL-contribution-191116/&title=TIL-contribution-191116" target="_blank" rel="noopener"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://jisng.github.io/2019/11/TIL-contribution-191116/&title=TIL-contribution-191116" target="_blank" rel="noopener"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://jisng.github.io/2019/11/TIL-contribution-191116/&title=TIL-contribution-191116" target="_blank" rel="noopener"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://jisng.github.io/2019/11/TIL-contribution-191116/&name=TIL-contribution-191116&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> 메뉴</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> 공유</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> 맨 위로</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    저작권 &copy; 2019 jisng
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">홈</a></li>
+         
+          <li><a href="/about/">소개</a></li>
+         
+          <li><a href="/archives/">글 목록</a></li>
+         
+          <li><a href="/projects_url">프로젝트</a></li>
+         
+          <li><a href="/tags/">tags</a></li>
+         
+          <li><a href="/categories/">categories</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+    <!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<!-- clipboard -->
+
+  <script src="/lib/clipboard/clipboard.min.js"></script>
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"클립보드에 복사하였습니다!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight .code pre").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      target: function(trigger) {
+        return trigger.nextElementSibling;
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "복사하였습니다!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>
