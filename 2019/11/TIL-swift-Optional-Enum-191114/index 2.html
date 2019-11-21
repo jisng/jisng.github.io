@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang=kr>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="Optional값이 없다. nil0은 데이터. 옵셔널 타입의 2가지 가능성    1. 값이 전혀 없음    2. 값이 있으며, 그 값에 접근하기 위해 옵셔널을 벗겨냄(unwrap)    123let possibleNumber = &quot;123&quot;var convertedNumber = Int(possibleNumber)type(of: convertedNumber)">
+<meta name="keywords" content="TIL,swift,optional,enum">
+<meta property="og:type" content="article">
+<meta property="og:title" content="TIL-swift-Optional+Enum-191114">
+<meta property="og:url" content="http:&#x2F;&#x2F;jisng.github.io&#x2F;2019&#x2F;11&#x2F;TIL-swift-Optional-Enum-191114&#x2F;index.html">
+<meta property="og:site_name" content="jisng">
+<meta property="og:description" content="Optional값이 없다. nil0은 데이터. 옵셔널 타입의 2가지 가능성    1. 값이 전혀 없음    2. 값이 있으며, 그 값에 접근하기 위해 옵셔널을 벗겨냄(unwrap)    123let possibleNumber = &quot;123&quot;var convertedNumber = Int(possibleNumber)type(of: convertedNumber)">
+<meta property="og:locale" content="kr">
+<meta property="og:updated_time" content="2019-11-20T04:51:24.078Z">
+<meta name="twitter:card" content="summary">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>TIL-swift-Optional+Enum-191114</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">홈</a></li>
+         
+          <li><a href="/about/">소개</a></li>
+         
+          <li><a href="/archives/">글 목록</a></li>
+         
+          <li><a href="/projects_url">프로젝트</a></li>
+         
+          <li><a href="/tags/">tags</a></li>
+         
+          <li><a href="/categories/index.html">categories</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2019/11/TIL-swift-Closure-191115/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2019/11/TIL-swift-191113/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">이전</span>
+      <span id="i-next" class="info" style="display:none;">다음</span>
+      <span id="i-top" class="info" style="display:none;">맨 위로</span>
+      <span id="i-share" class="info" style="display:none;">공유</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://jisng.github.io/2019/11/TIL-swift-Optional-Enum-191114/" target="_blank" rel="noopener"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://jisng.github.io/2019/11/TIL-swift-Optional-Enum-191114/&text=TIL-swift-Optional+Enum-191114" target="_blank" rel="noopener"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://jisng.github.io/2019/11/TIL-swift-Optional-Enum-191114/&title=TIL-swift-Optional+Enum-191114" target="_blank" rel="noopener"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://jisng.github.io/2019/11/TIL-swift-Optional-Enum-191114/&is_video=false&description=TIL-swift-Optional+Enum-191114" target="_blank" rel="noopener"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=TIL-swift-Optional+Enum-191114&body=Check out this article: http://jisng.github.io/2019/11/TIL-swift-Optional-Enum-191114/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://jisng.github.io/2019/11/TIL-swift-Optional-Enum-191114/&title=TIL-swift-Optional+Enum-191114" target="_blank" rel="noopener"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://jisng.github.io/2019/11/TIL-swift-Optional-Enum-191114/&title=TIL-swift-Optional+Enum-191114" target="_blank" rel="noopener"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://jisng.github.io/2019/11/TIL-swift-Optional-Enum-191114/&title=TIL-swift-Optional+Enum-191114" target="_blank" rel="noopener"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://jisng.github.io/2019/11/TIL-swift-Optional-Enum-191114/&title=TIL-swift-Optional+Enum-191114" target="_blank" rel="noopener"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://jisng.github.io/2019/11/TIL-swift-Optional-Enum-191114/&name=TIL-swift-Optional+Enum-191114&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Optional"><span class="toc-number">1.</span> <span class="toc-text">Optional</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Optinal-Binding"><span class="toc-number">1.1.</span> <span class="toc-text">Optinal Binding</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Froced-Unwrapping"><span class="toc-number">1.2.</span> <span class="toc-text">Froced Unwrapping</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#IUO-Implicityl-Unwrapped-Optionals"><span class="toc-number">1.3.</span> <span class="toc-text">IUO (Implicityl Unwrapped Optionals) ?????</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Nil-coalescing-Operator"><span class="toc-number">1.4.</span> <span class="toc-text">Nil-coalescing Operator</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Optional-Chaining"><span class="toc-number">1.5.</span> <span class="toc-text">Optional Chaining</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Optional-Function-Types"><span class="toc-number">1.6.</span> <span class="toc-text">Optional Function Types</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#풀어보기"><span class="toc-number">1.7.</span> <span class="toc-text">풀어보기</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#참고-코드"><span class="toc-number">1.7.1.</span> <span class="toc-text">참고 코드</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Enumerations"><span class="toc-number">2.</span> <span class="toc-text">Enumerations</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Matching-Enumeration-Values"><span class="toc-number">2.1.</span> <span class="toc-text">Matching Enumeration Values</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Associated-Values"><span class="toc-number">2.2.</span> <span class="toc-text">Associated Values</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Raw-Value"><span class="toc-number">2.3.</span> <span class="toc-text">Raw Value</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Nested"><span class="toc-number">2.4.</span> <span class="toc-text">Nested</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Mutating"><span class="toc-number">2.5.</span> <span class="toc-text">Mutating</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#🌱-풀어보기"><span class="toc-number">2.5.1.</span> <span class="toc-text">🌱 풀어보기</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Recursive-Enumerations"><span class="toc-number">2.6.</span> <span class="toc-text">Recursive Enumerations</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        TIL-swift-Optional+Enum-191114
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">jisng</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2019-11-14T10:42:41.000Z" itemprop="datePublished">2019-11-14</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/TIL/">TIL</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/TIL/" rel="tag">TIL</a>, <a class="tag-link" href="/tags/enum/" rel="tag">enum</a>, <a class="tag-link" href="/tags/optional/" rel="tag">optional</a>, <a class="tag-link" href="/tags/swift/" rel="tag">swift</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h1 id="Optional"><a href="#Optional" class="headerlink" title="Optional"></a>Optional</h1><p>값이 없다. nil<br>0은 데이터.</p>
+<p>옵셔널 타입의 2가지 가능성<br>    1. 값이 전혀 없음<br>    2. 값이 있으며, 그 값에 접근하기 위해 옵셔널을 벗겨냄(unwrap)</p>
+<br>
+
+
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> possibleNumber = <span class="string">"123"</span></span><br><span class="line"><span class="keyword">var</span> convertedNumber = <span class="type">Int</span>(possibleNumber)</span><br><span class="line">type(of: convertedNumber) <span class="comment">//Optional&lt;Int&gt;.type</span></span><br></pre></td></tr></table></figure>
+<p>possibeNumber가 값이 있을 수도 있고, 없을 수도 있기 때문에<br>Int로 형변환이 될 수도 있고 안될 수도 있기 때문에<br>convertedNumber에 대입하면 타입은 옵셔널이 된다.</p>
+<br>
+
+
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Optional Type Declaration</span></span><br><span class="line"> </span><br><span class="line"> <span class="keyword">var</span> variable name: <span class="type">Type?</span></span><br><span class="line"> <span class="keyword">var</span> variable name: <span class="type">Optional</span>&lt;<span class="type">Type</span>&gt;</span><br></pre></td></tr></table></figure>
+
+<br>
+
+
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Error!</span></span><br><span class="line"><span class="keyword">var</span> nonOptional1 = <span class="literal">nil</span></span><br><span class="line"><span class="keyword">var</span> nonOptional2: <span class="type">Int</span> = <span class="literal">nil</span> </span><br><span class="line"><span class="keyword">var</span> nonOptionalType: <span class="type">Int</span> = optionalInt</span><br></pre></td></tr></table></figure>
+
+<p>옵셔널 타입일 때 nil 대입이 된다.<br>옵셔널 타입을 꼭 명시해주어야 한다.</p>
+<br>
+
+
+<p>Optinal : Int와 nil 값 중 하나를 갖는다.<br>NonOptional : 오직 Int 값만 갖는다.<br>Optional -&gt; NonOptional (X).<br>Optional &lt;- NonOptional (O).  </p>
+<h2 id="Optinal-Binding"><a href="#Optinal-Binding" class="headerlink" title="Optinal Binding"></a>Optinal Binding</h2><br>
+
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Optional Binding - let vs var</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> optionalStr: <span class="type">String?</span> = <span class="string">"Hello, Optional"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// let</span></span><br><span class="line"><span class="keyword">if</span> <span class="keyword">let</span> optionalStr = optionalStr &#123;</span><br><span class="line"><span class="comment">//  optionalStr += "😍"</span></span><br><span class="line">  optionalStr</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  <span class="string">"valueless string"</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// var</span></span><br><span class="line"><span class="keyword">if</span> <span class="keyword">var</span> str = optionalStr &#123;</span><br><span class="line">  str += <span class="string">"😍"</span></span><br><span class="line">  str</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> <span class="keyword">let</span> nonOptional = <span class="type">OptionalExpression</span> &#123;</span><br><span class="line">   <span class="type">Code</span></span><br><span class="line"> &#125;</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"> <span class="keyword">while</span> <span class="keyword">let</span> nonOptional = <span class="type">OptionalExpression</span> &#123;</span><br><span class="line">   <span class="type">Code</span></span><br><span class="line"> &#125;</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"> <span class="keyword">guard</span> <span class="keyword">let</span> nonOptional = <span class="type">OptionalExpression</span> <span class="keyword">else</span> &#123;</span><br><span class="line">   <span class="type">Code</span></span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>바인딩 되지 않은 옵셔널끼리 계산 안된다.</li>
+<li>옵셔널이 아닌 값에 if let 구문쓰면 컴파일 오류난다.</li>
+<li>가장 많이 쓰는 것: guard let</li>
+</ul>
+<br>
+
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 여러 개의 옵셔널 바인딩과 불리언 조건을 함께 사용 가능</span></span><br><span class="line"><span class="keyword">if</span> <span class="keyword">let</span> firstNumber = <span class="type">Int</span>(<span class="string">"4"</span>),</span><br><span class="line">  <span class="keyword">let</span> secondNumber = <span class="type">Int</span>(<span class="string">"42"</span>),</span><br><span class="line">  firstNumber &lt; secondNumber,</span><br><span class="line">  secondNumber &lt; <span class="number">100</span> &#123;</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"\(firstNumber) &lt; \(secondNumber) &lt; 100"</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 위와 동일한 동작</span></span><br><span class="line"><span class="keyword">if</span> <span class="keyword">let</span> firstNumber = <span class="type">Int</span>(<span class="string">"4"</span>) &#123;</span><br><span class="line">  <span class="keyword">if</span> <span class="keyword">let</span> secondNumber = <span class="type">Int</span>(<span class="string">"42"</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> firstNumber &lt; secondNumber, secondNumber &lt; <span class="number">100</span> &#123;</span><br><span class="line">      <span class="built_in">print</span>(<span class="string">"\(firstNumber) &lt; \(secondNumber) &lt; 100"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="Froced-Unwrapping"><a href="#Froced-Unwrapping" class="headerlink" title="Froced Unwrapping"></a>Froced Unwrapping</h2><br>
+
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> nonOptional = <span class="type">OptionalExpression!</span></span><br></pre></td></tr></table></figure>
+
+
+<ul>
+<li>느낌표를 붙여서 강제 언랩핑</li>
+<li>가능하면 쓰지 않도록 합니다.</li>
+</ul>
+<br>
+
+<h2 id="IUO-Implicityl-Unwrapped-Optionals"><a href="#IUO-Implicityl-Unwrapped-Optionals" class="headerlink" title="IUO (Implicityl Unwrapped Optionals) ?????"></a>IUO (Implicityl Unwrapped Optionals) ?????</h2><br>
+
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">var</span> assumedString: <span class="type">String!</span> = <span class="string">"An implicitly unwrapped optional string."</span></span><br><span class="line"><span class="keyword">let</span> implicitString: <span class="type">String</span> = assumedString</span><br><span class="line"><span class="keyword">let</span> stillOptionalString = assumedString</span><br><span class="line">type(of: assumedString)</span><br><span class="line">type(of: implicitString)</span><br><span class="line">type(of: stillOptionalString)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(assumedString)</span><br><span class="line"><span class="built_in">print</span>(assumedString!)</span><br><span class="line"></span><br><span class="line"><span class="comment">//assumedString = nil</span></span><br><span class="line"><span class="comment">//print(assumedString!)</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>옵셔널 타입인데, 반드시 값이 있는 옵셔널 타입이다.</li>
+<li>추후 어느 순간에서라도 nil 이 될 수 있는 경우에는 이 것을 사용하지 말아야 함</li>
+<li>nil value 를 체크해야 할 일이 생길 경우는 일반적인 옵셔널 타입 사용</li>
+<li>프로퍼티 지연 초기화에 많이 사용</li>
+</ul>
+<br>
+
+<h2 id="Nil-coalescing-Operator"><a href="#Nil-coalescing-Operator" class="headerlink" title="Nil-coalescing Operator"></a>Nil-coalescing Operator</h2><br>
+
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">optionalStr = <span class="literal">nil</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> result = <span class="string">""</span></span><br><span class="line"><span class="keyword">if</span> optionalStr != <span class="literal">nil</span> &#123;</span><br><span class="line">   result = optionalStr!</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">   result = <span class="string">"This is a nil value"</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 위와 같음</span></span><br><span class="line"><span class="keyword">let</span> anotherExpression = optionalStr ?? <span class="string">"This is a nil value"</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 사용 예시</span></span><br><span class="line"><span class="keyword">let</span> defaultColorName = <span class="string">"red"</span></span><br><span class="line"><span class="keyword">var</span> userDefinedColorName: <span class="type">String?</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> colorNameToUse = userDefinedColorName ?? defaultColorName</span><br><span class="line"><span class="built_in">print</span>(colorNameToUse)</span><br><span class="line"></span><br><span class="line">userDefinedColorName = <span class="string">"green"</span></span><br><span class="line">colorNameToUse = userDefinedColorName ?? defaultColorName</span><br><span class="line"><span class="built_in">print</span>(colorNameToUse)</span><br></pre></td></tr></table></figure>
+
+<br>
+
+
+<h2 id="Optional-Chaining"><a href="#Optional-Chaining" class="headerlink" title="Optional Chaining"></a>Optional Chaining</h2><br>
+
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> greeting: [<span class="type">String</span>: <span class="type">String</span>] = [</span><br><span class="line">  <span class="string">"John"</span>: <span class="string">"Wassup"</span>,</span><br><span class="line">  <span class="string">"Jane"</span>: <span class="string">"Morning"</span>,</span><br><span class="line">  <span class="string">"Edward"</span>: <span class="string">"Yo"</span>,</span><br><span class="line">  <span class="string">"Tom"</span>: <span class="string">"Howdy"</span>,</span><br><span class="line">  <span class="string">"James"</span>: <span class="string">"Sup"</span></span><br><span class="line">]</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(greeting[<span class="string">"John"</span>])</span><br><span class="line"><span class="built_in">print</span>(greeting[<span class="string">"John"</span>]?.<span class="built_in">count</span>)</span><br><span class="line"><span class="built_in">print</span>(greeting[<span class="string">"NoName"</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment">// Optional Chaining</span></span><br><span class="line"><span class="built_in">print</span>(greeting[<span class="string">"John"</span>]?.lowercased().uppercased())</span><br><span class="line"><span class="built_in">print</span>(greeting[<span class="string">"Alice"</span>]?.lowercased().uppercased())</span><br><span class="line"></span><br><span class="line"><span class="comment">// Optional Binding</span></span><br><span class="line"><span class="keyword">if</span> <span class="keyword">let</span> greetingValue = greeting[<span class="string">"John"</span>] &#123;</span><br><span class="line">  <span class="built_in">print</span>(greetingValue.lowercased().uppercased())</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>값이 옵셔널일 경우, 해당 값(변수나 등등)의 메소드 사용 출력도 옵셔널 타입.</p>
+<p>옵셔널 바인딩으로 풀어주면 뒤에 값들도 모두 풀린다.</p>
+<br>
+
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> optionalArr1: [<span class="type">Int</span>]? = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>] <span class="comment">// Optional&lt;Array&lt;Int&gt;&gt;</span></span><br><span class="line"><span class="keyword">var</span> optionalArr2: [<span class="type">Int?</span>] = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>] <span class="comment">// Array&lt;Optional&lt;Int&gt;&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>Array가 옵셔널 타입<br>Array안에 담길 자료형이 옵셔널 타입</p>
+<br>
+
+
+<h2 id="Optional-Function-Types"><a href="#Optional-Function-Types" class="headerlink" title="Optional Function Types"></a>Optional Function Types</h2><br> 
+
+<blockquote>
+<p>좀 더 공부해서 추가하기</p>
+</blockquote>
+<br>
+
+
+<h2 id="풀어보기"><a href="#풀어보기" class="headerlink" title="풀어보기"></a>풀어보기</h2><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">2개의 정수를 입력받아 Modulo 연산(%)의 결과를 반환하는 함수를 만들되</span></span><br><span class="line"><span class="comment">2번째 파라미터와 결과값의 타입은 옵셔널로 정의.</span></span><br><span class="line"><span class="comment">두 번째 파라미터 입력값으로 nil 이나 0이 들어오면 결과로 nil을 반환하고, 그 외에는 계산 결과 반환</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h3 id="참고-코드"><a href="#참고-코드" class="headerlink" title="참고 코드"></a>참고 코드</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">calculateModulo</span><span class="params">(op1: Int, op2: Int?)</span></span> -&gt; <span class="type">Int?</span> &#123;</span><br><span class="line">  <span class="keyword">guard</span> <span class="keyword">let</span> op2 = op2, op2 != <span class="number">0</span> <span class="keyword">else</span> &#123; <span class="keyword">return</span> <span class="literal">nil</span> &#125;</span><br><span class="line">  <span class="keyword">return</span> op1 % op2</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<hr>
+<br>
+
+<h1 id="Enumerations"><a href="#Enumerations" class="headerlink" title="Enumerations"></a>Enumerations</h1><br>
+
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">CompassPoint</span> </span>&#123;</span><br><span class="line">  <span class="keyword">case</span> north</span><br><span class="line">  <span class="keyword">case</span> south</span><br><span class="line">  <span class="keyword">case</span> east</span><br><span class="line">  <span class="keyword">case</span> west</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> directionToHead1 = <span class="type">CompassPoint</span>.west</span><br><span class="line">directionToHead1 = .east</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> directionToHead2: <span class="type">CompassPoint</span> = .north</span><br></pre></td></tr></table></figure>
+
+
+<ul>
+<li>열거형 타입의 이름은 Pascal Case</li>
+<li>각각의 case는 Camel Case</li>
+<li>반환 시 옵셔널 값으로 나온다.</li>
+</ul>
+<br>
+
+<h2 id="Matching-Enumeration-Values"><a href="#Matching-Enumeration-Values" class="headerlink" title="Matching Enumeration Values"></a>Matching Enumeration Values</h2><br>
+
+
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> directionToHead = <span class="type">CompassPoint</span>.south</span><br><span class="line"></span><br><span class="line"><span class="keyword">switch</span> directionToHead &#123;</span><br><span class="line"><span class="keyword">case</span> .north:</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"Lots of planets have a north"</span>)</span><br><span class="line"><span class="keyword">case</span> .south:</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"Watch out for penguins"</span>)</span><br><span class="line"><span class="keyword">case</span> .east:</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"Where the sun rises"</span>)</span><br><span class="line"><span class="keyword">case</span> .west:</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"Where the skies are blue"</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> enumTypeAnnotation: <span class="type">Planet</span> = .mars</span><br><span class="line"><span class="keyword">let</span> somePlanet = <span class="type">Planet</span>.earth</span><br><span class="line"></span><br><span class="line"><span class="keyword">switch</span> somePlanet &#123;</span><br><span class="line"><span class="keyword">case</span> .earth:</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"Mostly harmless"</span>)</span><br><span class="line"><span class="keyword">default</span>:</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"Not a safe place for humans"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>enum과 switch문을 함께 쓰는 경우가 많다.</li>
+</ul>
+<br>
+
+<h2 id="Associated-Values"><a href="#Associated-Values" class="headerlink" title="Associated Values"></a>Associated Values</h2><br>
+
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">OddOrEven</span> </span>&#123;</span><br><span class="line">  <span class="keyword">case</span> odd(<span class="type">Int</span>) <span class="comment">// Int 타입의 값을 받을 수 있다.</span></span><br><span class="line">  <span class="keyword">case</span> even(<span class="type">Int</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> number = <span class="type">OddOrEven</span>.even(<span class="number">20</span>)</span><br><span class="line">number = <span class="type">OddOrEven</span>.odd(<span class="number">13</span>)</span><br><span class="line"></span><br><span class="line">number</span><br><span class="line">type(of: number)</span><br><span class="line"></span><br><span class="line"><span class="keyword">switch</span> number &#123;</span><br><span class="line"><span class="keyword">case</span> .odd(<span class="keyword">let</span> x): <span class="built_in">print</span>(<span class="string">"홀수 :"</span>, x)</span><br><span class="line"><span class="keyword">case</span> .even(<span class="keyword">let</span> x): <span class="built_in">print</span>(<span class="string">"짝수 :"</span>, x)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">switch</span> number &#123;</span><br><span class="line"><span class="keyword">case</span> <span class="keyword">let</span> .odd(x): <span class="built_in">print</span>(<span class="string">"홀수 :"</span>, x)</span><br><span class="line"><span class="keyword">case</span> <span class="keyword">let</span> .even(x): <span class="built_in">print</span>(<span class="string">"짝수 :"</span>, x)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">Barcode</span> </span>&#123;</span><br><span class="line">  <span class="keyword">case</span> upc(<span class="type">Int</span>, <span class="type">Int</span>, <span class="type">Int</span>, <span class="type">Int</span>)</span><br><span class="line">  <span class="keyword">case</span> qrCode(<span class="type">String</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> productBarcode = <span class="type">Barcode</span>.upc(<span class="number">8</span>, <span class="number">85909</span>, <span class="number">51226</span>, <span class="number">3</span>)</span><br><span class="line">productBarcode = .qrCode(<span class="string">"ABCDEFGHIJKLMNOP"</span>)</span><br><span class="line"></span><br><span class="line">productBarcode</span><br><span class="line">type(of: productBarcode)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">switch</span> productBarcode &#123;</span><br><span class="line"><span class="keyword">case</span> <span class="keyword">let</span> .upc(numberSystem, manufacturer, product, check):</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"UPC: \(numberSystem), \(manufacturer), \(product), \(check)."</span>)</span><br><span class="line"><span class="keyword">case</span> <span class="keyword">let</span> .qrCode(productCode):</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"QR code: \(productCode)."</span>)</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h2 id="Raw-Value"><a href="#Raw-Value" class="headerlink" title="Raw Value"></a>Raw Value</h2><br>
+
+<ul>
+<li>Stirng, Characters, Int, Float, Double Type</li>
+<li>Enum 내에서 반드시 고유한 값</li>
+</ul>
+<br>
+
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">// 1</span></span><br><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">WeekdayAgain</span>: <span class="title">Int</span> </span>&#123;</span><br><span class="line">	<span class="keyword">case</span> sunday = <span class="number">5</span>, monday, tuesday, wednesday, thursday, friday, saturday </span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line"><span class="type">WeekdayAgain</span>.sunday</span><br><span class="line"><span class="type">WeekdayAgain</span>.sunday.rawValue</span><br><span class="line"></span><br><span class="line"><span class="type">WeekdayAgain</span>.wednesday</span><br><span class="line"><span class="type">WeekdayAgain</span>.wednesday.rawValue</span><br><span class="line"></span><br><span class="line"><span class="comment">// 2</span></span><br><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">WeekdayAgain</span>: <span class="title">Int</span> </span>&#123;</span><br><span class="line">	<span class="keyword">case</span> sunday, monday = <span class="number">100</span>, tuesday = <span class="number">101</span>, wednesday, thursday, friday, saturday</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">WeekdayAgain</span>.sunday</span><br><span class="line"><span class="type">WeekdayAgain</span>.sunday.rawValue <span class="comment">// 0</span></span><br><span class="line"></span><br><span class="line"><span class="type">WeekdayAgain</span>.wednesday</span><br><span class="line"><span class="type">WeekdayAgain</span>.wednesday.rawValue</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>다른 case rawValue가 Int일 때, 제일 앞에 있는 case에 rawValue가 지정되어 있지 않으면 자동으로 값은 0이다.</li>
+</ul>
+<br>
+
+<h2 id="Nested"><a href="#Nested" class="headerlink" title="Nested"></a>Nested</h2><br>
+
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">Wearable</span> </span>&#123;</span><br><span class="line">  <span class="class"><span class="keyword">enum</span> <span class="title">Weight</span>: <span class="title">Int</span> </span>&#123;</span><br><span class="line">    <span class="keyword">case</span> light = <span class="number">1</span></span><br><span class="line">    <span class="keyword">case</span> heavy = <span class="number">2</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="class"><span class="keyword">enum</span> <span class="title">Armor</span>: <span class="title">Int</span> </span>&#123;</span><br><span class="line">    <span class="keyword">case</span> light = <span class="number">2</span></span><br><span class="line">    <span class="keyword">case</span> heavy = <span class="number">4</span></span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">case</span> helmet(weight: <span class="type">Weight</span>, armor: <span class="type">Armor</span>)</span><br><span class="line">  <span class="keyword">case</span> boots</span><br><span class="line">  </span><br><span class="line">  <span class="function"><span class="keyword">func</span> <span class="title">info</span><span class="params">()</span></span> -&gt; (weight: <span class="type">Int</span>, armor: <span class="type">Int</span>) &#123;</span><br><span class="line">    <span class="keyword">switch</span> <span class="keyword">self</span> &#123;</span><br><span class="line">    <span class="keyword">case</span> .helmet(<span class="keyword">let</span> weight, <span class="keyword">let</span> armor):</span><br><span class="line">      <span class="keyword">return</span> (weight: weight.rawValue * <span class="number">2</span>, armor: armor.rawValue * <span class="number">5</span>)</span><br><span class="line">    <span class="keyword">case</span> .boots:</span><br><span class="line">      <span class="keyword">return</span> (<span class="number">3</span>, <span class="number">3</span>)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="type">Wearable</span>.boots</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> woodenHelmet = <span class="type">Wearable</span>.helmet(weight: .light, armor: .heavy)</span><br><span class="line">woodenHelmet.info()</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h2 id="Mutating"><a href="#Mutating" class="headerlink" title="Mutating"></a>Mutating</h2><br>
+
+<p>enum 내부 함수에서 자기 자신의 값을 변경해야 할 경우 mutating 키워드 필요</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">Location</span> </span>&#123;</span><br><span class="line">  <span class="keyword">case</span> seoul, tokyo, london, newyork</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">mutating</span> <span class="function"><span class="keyword">func</span> <span class="title">travelToTokyo</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">self</span> = .london</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> location = <span class="type">Location</span>.seoul</span><br><span class="line">location</span><br><span class="line"></span><br><span class="line">location.travelToTokyo()</span><br><span class="line">location  <span class="comment">// london</span></span><br></pre></td></tr></table></figure>
+
+<p>Mutating은 자주 쓰는 방법은 아니라고 하네요.<br>이걸 쓴다고 (당연히) enum case 값이 바뀌는 건 아닙니다.<br>case를 할당 받은 변수의 값이 바뀝니다.</p>
+<br>
+
+<h3 id="🌱-풀어보기"><a href="#🌱-풀어보기" class="headerlink" title="🌱 풀어보기"></a>🌱 풀어보기</h3><br>
+
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">RemoteControl</span> </span>&#123;</span><br><span class="line">    <span class="keyword">case</span> on</span><br><span class="line">    <span class="keyword">case</span> off</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">mutating</span> <span class="function"><span class="keyword">func</span> <span class="title">onToOff</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="keyword">self</span> = .off</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">mutating</span> <span class="function"><span class="keyword">func</span> <span class="title">OffToOn</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="keyword">self</span> = .on</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> switchOn = <span class="type">RemoteControl</span>.off</span><br><span class="line">switchOn.<span class="type">OffToOn</span>()</span><br><span class="line">switchOn</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h2 id="Recursive-Enumerations"><a href="#Recursive-Enumerations" class="headerlink" title="Recursive Enumerations"></a>Recursive Enumerations</h2><br>
+
+<p>자기 자신을 참조한다.<br>indirect 키워드를 붙여야 하는데,<br>case와 enum 둘 다 붙일 수 있습니다.</p>
+<br>
+
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">indirect</span> <span class="class"><span class="keyword">enum</span> <span class="title">ArithmeticExpression</span> </span>&#123;</span><br><span class="line">  <span class="keyword">case</span> number(<span class="type">Int</span>)</span><br><span class="line">  <span class="keyword">case</span> addition(<span class="type">ArithmeticExpression</span>, <span class="type">ArithmeticExpression</span>)</span><br><span class="line">  <span class="keyword">case</span> multiplication(<span class="type">ArithmeticExpression</span>, <span class="type">ArithmeticExpression</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>이게.. 재귀함수처럼 쓰이는 건가 본데.. 이해가 잘 되지 않아서 설명할 수 없습니다 …<br>무슨 얘기인지는 대충 알겠지만, 사용은 할 수 없는 …<br>나중에 재귀함수 배우면서 재귀에 대한 개념을 잡고 다시 봐야할 것 같아요!<br>아무튼 이런 것이 있다 정도까지만.</p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">홈</a></li>
+         
+          <li><a href="/about/">소개</a></li>
+         
+          <li><a href="/archives/">글 목록</a></li>
+         
+          <li><a href="/projects_url">프로젝트</a></li>
+         
+          <li><a href="/tags/">tags</a></li>
+         
+          <li><a href="/categories/index.html">categories</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Optional"><span class="toc-number">1.</span> <span class="toc-text">Optional</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Optinal-Binding"><span class="toc-number">1.1.</span> <span class="toc-text">Optinal Binding</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Froced-Unwrapping"><span class="toc-number">1.2.</span> <span class="toc-text">Froced Unwrapping</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#IUO-Implicityl-Unwrapped-Optionals"><span class="toc-number">1.3.</span> <span class="toc-text">IUO (Implicityl Unwrapped Optionals) ?????</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Nil-coalescing-Operator"><span class="toc-number">1.4.</span> <span class="toc-text">Nil-coalescing Operator</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Optional-Chaining"><span class="toc-number">1.5.</span> <span class="toc-text">Optional Chaining</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Optional-Function-Types"><span class="toc-number">1.6.</span> <span class="toc-text">Optional Function Types</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#풀어보기"><span class="toc-number">1.7.</span> <span class="toc-text">풀어보기</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#참고-코드"><span class="toc-number">1.7.1.</span> <span class="toc-text">참고 코드</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Enumerations"><span class="toc-number">2.</span> <span class="toc-text">Enumerations</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Matching-Enumeration-Values"><span class="toc-number">2.1.</span> <span class="toc-text">Matching Enumeration Values</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Associated-Values"><span class="toc-number">2.2.</span> <span class="toc-text">Associated Values</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Raw-Value"><span class="toc-number">2.3.</span> <span class="toc-text">Raw Value</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Nested"><span class="toc-number">2.4.</span> <span class="toc-text">Nested</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Mutating"><span class="toc-number">2.5.</span> <span class="toc-text">Mutating</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#🌱-풀어보기"><span class="toc-number">2.5.1.</span> <span class="toc-text">🌱 풀어보기</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Recursive-Enumerations"><span class="toc-number">2.6.</span> <span class="toc-text">Recursive Enumerations</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://jisng.github.io/2019/11/TIL-swift-Optional-Enum-191114/" target="_blank" rel="noopener"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://jisng.github.io/2019/11/TIL-swift-Optional-Enum-191114/&text=TIL-swift-Optional+Enum-191114" target="_blank" rel="noopener"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://jisng.github.io/2019/11/TIL-swift-Optional-Enum-191114/&title=TIL-swift-Optional+Enum-191114" target="_blank" rel="noopener"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://jisng.github.io/2019/11/TIL-swift-Optional-Enum-191114/&is_video=false&description=TIL-swift-Optional+Enum-191114" target="_blank" rel="noopener"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=TIL-swift-Optional+Enum-191114&body=Check out this article: http://jisng.github.io/2019/11/TIL-swift-Optional-Enum-191114/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://jisng.github.io/2019/11/TIL-swift-Optional-Enum-191114/&title=TIL-swift-Optional+Enum-191114" target="_blank" rel="noopener"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://jisng.github.io/2019/11/TIL-swift-Optional-Enum-191114/&title=TIL-swift-Optional+Enum-191114" target="_blank" rel="noopener"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://jisng.github.io/2019/11/TIL-swift-Optional-Enum-191114/&title=TIL-swift-Optional+Enum-191114" target="_blank" rel="noopener"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://jisng.github.io/2019/11/TIL-swift-Optional-Enum-191114/&title=TIL-swift-Optional+Enum-191114" target="_blank" rel="noopener"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://jisng.github.io/2019/11/TIL-swift-Optional-Enum-191114/&name=TIL-swift-Optional+Enum-191114&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> 메뉴</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> 공유</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> 맨 위로</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    저작권 &copy; 2019 jisng
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">홈</a></li>
+         
+          <li><a href="/about/">소개</a></li>
+         
+          <li><a href="/archives/">글 목록</a></li>
+         
+          <li><a href="/projects_url">프로젝트</a></li>
+         
+          <li><a href="/tags/">tags</a></li>
+         
+          <li><a href="/categories/index.html">categories</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+    <!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<!-- clipboard -->
+
+  <script src="/lib/clipboard/clipboard.min.js"></script>
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"클립보드에 복사하였습니다!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight .code pre").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      target: function(trigger) {
+        return trigger.nextElementSibling;
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "복사하였습니다!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>
