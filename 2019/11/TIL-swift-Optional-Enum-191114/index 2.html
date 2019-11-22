@@ -1,12 +1,57 @@
 <!DOCTYPE html>
-<html lang=kr>
+<html lang="kr">
 <head>
-    <!-- so meta -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="HandheldFriendly" content="True">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="Optional값이 없다. nil0은 데이터. 옵셔널 타입의 2가지 가능성    1. 값이 전혀 없음    2. 값이 있으며, 그 값에 접근하기 위해 옵셔널을 벗겨냄(unwrap)    123let possibleNumber = &quot;123&quot;var convertedNumber = Int(possibleNumber)type(of: convertedNumber)">
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <link rel="alternate" href="/atom.xml" title="jisng" type="application/atom+xml">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '7.5.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: 'Copy',
+      copy_success: 'Copied',
+      copy_failure: 'Copy failed'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="Optional값이 없다. nil0은 데이터. 옵셔널 타입의 2가지 가능성    1. 값이 전혀 없음    2. 값이 있으며, 그 값에 접근하기 위해 옵셔널을 벗겨냄(unwrap)    123let possibleNumber = &quot;123&quot;var convertedNumber = Int(possibleNumber)type(of: convertedNumber)">
 <meta name="keywords" content="TIL,swift,optional,enum">
 <meta property="og:type" content="article">
 <meta property="og:title" content="TIL-swift-Optional+Enum-191114">
@@ -16,145 +61,176 @@
 <meta property="og:locale" content="kr">
 <meta property="og:updated_time" content="2019-11-20T04:51:24.078Z">
 <meta name="twitter:card" content="summary">
-    
-    
-        
-          
-              <link rel="shortcut icon" href="/images/favicon.ico">
-          
-        
-        
-          
-            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
-          
-        
-        
-          
-            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
-          
-        
-    
-    <!-- title -->
-    <title>TIL-swift-Optional+Enum-191114</title>
-    <!-- styles -->
-    <link rel="stylesheet" href="/css/style.css">
-    <!-- persian styles -->
-    
-      <link rel="stylesheet" href="/css/rtl.css">
-    
-    <!-- rss -->
-    
-    
-</head>
 
-<body class="max-width mx-auto px3 ltr">
-    
-      <div id="header-post">
-  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
-  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
-  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
-  <span id="menu">
-    <span id="nav">
-      <ul>
-         
-          <li><a href="/">홈</a></li>
-         
-          <li><a href="/about/">소개</a></li>
-         
-          <li><a href="/archives/">글 목록</a></li>
-         
-          <li><a href="/projects_url">프로젝트</a></li>
-         
-          <li><a href="/tags/">tags</a></li>
-         
-          <li><a href="/categories/index.html">categories</a></li>
-        
-      </ul>
-    </span>
-    <br/>
-    <span id="actions">
-      <ul>
-        
-        <li><a class="icon" href="/2019/11/TIL-swift-Closure-191115/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
-        
-        
-        <li><a class="icon" href="/2019/11/TIL-swift-191113/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
-        
-        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
-        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
-      </ul>
-      <span id="i-prev" class="info" style="display:none;">이전</span>
-      <span id="i-next" class="info" style="display:none;">다음</span>
-      <span id="i-top" class="info" style="display:none;">맨 위로</span>
-      <span id="i-share" class="info" style="display:none;">공유</span>
-    </span>
-    <br/>
-    <div id="share" style="display: none">
-      <ul>
-  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://jisng.github.io/2019/11/TIL-swift-Optional-Enum-191114/" target="_blank" rel="noopener"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=http://jisng.github.io/2019/11/TIL-swift-Optional-Enum-191114/&text=TIL-swift-Optional+Enum-191114" target="_blank" rel="noopener"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://jisng.github.io/2019/11/TIL-swift-Optional-Enum-191114/&title=TIL-swift-Optional+Enum-191114" target="_blank" rel="noopener"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://jisng.github.io/2019/11/TIL-swift-Optional-Enum-191114/&is_video=false&description=TIL-swift-Optional+Enum-191114" target="_blank" rel="noopener"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=TIL-swift-Optional+Enum-191114&body=Check out this article: http://jisng.github.io/2019/11/TIL-swift-Optional-Enum-191114/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=http://jisng.github.io/2019/11/TIL-swift-Optional-Enum-191114/&title=TIL-swift-Optional+Enum-191114" target="_blank" rel="noopener"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=http://jisng.github.io/2019/11/TIL-swift-Optional-Enum-191114/&title=TIL-swift-Optional+Enum-191114" target="_blank" rel="noopener"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://jisng.github.io/2019/11/TIL-swift-Optional-Enum-191114/&title=TIL-swift-Optional+Enum-191114" target="_blank" rel="noopener"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=http://jisng.github.io/2019/11/TIL-swift-Optional-Enum-191114/&title=TIL-swift-Optional+Enum-191114" target="_blank" rel="noopener"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://jisng.github.io/2019/11/TIL-swift-Optional-Enum-191114/&name=TIL-swift-Optional+Enum-191114&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-</ul>
-
-    </div>
-    <div id="toc">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Optional"><span class="toc-number">1.</span> <span class="toc-text">Optional</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Optinal-Binding"><span class="toc-number">1.1.</span> <span class="toc-text">Optinal Binding</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Froced-Unwrapping"><span class="toc-number">1.2.</span> <span class="toc-text">Froced Unwrapping</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#IUO-Implicityl-Unwrapped-Optionals"><span class="toc-number">1.3.</span> <span class="toc-text">IUO (Implicityl Unwrapped Optionals) ?????</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Nil-coalescing-Operator"><span class="toc-number">1.4.</span> <span class="toc-text">Nil-coalescing Operator</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Optional-Chaining"><span class="toc-number">1.5.</span> <span class="toc-text">Optional Chaining</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Optional-Function-Types"><span class="toc-number">1.6.</span> <span class="toc-text">Optional Function Types</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#풀어보기"><span class="toc-number">1.7.</span> <span class="toc-text">풀어보기</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#참고-코드"><span class="toc-number">1.7.1.</span> <span class="toc-text">참고 코드</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Enumerations"><span class="toc-number">2.</span> <span class="toc-text">Enumerations</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Matching-Enumeration-Values"><span class="toc-number">2.1.</span> <span class="toc-text">Matching Enumeration Values</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Associated-Values"><span class="toc-number">2.2.</span> <span class="toc-text">Associated Values</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Raw-Value"><span class="toc-number">2.3.</span> <span class="toc-text">Raw Value</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Nested"><span class="toc-number">2.4.</span> <span class="toc-text">Nested</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Mutating"><span class="toc-number">2.5.</span> <span class="toc-text">Mutating</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#🌱-풀어보기"><span class="toc-number">2.5.1.</span> <span class="toc-text">🌱 풀어보기</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Recursive-Enumerations"><span class="toc-number">2.6.</span> <span class="toc-text">Recursive Enumerations</span></a></li></ol></li></ol>
-    </div>
-  </span>
-</div>
-
-    
-    <div class="content index py4">
-        
-        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
-  <header>
-    
-    <h1 class="posttitle" itemprop="name headline">
-        TIL-swift-Optional+Enum-191114
-    </h1>
+<link rel="canonical" href="http://jisng.github.io/2019/11/TIL-swift-Optional-Enum-191114/">
 
 
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
 
-    <div class="meta">
-      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <span itemprop="name">jisng</span>
-      </span>
-      
-    <div class="postdate">
-      
-        <time datetime="2019-11-14T10:42:41.000Z" itemprop="datePublished">2019-11-14</time>
-        
-      
-    </div>
-
-
-      
-    <div class="article-category">
-        <i class="fas fa-archive"></i>
-        <a class="category-link" href="/categories/TIL/">TIL</a>
-    </div>
-
-
-      
-    <div class="article-tag">
-        <i class="fas fa-tag"></i>
-        <a class="tag-link" href="/tags/TIL/" rel="tag">TIL</a>, <a class="tag-link" href="/tags/enum/" rel="tag">enum</a>, <a class="tag-link" href="/tags/optional/" rel="tag">optional</a>, <a class="tag-link" href="/tags/swift/" rel="tag">swift</a>
-    </div>
-
-
-    </div>
-  </header>
+  <title>TIL-swift-Optional+Enum-191114 | jisng</title>
   
 
-  <div class="content" itemprop="articleBody">
-    <h1 id="Optional"><a href="#Optional" class="headerlink" title="Optional"></a>Optional</h1><p>값이 없다. nil<br>0은 데이터.</p>
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">jisng</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="kr">
+    <link itemprop="mainEntityOfPage" href="http://jisng.github.io/2019/11/TIL-swift-Optional-Enum-191114/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="jisng">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="jisng">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          TIL-swift-Optional+Enum-191114
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-11-14 19:42:41" itemprop="dateCreated datePublished" datetime="2019-11-14T19:42:41+09:00">2019-11-14</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-11-20 13:51:24" itemprop="dateModified" datetime="2019-11-20T13:51:24+09:00">2019-11-20</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/TIL/" itemprop="url" rel="index">
+                    <span itemprop="name">TIL</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="Optional"><a href="#Optional" class="headerlink" title="Optional"></a>Optional</h1><p>값이 없다. nil<br>0은 데이터.</p>
 <p>옵셔널 타입의 2가지 가능성<br>    1. 값이 전혀 없음<br>    2. 값이 있으며, 그 값에 접근하기 위해 옵셔널을 벗겨냄(unwrap)</p>
 <br>
 
@@ -333,129 +409,188 @@
 
 <p>이게.. 재귀함수처럼 쓰이는 건가 본데.. 이해가 잘 되지 않아서 설명할 수 없습니다 …<br>무슨 얘기인지는 대충 알겠지만, 사용은 할 수 없는 …<br>나중에 재귀함수 배우면서 재귀에 대한 개념을 잡고 다시 봐야할 것 같아요!<br>아무튼 이런 것이 있다 정도까지만.</p>
 
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/TIL/" rel="tag"># TIL</a>
+              <a href="/tags/swift/" rel="tag"># swift</a>
+              <a href="/tags/optional/" rel="tag"># optional</a>
+              <a href="/tags/enum/" rel="tag"># enum</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+                <a href="/2019/11/TIL-swift-191113/" rel="next" title="TIL-swift-collection-191113">
+                  <i class="fa fa-chevron-left"></i> TIL-swift-collection-191113
+                </a>
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+                <a href="/2019/11/TIL-swift-Closure-191115/" rel="prev" title="TIL-swift-Closure-191115">
+                  TIL-swift-Closure-191115 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
   </div>
-</article>
 
 
+          </div>
+          
 
-        
-          <div id="footer-post-container">
-  <div id="footer-post">
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
 
-    <div id="nav-footer" style="display: none">
-      <ul>
-         
-          <li><a href="/">홈</a></li>
-         
-          <li><a href="/about/">소개</a></li>
-         
-          <li><a href="/archives/">글 목록</a></li>
-         
-          <li><a href="/projects_url">프로젝트</a></li>
-         
-          <li><a href="/tags/">tags</a></li>
-         
-          <li><a href="/categories/index.html">categories</a></li>
-        
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
       </ul>
-    </div>
 
-    <div id="toc-footer" style="display: none">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Optional"><span class="toc-number">1.</span> <span class="toc-text">Optional</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Optinal-Binding"><span class="toc-number">1.1.</span> <span class="toc-text">Optinal Binding</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Froced-Unwrapping"><span class="toc-number">1.2.</span> <span class="toc-text">Froced Unwrapping</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#IUO-Implicityl-Unwrapped-Optionals"><span class="toc-number">1.3.</span> <span class="toc-text">IUO (Implicityl Unwrapped Optionals) ?????</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Nil-coalescing-Operator"><span class="toc-number">1.4.</span> <span class="toc-text">Nil-coalescing Operator</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Optional-Chaining"><span class="toc-number">1.5.</span> <span class="toc-text">Optional Chaining</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Optional-Function-Types"><span class="toc-number">1.6.</span> <span class="toc-text">Optional Function Types</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#풀어보기"><span class="toc-number">1.7.</span> <span class="toc-text">풀어보기</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#참고-코드"><span class="toc-number">1.7.1.</span> <span class="toc-text">참고 코드</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Enumerations"><span class="toc-number">2.</span> <span class="toc-text">Enumerations</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Matching-Enumeration-Values"><span class="toc-number">2.1.</span> <span class="toc-text">Matching Enumeration Values</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Associated-Values"><span class="toc-number">2.2.</span> <span class="toc-text">Associated Values</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Raw-Value"><span class="toc-number">2.3.</span> <span class="toc-text">Raw Value</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Nested"><span class="toc-number">2.4.</span> <span class="toc-text">Nested</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Mutating"><span class="toc-number">2.5.</span> <span class="toc-text">Mutating</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#🌱-풀어보기"><span class="toc-number">2.5.1.</span> <span class="toc-text">🌱 풀어보기</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Recursive-Enumerations"><span class="toc-number">2.6.</span> <span class="toc-text">Recursive Enumerations</span></a></li></ol></li></ol>
-    </div>
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Optional"><span class="nav-number">1.</span> <span class="nav-text">Optional</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Optinal-Binding"><span class="nav-number">1.1.</span> <span class="nav-text">Optinal Binding</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Froced-Unwrapping"><span class="nav-number">1.2.</span> <span class="nav-text">Froced Unwrapping</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IUO-Implicityl-Unwrapped-Optionals"><span class="nav-number">1.3.</span> <span class="nav-text">IUO (Implicityl Unwrapped Optionals) ?????</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Nil-coalescing-Operator"><span class="nav-number">1.4.</span> <span class="nav-text">Nil-coalescing Operator</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Optional-Chaining"><span class="nav-number">1.5.</span> <span class="nav-text">Optional Chaining</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Optional-Function-Types"><span class="nav-number">1.6.</span> <span class="nav-text">Optional Function Types</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#풀어보기"><span class="nav-number">1.7.</span> <span class="nav-text">풀어보기</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#참고-코드"><span class="nav-number">1.7.1.</span> <span class="nav-text">참고 코드</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Enumerations"><span class="nav-number">2.</span> <span class="nav-text">Enumerations</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Matching-Enumeration-Values"><span class="nav-number">2.1.</span> <span class="nav-text">Matching Enumeration Values</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Associated-Values"><span class="nav-number">2.2.</span> <span class="nav-text">Associated Values</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Raw-Value"><span class="nav-number">2.3.</span> <span class="nav-text">Raw Value</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Nested"><span class="nav-number">2.4.</span> <span class="nav-text">Nested</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Mutating"><span class="nav-number">2.5.</span> <span class="nav-text">Mutating</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#🌱-풀어보기"><span class="nav-number">2.5.1.</span> <span class="nav-text">🌱 풀어보기</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Recursive-Enumerations"><span class="nav-number">2.6.</span> <span class="nav-text">Recursive Enumerations</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
 
-    <div id="share-footer" style="display: none">
-      <ul>
-  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://jisng.github.io/2019/11/TIL-swift-Optional-Enum-191114/" target="_blank" rel="noopener"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=http://jisng.github.io/2019/11/TIL-swift-Optional-Enum-191114/&text=TIL-swift-Optional+Enum-191114" target="_blank" rel="noopener"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://jisng.github.io/2019/11/TIL-swift-Optional-Enum-191114/&title=TIL-swift-Optional+Enum-191114" target="_blank" rel="noopener"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://jisng.github.io/2019/11/TIL-swift-Optional-Enum-191114/&is_video=false&description=TIL-swift-Optional+Enum-191114" target="_blank" rel="noopener"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=TIL-swift-Optional+Enum-191114&body=Check out this article: http://jisng.github.io/2019/11/TIL-swift-Optional-Enum-191114/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=http://jisng.github.io/2019/11/TIL-swift-Optional-Enum-191114/&title=TIL-swift-Optional+Enum-191114" target="_blank" rel="noopener"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=http://jisng.github.io/2019/11/TIL-swift-Optional-Enum-191114/&title=TIL-swift-Optional+Enum-191114" target="_blank" rel="noopener"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://jisng.github.io/2019/11/TIL-swift-Optional-Enum-191114/&title=TIL-swift-Optional+Enum-191114" target="_blank" rel="noopener"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=http://jisng.github.io/2019/11/TIL-swift-Optional-Enum-191114/&title=TIL-swift-Optional+Enum-191114" target="_blank" rel="noopener"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://jisng.github.io/2019/11/TIL-swift-Optional-Enum-191114/&name=TIL-swift-Optional+Enum-191114&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-</ul>
-
-    </div>
-
-    <div id="actions-footer">
-        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> 메뉴</a>
-        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
-        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> 공유</a>
-        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> 맨 위로</a>
-    </div>
-
-  </div>
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">jisng</p>
+  <div class="site-description" itemprop="description"></div>
 </div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">25</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="feed-link motion-element">
+    <a href="/atom.xml" rel="alternate">
+      <i class="fa fa-rss"></i>RSS
+    </a>
+  </div>
 
-        
-        <footer id="footer">
-  <div class="footer-left">
-    저작권 &copy; 2019 jisng
-  </div>
-  <div class="footer-right">
-    <nav>
-      <ul>
-         
-          <li><a href="/">홈</a></li>
-         
-          <li><a href="/about/">소개</a></li>
-         
-          <li><a href="/archives/">글 목록</a></li>
-         
-          <li><a href="/projects_url">프로젝트</a></li>
-         
-          <li><a href="/tags/">tags</a></li>
-         
-          <li><a href="/categories/index.html">categories</a></li>
-        
-      </ul>
-    </nav>
-  </div>
-</footer>
+
+
+      </div>
 
     </div>
-    <!-- styles -->
-<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
-<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+  </aside>
+  <div id="sidebar-dimmer"></div>
 
-    <!-- jquery -->
-<script src="/lib/jquery/jquery.min.js"></script>
-<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
-<!-- clipboard -->
 
-  <script src="/lib/clipboard/clipboard.min.js"></script>
-  <script type="text/javascript">
-  $(function() {
-    // copy-btn HTML
-    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"클립보드에 복사하였습니다!\">";
-    btn += '<i class="far fa-clone"></i>';
-    btn += '</span>'; 
-    // mount it!
-    $(".highlight .code pre").before(btn);
-    var clip = new ClipboardJS('.btn-copy', {
-      target: function(trigger) {
-        return trigger.nextElementSibling;
-      }
-    });
-    clip.on('success', function(e) {
-      e.trigger.setAttribute('aria-label', "복사하였습니다!");
-      e.clearSelection();
-    })
-  })
-  </script>
+      </div>
+    </main>
 
-<script src="/js/main.js"></script>
-<!-- search -->
+    <footer class="footer">
+      <div class="footer-inner">
+        
 
-<!-- Google Analytics -->
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">jisng</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.0.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.5.0
+  </div>
 
-<!-- Baidu Analytics -->
+        
 
-<!-- Disqus Comments -->
 
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/muse.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
 
 </body>
 </html>
