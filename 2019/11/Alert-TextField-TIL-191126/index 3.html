@@ -1,160 +1,167 @@
 <!DOCTYPE html>
-<html lang=kr>
+<html lang="en">
+
+
+
+
+
 <head>
-    <!-- so meta -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="HandheldFriendly" content="True">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="AlertController얼럿창을 띄웁니다.먼저 버튼을 만든다음, 버튼을 눌렀을 때 얼럿을 띄웁니다.   UIAlertAction(titile:style:handler:) 에 handler 부분에서 해당 버튼을 눌렀을 때 동작하길 원하는 코드를 클로져로 작성합니다.    alert는 present 방식으로 띄웁니다. (화면 전환과 같은 방식이죠!)   1">
-<meta name="keywords" content="alert,textField">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Alert&#x2F;TextField-TIL-191126">
-<meta property="og:url" content="http:&#x2F;&#x2F;jisng.github.io&#x2F;2019&#x2F;11&#x2F;Alert-TextField-TIL-191126&#x2F;index.html">
-<meta property="og:site_name" content="jisng">
-<meta property="og:description" content="AlertController얼럿창을 띄웁니다.먼저 버튼을 만든다음, 버튼을 눌렀을 때 얼럿을 띄웁니다.   UIAlertAction(titile:style:handler:) 에 handler 부분에서 해당 버튼을 눌렀을 때 동작하길 원하는 코드를 클로져로 작성합니다.    alert는 present 방식으로 띄웁니다. (화면 전환과 같은 방식이죠!)   1">
-<meta property="og:locale" content="kr">
-<meta property="og:updated_time" content="2019-11-26T14:14:28.734Z">
-<meta name="twitter:card" content="summary">
-    
-    
-        
-          
-              <link rel="shortcut icon" href="/images/favicon.ico">
-          
-        
-        
-          
-            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
-          
-        
-        
-          
-            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
-          
-        
-    
-    <!-- title -->
-    <title>Alert/TextField-TIL-191126</title>
-    <!-- styles -->
-    <link rel="stylesheet" href="/css/style.css">
-    <!-- persian styles -->
-    
-      <link rel="stylesheet" href="/css/rtl.css">
-    
-    <!-- rss -->
-    
-    
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-touch-icon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="description" content="">
+  <meta name="author" content="jisng">
+  <meta name="keywords" content="swift, iOS, git, dev">
+  <title>Alert/TextField-TIL-191126 ~ jisng</title>
+
+  <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css"  >
+<link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css"  >
+<link rel="stylesheet" href="/lib/mdbootstrap/css/mdb.min.css"  >
+<link rel="stylesheet" href="/lib/github-markdown/github-markdown.min.css"  >
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1067060_qzomjdt8bmp.css">
+
+
+  <link rel="stylesheet" href="/lib/prettify/tomorrow-night-eighties.min.css"  >
+
+<link rel="stylesheet" href="/css/main.css"  >
+
+
+  <link rel="stylesheet" href="/lib/fancybox/jquery.fancybox.min.css"  >
+
+
 </head>
 
-<body class="max-width mx-auto px3 ltr">
-    
-      <div id="header-post">
-  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
-  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
-  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
-  <span id="menu">
-    <span id="nav">
-      <ul>
-         
-          <li><a href="/">홈</a></li>
-         
-          <li><a href="/about/">소개</a></li>
-         
-          <li><a href="/archives/">글 목록</a></li>
-         
-          <li><a href="https://github.com/jisng/TIL" target="_blank" rel="noopener">프로젝트</a></li>
-         
-          <li><a href="/tags/">tags</a></li>
-         
-          <li><a href="/categories/index.html">categories</a></li>
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>jisng</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/">Home</a>
+          </li>
+        
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/archives/">Archives</a>
+          </li>
+        
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/categories/">Categories</a>
+          </li>
+        
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/tags/">Tags</a>
+          </li>
+        
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/about/">About</a>
+          </li>
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
         
       </ul>
-    </span>
-    <br/>
-    <span id="actions">
-      <ul>
-        
-        <li><a class="icon" href="/2019/11/UI-TIL-191127/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
-        
-        
-        <li><a class="icon" href="/2019/11/UIViewController-TIL-191125/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
-        
-        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
-        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
-      </ul>
-      <span id="i-prev" class="info" style="display:none;">이전</span>
-      <span id="i-next" class="info" style="display:none;">다음</span>
-      <span id="i-top" class="info" style="display:none;">맨 위로</span>
-      <span id="i-share" class="info" style="display:none;">공유</span>
-    </span>
-    <br/>
-    <div id="share" style="display: none">
-      <ul>
-  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://jisng.github.io/2019/11/Alert-TextField-TIL-191126/" target="_blank" rel="noopener"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=http://jisng.github.io/2019/11/Alert-TextField-TIL-191126/&text=Alert/TextField-TIL-191126" target="_blank" rel="noopener"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://jisng.github.io/2019/11/Alert-TextField-TIL-191126/&title=Alert/TextField-TIL-191126" target="_blank" rel="noopener"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://jisng.github.io/2019/11/Alert-TextField-TIL-191126/&is_video=false&description=Alert/TextField-TIL-191126" target="_blank" rel="noopener"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Alert/TextField-TIL-191126&body=Check out this article: http://jisng.github.io/2019/11/Alert-TextField-TIL-191126/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=http://jisng.github.io/2019/11/Alert-TextField-TIL-191126/&title=Alert/TextField-TIL-191126" target="_blank" rel="noopener"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=http://jisng.github.io/2019/11/Alert-TextField-TIL-191126/&title=Alert/TextField-TIL-191126" target="_blank" rel="noopener"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://jisng.github.io/2019/11/Alert-TextField-TIL-191126/&title=Alert/TextField-TIL-191126" target="_blank" rel="noopener"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=http://jisng.github.io/2019/11/Alert-TextField-TIL-191126/&title=Alert/TextField-TIL-191126" target="_blank" rel="noopener"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://jisng.github.io/2019/11/Alert-TextField-TIL-191126/&name=Alert/TextField-TIL-191126&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-</ul>
-
     </div>
-    <div id="toc">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#AlertController"><span class="toc-number">1.</span> <span class="toc-text">AlertController</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#TextField"><span class="toc-number">2.</span> <span class="toc-text">TextField</span></a></li></ol>
-    </div>
-  </span>
-</div>
-
-    
-    <div class="content index py4">
-        
-        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
-  <header>
-    
-    <h1 class="posttitle" itemprop="name headline">
-        Alert/TextField-TIL-191126
-    </h1>
+  </div>
 
 
+</nav>
 
-    <div class="meta">
-      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <span itemprop="name">jisng</span>
-      </span>
-      
-    <div class="postdate">
-      
-        <time datetime="2019-11-26T13:54:15.000Z" itemprop="datePublished">2019-11-26</time>
-        
-      
-    </div>
+    <div class="view intro-2" id="background"
+         style="background: url('/img/default.png')no-repeat center center;
+           background-size: cover;
+           background-attachment: fixed;">
+      <div class="full-bg-img">
+        <div class="mask rgba-black-light flex-center">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
 
+            
+              <br>
+              
+                <p class="mt-3">
+                  <i class="fas fa-calendar-alt" aria-hidden="true"></i>&nbsp;
+                  Tuesday, November 26th 2019, 10:54 pm
+                </p>
+              
 
-      
-    <div class="article-category">
-        <i class="fas fa-archive"></i>
-        <a class="category-link" href="/categories/TIL/">TIL</a>
-    </div>
+              <p>
+                
+                  
+                  &nbsp;<i class="far fa-chart-bar"></i>
+                  <span class="post-count">
+                    240 字
+                  </span>&nbsp;
+                
 
+                
+                  
+                  &nbsp;<i class="far fa-clock"></i>
+                  <span class="post-count">
+                      1 分钟
+                  </span>&nbsp;
+                
 
-      
-    <div class="article-tag">
-        <i class="fas fa-tag"></i>
-        <a class="tag-link" href="/tags/alert/" rel="tag">alert</a>, <a class="tag-link" href="/tags/textField/" rel="tag">textField</a>
-    </div>
+                
+                  <!-- 不蒜子统计文章PV -->
+                  
+                  &nbsp;<i class="far fa-eye" aria-hidden="true"></i>&nbsp;
+                  <span id="busuanzi_container_page_pv">
+                    <span id="busuanzi_value_page_pv"></span> 次
+                  </span>&nbsp;
+                
+              </p>
+            
+          </div>
 
-
+          
+        </div>
+      </div>
     </div>
   </header>
-  
 
-  <div class="content" itemprop="articleBody">
-    <h1 id="AlertController"><a href="#AlertController" class="headerlink" title="AlertController"></a>AlertController</h1><p>얼럿창을 띄웁니다.<br>먼저 버튼을 만든다음, 버튼을 눌렀을 때 얼럿을 띄웁니다.</p>
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="py-5 z-depth-3" id="board">
+        <div class="post-content mx-auto" id="post">
+          <div class="markdown-body">
+            <h1 id="AlertController"><a href="#AlertController" class="headerlink" title="AlertController"></a>AlertController</h1><p>얼럿창을 띄웁니다.<br>먼저 버튼을 만든다음, 버튼을 눌렀을 때 얼럿을 띄웁니다.</p>
 <br>
 
 <p>UIAlertAction(titile:style:handler:) 에 handler 부분에서 해당 버튼을 눌렀을 때 동작하길 원하는 코드를 클로져로 작성합니다. </p>
@@ -163,10 +170,29 @@
 <p>alert는 present 방식으로 띄웁니다. (화면 전환과 같은 방식이죠!)</p>
 <br>
 
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@objc</span> <span class="function"><span class="keyword">func</span> <span class="title">buttonTab</span><span class="params">(<span class="number">_</span> button: UIButton)</span></span> &#123;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">let</span> alertController = <span class="type">UIAlertController</span>(title: <span class="string">"알림"</span>, message: <span class="string">"버튼을 눌러보세요"</span>, preferredStyle: .alert)</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">let</span> okAction = <span class="type">UIAlertAction</span>(title: <span class="string">"ok"</span>, style: .<span class="keyword">default</span>) &#123; <span class="number">_</span> <span class="keyword">in</span></span><br><span class="line">            <span class="built_in">print</span>(<span class="string">"ok"</span>)</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">let</span> cancleAction = <span class="type">UIAlertAction</span>(title: <span class="string">"Cancel"</span>, style: .cancel) &#123; <span class="number">_</span> <span class="keyword">in</span></span><br><span class="line">            <span class="built_in">print</span>(<span class="string">"cancel"</span>)</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">let</span> deleteAction = <span class="type">UIAlertAction</span>(title: <span class="string">"Reset"</span>, style: .destructive) &#123; <span class="number">_</span> <span class="keyword">in</span></span><br><span class="line">						<span class="built_in">print</span>(<span class="string">"delete"</span>)</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">        <span class="comment">// for 문으로 넣을 수 있음.</span></span><br><span class="line">        alertController.addAction(okAction)</span><br><span class="line">        alertController.addAction(cancleAction)</span><br><span class="line">        alertController.addAction(deleteAction)</span><br><span class="line">        </span><br><span class="line">        present(alertController, animated: <span class="literal">true</span>)</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<pre><code class="swift">@objc func buttonTab(_ button: UIButton) {
+
+        let alertController = UIAlertController(title: &quot;알림&quot;, message: &quot;버튼을 눌러보세요&quot;, preferredStyle: .alert)
+
+        let okAction = UIAlertAction(title: &quot;ok&quot;, style: .default) { _ in
+            print(&quot;ok&quot;)
+        }
+        let cancleAction = UIAlertAction(title: &quot;Cancel&quot;, style: .cancel) { _ in
+            print(&quot;cancel&quot;)
+        }
+        let deleteAction = UIAlertAction(title: &quot;Reset&quot;, style: .destructive) { _ in
+                        print(&quot;delete&quot;)
+        }
 
 
+        // for 문으로 넣을 수 있음.
+        alertController.addAction(okAction)
+        alertController.addAction(cancleAction)
+        alertController.addAction(deleteAction)
 
+        present(alertController, animated: true)
+
+    }</code></pre>
 <br>
 
 
@@ -174,8 +200,16 @@
 <h1 id="TextField"><a href="#TextField" class="headerlink" title="TextField"></a>TextField</h1><p>텍스트필드는 입력을 받는 창인만큼 다양한 속성을 설정할 수 있기 때문에,<br>스토리보드를 통해 어떤 속성들이 있는지 확인 후 코드로 작성하는 것이 좋을 것 같습니다!</p>
 <br>
 
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> textField = <span class="type">UITextField</span>()</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">createTextField</span> <span class="params">(<span class="number">_</span> text: UITextFiedld)</span></span> &#123;</span><br><span class="line">  </span><br><span class="line">  text.frame = <span class="type">CGRect</span>(x: , y: , width: , height: )</span><br><span class="line">  text.placeholder = <span class="string">"입력하세요."</span></span><br><span class="line">  text.addTarget(<span class="keyword">self</span>, action: #selector(tfAction(<span class="number">_</span>:)), <span class="keyword">for</span>: .editingChanged)</span><br><span class="line">  view.addSubView(text)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code class="swift">let textField = UITextField()
 
+func createTextField (_ text: UITextFiedld) {
+
+  text.frame = CGRect(x: , y: , width: , height: )
+  text.placeholder = &quot;입력하세요.&quot;
+  text.addTarget(self, action: #selector(tfAction(_:)), for: .editingChanged)
+  view.addSubView(text)
+}
+</code></pre>
 <br>
 
 <p><code>.addTarget</code> 에서 <code>for</code>  에는 다음 5가지를 호출할 수 있으며, 각 이벤트마다 호출 시점이 다릅니다.  </p>
@@ -193,128 +227,238 @@
 
 <p>호출 시점을 이용하면,<br>텍스트 필드를 자동으로 띄우거나, 입력 글자 수를 제한하는 등의 기능 구현이 가능합니다.</p>
 
+            <hr>
+          </div>
+          <br>
+          <div>
+            <p>
+            
+              <span>
+                <i class="iconfont icon-inbox"></i>
+                
+                  <a class="hover-with-bg" href="/categories/TIL">TIL</a>
+                  &nbsp;
+                
+              </span>&nbsp;&nbsp;
+            
+            
+              <span>
+                <i class="iconfont icon-tag"></i>
+                
+                  <a class="hover-with-bg" href="/tags/alert">alert</a>
+                
+                  <a class="hover-with-bg" href="/tags/textField">textField</a>
+                
+              </span>
+            
+            </p>
+            
+              <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" target="_blank" rel="nofollow noopener noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="d-none d-lg-block col-lg-2 toc-container">
+      
+  <div id="toc">
+    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;TOC</p>
+    <div id="tocbot"></div>
   </div>
-</article>
-
-
-
-        
-          <div id="footer-post-container">
-  <div id="footer-post">
-
-    <div id="nav-footer" style="display: none">
-      <ul>
-         
-          <li><a href="/">홈</a></li>
-         
-          <li><a href="/about/">소개</a></li>
-         
-          <li><a href="/archives/">글 목록</a></li>
-         
-          <li><a href="https://github.com/jisng/TIL" target="_blank" rel="noopener">프로젝트</a></li>
-         
-          <li><a href="/tags/">tags</a></li>
-         
-          <li><a href="/categories/index.html">categories</a></li>
-        
-      </ul>
-    </div>
-
-    <div id="toc-footer" style="display: none">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#AlertController"><span class="toc-number">1.</span> <span class="toc-text">AlertController</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#TextField"><span class="toc-number">2.</span> <span class="toc-text">TextField</span></a></li></ol>
-    </div>
-
-    <div id="share-footer" style="display: none">
-      <ul>
-  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://jisng.github.io/2019/11/Alert-TextField-TIL-191126/" target="_blank" rel="noopener"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=http://jisng.github.io/2019/11/Alert-TextField-TIL-191126/&text=Alert/TextField-TIL-191126" target="_blank" rel="noopener"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://jisng.github.io/2019/11/Alert-TextField-TIL-191126/&title=Alert/TextField-TIL-191126" target="_blank" rel="noopener"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://jisng.github.io/2019/11/Alert-TextField-TIL-191126/&is_video=false&description=Alert/TextField-TIL-191126" target="_blank" rel="noopener"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Alert/TextField-TIL-191126&body=Check out this article: http://jisng.github.io/2019/11/Alert-TextField-TIL-191126/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=http://jisng.github.io/2019/11/Alert-TextField-TIL-191126/&title=Alert/TextField-TIL-191126" target="_blank" rel="noopener"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=http://jisng.github.io/2019/11/Alert-TextField-TIL-191126/&title=Alert/TextField-TIL-191126" target="_blank" rel="noopener"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://jisng.github.io/2019/11/Alert-TextField-TIL-191126/&title=Alert/TextField-TIL-191126" target="_blank" rel="noopener"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=http://jisng.github.io/2019/11/Alert-TextField-TIL-191126/&title=Alert/TextField-TIL-191126" target="_blank" rel="noopener"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://jisng.github.io/2019/11/Alert-TextField-TIL-191126/&name=Alert/TextField-TIL-191126&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-</ul>
 
     </div>
-
-    <div id="actions-footer">
-        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> 메뉴</a>
-        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
-        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> 공유</a>
-        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> 맨 위로</a>
-    </div>
-
   </div>
 </div>
 
-        
-        <footer id="footer">
-  <div class="footer-left">
-    저작권 &copy; 2019 jisng
+<!-- custom -->
+
+
+<!-- Comments -->
+<div class="col-lg-7 mx-auto nopadding-md">
+  <div class="container comments mx-auto" id="comments">
+    
   </div>
-  <div class="footer-right">
-    <nav>
-      <ul>
-         
-          <li><a href="/">홈</a></li>
-         
-          <li><a href="/about/">소개</a></li>
-         
-          <li><a href="/archives/">글 목록</a></li>
-         
-          <li><a href="https://github.com/jisng/TIL" target="_blank" rel="noopener">프로젝트</a></li>
-         
-          <li><a href="/tags/">tags</a></li>
-         
-          <li><a href="/categories/index.html">categories</a></li>
-        
-      </ul>
-    </nav>
+</div>
+
+    
+  </main>
+
+  
+    <a class="z-depth-1" id="scroll-top-button" href="#" role="button">
+      <i class="fa fa-chevron-up scroll-top-arrow" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><b>Hexo</b></a>
+    <i class="iconfont icon-love"></i>
+    <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"> <b>Fluid</b></a>
+    <br>
+
+    
+  
+    <!-- 不蒜子统计PV -->
+    
+    &nbsp;<span id="busuanzi_container_site_pv">总访问量 
+          <span id="busuanzi_value_site_pv"></span> 次</span>&nbsp;
+  
+  
+    <!-- 不蒜子统计UV -->
+    
+    &nbsp;<span id="busuanzi_container_site_uv">总访客数 
+            <span id="busuanzi_value_site_uv"></span> 人</span>&nbsp;
+  
+  <br>
+
+
+
+    
+
   </div>
 </footer>
 
-    </div>
-    <!-- styles -->
-<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
-<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+<!-- SCRIPTS -->
+<script src="/lib/jquery/jquery.min.js" ></script>
+<script src="/lib/popper/popper.min.js" ></script>
+<script src="/lib/bootstrap/js/bootstrap.min.js" ></script>
+<script src="/lib/mdbootstrap/js/mdb.min.js" ></script>
+<script src="/js/main.js" ></script>
 
-    <!-- jquery -->
-<script src="/lib/jquery/jquery.min.js"></script>
-<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
-<!-- clipboard -->
 
-  <script src="/lib/clipboard/clipboard.min.js"></script>
-  <script type="text/javascript">
-  $(function() {
-    // copy-btn HTML
-    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"클립보드에 복사하였습니다!\">";
-    btn += '<i class="far fa-clone"></i>';
-    btn += '</span>'; 
-    // mount it!
-    $(".highlight .code pre").before(btn);
-    var clip = new ClipboardJS('.btn-copy', {
-      target: function(trigger) {
-        return trigger.nextElementSibling;
-      }
-    });
-    clip.on('success', function(e) {
-      e.trigger.setAttribute('aria-label', "복사하였습니다!");
-      e.clearSelection();
+  <script src="/js/lazyload.js" ></script>
+
+
+
+  
+    <script src="/lib/tocbot/tocbot.min.js" ></script>
+  
+  <script src="/js/post.js" ></script>
+
+
+
+  <script src="/lib/smooth-scroll/smooth-scroll.min.js" ></script>
+
+
+
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+<!-- Plugins -->
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+  <script src="/lib/prettify/prettify.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      $('pre').addClass('prettyprint  linenums');
+      prettyPrint();
     })
-  })
   </script>
 
-<script src="/js/main.js"></script>
-<!-- search -->
 
-<!-- Google Analytics -->
 
-<!-- Baidu Analytics -->
+  <script src="/lib/typed/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "Alert/TextField-TIL-191126&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
 
-<!-- Disqus Comments -->
+
+
+  <script src="/lib/anchor/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "false",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      getSearchFile(path);
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script src="/lib/fancybox/jquery.fancybox.min.js" ></script>
+  <script>
+    $("#post img:not(.no-zoom img, img[no-zoom])").each(
+      function () {
+        var element = document.createElement("a");
+        $(element).attr("data-fancybox", "images");
+        $(element).attr("href", $(this).attr("src"));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
 
 
 </body>
