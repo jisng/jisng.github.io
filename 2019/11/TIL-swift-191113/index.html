@@ -1,160 +1,167 @@
 <!DOCTYPE html>
-<html lang=kr>
+<html lang="en">
+
+
+
+
+
 <head>
-    <!-- so meta -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="HandheldFriendly" content="True">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="Collection   Value Type (Swift Collection)  Array Dictionary Set   Object Type (Foundaiton Collection)  NSArray, NSMutableArray NSDictionary, NSMutableDictionary NSSet, NSMutableSet   Copy-on-Write Op">
-<meta name="keywords" content="swift,collection-type,array,dictionary,set">
-<meta property="og:type" content="article">
-<meta property="og:title" content="TIL-swift-collection-191113">
-<meta property="og:url" content="http:&#x2F;&#x2F;jisng.github.io&#x2F;2019&#x2F;11&#x2F;TIL-swift-191113&#x2F;index.html">
-<meta property="og:site_name" content="jisng">
-<meta property="og:description" content="Collection   Value Type (Swift Collection)  Array Dictionary Set   Object Type (Foundaiton Collection)  NSArray, NSMutableArray NSDictionary, NSMutableDictionary NSSet, NSMutableSet   Copy-on-Write Op">
-<meta property="og:locale" content="kr">
-<meta property="og:updated_time" content="2019-11-25T00:08:35.610Z">
-<meta name="twitter:card" content="summary">
-    
-    
-        
-          
-              <link rel="shortcut icon" href="/images/favicon.ico">
-          
-        
-        
-          
-            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
-          
-        
-        
-          
-            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
-          
-        
-    
-    <!-- title -->
-    <title>TIL-swift-collection-191113</title>
-    <!-- styles -->
-    <link rel="stylesheet" href="/css/style.css">
-    <!-- persian styles -->
-    
-      <link rel="stylesheet" href="/css/rtl.css">
-    
-    <!-- rss -->
-    
-    
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-touch-icon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="description" content="">
+  <meta name="author" content="jisng">
+  <meta name="keywords" content="swift, iOS, git, dev">
+  <title>TIL-swift-collection-191113 ~ jisng</title>
+
+  <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css"  >
+<link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css"  >
+<link rel="stylesheet" href="/lib/mdbootstrap/css/mdb.min.css"  >
+<link rel="stylesheet" href="/lib/github-markdown/github-markdown.min.css"  >
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1067060_qzomjdt8bmp.css">
+
+
+  <link rel="stylesheet" href="/lib/prettify/tomorrow-night-eighties.min.css"  >
+
+<link rel="stylesheet" href="/css/main.css"  >
+
+
+  <link rel="stylesheet" href="/lib/fancybox/jquery.fancybox.min.css"  >
+
+
 </head>
 
-<body class="max-width mx-auto px3 ltr">
-    
-      <div id="header-post">
-  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
-  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
-  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
-  <span id="menu">
-    <span id="nav">
-      <ul>
-         
-          <li><a href="/">홈</a></li>
-         
-          <li><a href="/about/">소개</a></li>
-         
-          <li><a href="/archives/">글 목록</a></li>
-         
-          <li><a href="https://github.com/jisng/TIL" target="_blank" rel="noopener">프로젝트</a></li>
-         
-          <li><a href="/tags/">tags</a></li>
-         
-          <li><a href="/categories/index.html">categories</a></li>
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>jisng</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/">Home</a>
+          </li>
+        
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/archives/">Archives</a>
+          </li>
+        
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/categories/">Categories</a>
+          </li>
+        
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/tags/">Tags</a>
+          </li>
+        
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/about/">About</a>
+          </li>
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
         
       </ul>
-    </span>
-    <br/>
-    <span id="actions">
-      <ul>
-        
-        <li><a class="icon" href="/2019/11/TIL-swift-Optional-Enum-191114/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
-        
-        
-        <li><a class="icon" href="/2019/11/TIL-swift-191111/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
-        
-        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
-        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
-      </ul>
-      <span id="i-prev" class="info" style="display:none;">이전</span>
-      <span id="i-next" class="info" style="display:none;">다음</span>
-      <span id="i-top" class="info" style="display:none;">맨 위로</span>
-      <span id="i-share" class="info" style="display:none;">공유</span>
-    </span>
-    <br/>
-    <div id="share" style="display: none">
-      <ul>
-  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://jisng.github.io/2019/11/TIL-swift-191113/" target="_blank" rel="noopener"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=http://jisng.github.io/2019/11/TIL-swift-191113/&text=TIL-swift-collection-191113" target="_blank" rel="noopener"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://jisng.github.io/2019/11/TIL-swift-191113/&title=TIL-swift-collection-191113" target="_blank" rel="noopener"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://jisng.github.io/2019/11/TIL-swift-191113/&is_video=false&description=TIL-swift-collection-191113" target="_blank" rel="noopener"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=TIL-swift-collection-191113&body=Check out this article: http://jisng.github.io/2019/11/TIL-swift-191113/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=http://jisng.github.io/2019/11/TIL-swift-191113/&title=TIL-swift-collection-191113" target="_blank" rel="noopener"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=http://jisng.github.io/2019/11/TIL-swift-191113/&title=TIL-swift-collection-191113" target="_blank" rel="noopener"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://jisng.github.io/2019/11/TIL-swift-191113/&title=TIL-swift-collection-191113" target="_blank" rel="noopener"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=http://jisng.github.io/2019/11/TIL-swift-191113/&title=TIL-swift-collection-191113" target="_blank" rel="noopener"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://jisng.github.io/2019/11/TIL-swift-191113/&name=TIL-swift-collection-191113&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-</ul>
-
     </div>
-    <div id="toc">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Collection"><span class="toc-number">1.</span> <span class="toc-text">Collection</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Array"><span class="toc-number">1.1.</span> <span class="toc-text">Array</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Initialize"><span class="toc-number">1.1.1.</span> <span class="toc-text">Initialize</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#method"><span class="toc-number">1.1.2.</span> <span class="toc-text">method</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Count"><span class="toc-number">1.1.2.1.</span> <span class="toc-text">Count</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Find-Value-of-Index"><span class="toc-number">1.1.2.2.</span> <span class="toc-text">Find Value of Index</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Search"><span class="toc-number">1.1.2.3.</span> <span class="toc-text">Search</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Add"><span class="toc-number">1.1.2.4.</span> <span class="toc-text">Add</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Change"><span class="toc-number">1.1.2.5.</span> <span class="toc-text">Change</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Remove"><span class="toc-number">1.1.2.6.</span> <span class="toc-text">Remove</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Sorting"><span class="toc-number">1.1.2.7.</span> <span class="toc-text">Sorting</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Enumerating"><span class="toc-number">1.1.2.8.</span> <span class="toc-text">Enumerating</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#🌱-풀어보기"><span class="toc-number">1.1.3.</span> <span class="toc-text">🌱 풀어보기</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Dictionary"><span class="toc-number">1.2.</span> <span class="toc-text">Dictionary</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Initialize-1"><span class="toc-number">1.2.1.</span> <span class="toc-text">Initialize</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Method"><span class="toc-number">1.2.2.</span> <span class="toc-text">Method</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Count-1"><span class="toc-number">1.2.2.1.</span> <span class="toc-text">Count</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Find-Value-of-Key"><span class="toc-number">1.2.2.2.</span> <span class="toc-text">Find Value of Key</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Enumerating-1"><span class="toc-number">1.2.2.3.</span> <span class="toc-text">Enumerating</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Search-1"><span class="toc-number">1.2.2.4.</span> <span class="toc-text">Search</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Add-1"><span class="toc-number">1.2.2.5.</span> <span class="toc-text">Add</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Change-1"><span class="toc-number">1.2.2.6.</span> <span class="toc-text">Change</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Remove-1"><span class="toc-number">1.2.2.7.</span> <span class="toc-text">Remove</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Nested"><span class="toc-number">1.2.2.8.</span> <span class="toc-text">Nested</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#🌱-풀어보기-1"><span class="toc-number">1.2.3.</span> <span class="toc-text">🌱 풀어보기</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Set"><span class="toc-number">1.3.</span> <span class="toc-text">Set</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Number"><span class="toc-number">1.3.0.1.</span> <span class="toc-text">Number</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Searching"><span class="toc-number">1.3.0.2.</span> <span class="toc-text">Searching</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Add-2"><span class="toc-number">1.3.0.3.</span> <span class="toc-text">Add</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Remove-2"><span class="toc-number">1.3.0.4.</span> <span class="toc-text">Remove</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Compare"><span class="toc-number">1.3.0.5.</span> <span class="toc-text">Compare</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Fundamental-Set-Operations"><span class="toc-number">1.3.0.6.</span> <span class="toc-text">Fundamental Set Operations</span></a></li></ol></li></ol></li></ol></li></ol>
-    </div>
-  </span>
-</div>
-
-    
-    <div class="content index py4">
-        
-        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
-  <header>
-    
-    <h1 class="posttitle" itemprop="name headline">
-        TIL-swift-collection-191113
-    </h1>
+  </div>
 
 
+</nav>
 
-    <div class="meta">
-      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <span itemprop="name">jisng</span>
-      </span>
-      
-    <div class="postdate">
-      
-        <time datetime="2019-11-13T14:58:32.000Z" itemprop="datePublished">2019-11-13</time>
-        
-      
-    </div>
+    <div class="view intro-2" id="background"
+         style="background: url('/img/default.png')no-repeat center center;
+           background-size: cover;
+           background-attachment: fixed;">
+      <div class="full-bg-img">
+        <div class="mask rgba-black-light flex-center">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
 
+            
+              <br>
+              
+                <p class="mt-3">
+                  <i class="fas fa-calendar-alt" aria-hidden="true"></i>&nbsp;
+                  Wednesday, November 13th 2019, 11:58 pm
+                </p>
+              
 
-      
-    <div class="article-category">
-        <i class="fas fa-archive"></i>
-        <a class="category-link" href="/categories/TIL/">TIL</a>
-    </div>
+              <p>
+                
+                  
+                  &nbsp;<i class="far fa-chart-bar"></i>
+                  <span class="post-count">
+                    1.3k 字
+                  </span>&nbsp;
+                
 
+                
+                  
+                  &nbsp;<i class="far fa-clock"></i>
+                  <span class="post-count">
+                      8 分钟
+                  </span>&nbsp;
+                
 
-      
-    <div class="article-tag">
-        <i class="fas fa-tag"></i>
-        <a class="tag-link" href="/tags/array/" rel="tag">array</a>, <a class="tag-link" href="/tags/collection-type/" rel="tag">collection-type</a>, <a class="tag-link" href="/tags/dictionary/" rel="tag">dictionary</a>, <a class="tag-link" href="/tags/set/" rel="tag">set</a>, <a class="tag-link" href="/tags/swift/" rel="tag">swift</a>
-    </div>
+                
+                  <!-- 不蒜子统计文章PV -->
+                  
+                  &nbsp;<i class="far fa-eye" aria-hidden="true"></i>&nbsp;
+                  <span id="busuanzi_container_page_pv">
+                    <span id="busuanzi_value_page_pv"></span> 次
+                  </span>&nbsp;
+                
+              </p>
+            
+          </div>
 
-
+          
+        </div>
+      </div>
     </div>
   </header>
-  
 
-  <div class="content" itemprop="articleBody">
-    <h1 id="Collection"><a href="#Collection" class="headerlink" title="Collection"></a>Collection</h1><br>
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="py-5 z-depth-3" id="board">
+        <div class="post-content mx-auto" id="post">
+          <div class="markdown-body">
+            <h1 id="Collection"><a href="#Collection" class="headerlink" title="Collection"></a>Collection</h1><br>
 
 <ul>
 <li><p>Value Type (Swift Collection)</p>
@@ -201,58 +208,185 @@
 <br>
 
 <h3 id="Initialize"><a href="#Initialize" class="headerlink" title="Initialize"></a>Initialize</h3><p>컬렉션 타입들은 컬렉션 안에 어떤 데이터 타입이 들어갈 지 지정을 해야 합니다. </p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr: [<span class="type">String</span>] = [] <span class="comment">// Error!</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> arr1 : [<span class="type">String</span>] = []</span><br><span class="line"><span class="keyword">var</span> arr2 : <span class="type">Array</span>&lt;<span class="type">String</span>&gt; = [<span class="type">String</span>]()</span><br><span class="line"><span class="keyword">var</span> arr3 : [<span class="type">String</span>] = <span class="type">Array</span>()</span><br><span class="line"><span class="keyword">var</span> arr4 : <span class="type">Array</span>&lt;<span class="type">String</span>&gt; = []</span><br></pre></td></tr></table></figure>
+<pre><code class="swift">var arr: [String] = [] // Error!
 
+var arr1 : [String] = []
+var arr2 : Array&lt;String&gt; = [String]()
+var arr3 : [String] = Array()
+var arr4 : Array&lt;String&gt; = []</code></pre>
 <p>선언 및 초기화 하는 방법은 많으니, 본인 취향의 선언 방법을 선택한 뒤 나중에 협업할 때는 협업 규칙에 따르면 좋을 것 같아요.<br>저는 <code>var arr1: [String] = []</code> 이 가장 편한 것 같아요.  </p>
 <br>
 
 <h3 id="method"><a href="#method" class="headerlink" title="method"></a>method</h3><p>주로 배열에서 쓰게 될 메소드들의 모음입니다.  </p>
 <br>
 
-<h4 id="Count"><a href="#Count" class="headerlink" title="Count"></a>Count</h4><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> alpha = [<span class="string">"a"</span>, <span class="string">"b"</span>, <span class="string">"c"</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> countOfAlpha = alpha.<span class="built_in">count</span></span><br></pre></td></tr></table></figure>
+<h4 id="Count"><a href="#Count" class="headerlink" title="Count"></a>Count</h4><pre><code class="swift">let alpha = [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;]
+
+let countOfAlpha = alpha.count</code></pre>
+<h4 id="Find-Value-of-Index"><a href="#Find-Value-of-Index" class="headerlink" title="Find Value of Index"></a>Find Value of Index</h4><pre><code class="swift">alpha[0]
+alpha[4]
+
+alpha.startIndex // 0
+alpha[alpha.startIndex] // &quot;a&quot;
+alpha.endIndex // &quot;c&quot;가 아닌 그 다음, 즉 없는 값이므로 Error!
+alpha.endIndex-1 // 2
+alpha[alpha.endIndex-1] // c</code></pre>
+<h4 id="Search"><a href="#Search" class="headerlink" title="Search"></a>Search</h4><pre><code class="swift">if alpha.contains(&quot;a&quot;) {
+    print(&quot;It&#39;s a&quot;)
+}
+
+if alpha.contains(where: { str -&gt; Bool in
+    return str == &quot;a&quot;
+}) {
+    print(&quot;It&#39;s a&quot;)
+
+if let index = alpha.firstIndex(of: &quot;c&quot;) {
+    print(&quot;index if c : \(index)&quot;)
+}</code></pre>
+<h4 id="Add"><a href="#Add" class="headerlink" title="Add"></a>Add</h4><pre><code class="swift">var menu: [String] = []
+
+// 1
+menu = [&quot;치킨&quot;]
+// 2
+menu.append[&quot;피자&quot;]
+// 3
+menu += [&quot;떡볶이&quot;]
+
+var beverage = [&quot;아이스라떼&quot;, &quot;무조건아이스라떼&quot;]
+
+menu + beverage // 치킨, 피자, 떡볶이, 아이스라떼, 무조건아이스라떼
+</code></pre>
+<h4 id="Change"><a href="#Change" class="headerlink" title="Change"></a>Change</h4><pre><code class="swift">menu = [&quot;광어&quot;, &quot;연어&quot;, &quot;우럭&quot;]
+menu[2] = &quot;참치&quot;
+
+menu = [&quot;광어&quot;, &quot;연어&quot;, &quot;우럭&quot;, &quot;참치&quot;, &quot;도미&quot;]
+menu[2...] = [&quot;새우&quot;, &quot;장어&quot;]
+menu // 광어, 연어, 새우, 장어</code></pre>
+<h4 id="Remove"><a href="#Remove" class="headerlink" title="Remove"></a>Remove</h4><pre><code class="swift">menu = [&quot;이거&quot;, &quot;저거&quot;, &quot;그거&quot;]
+let removed = menu.remove(at: 0) // remove 메소드는 반환하기 때문에 대입이 가능하다.
+
+menu.removeAll
+
+alpha = [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;, &quot;e&quot;, &quot;f&quot;]
+
+if let indexC  alpha.fistIndex(of: &quot;c&quot;) { // 만약 &quot;c&quot;가 중복일 때, 가장 앞에 있는 &quot;c&quot;를 지운다. &lt;-&gt; lastIndex
+    alpha.remove(at: indexC
+}    </code></pre>
+<h4 id="Sorting"><a href="#Sorting" class="headerlink" title="Sorting"></a>Sorting</h4><pre><code class="swift">alpha.sort()
+alpha.sorted()
+alpha.sorted { $0 &gt; $01 } 
+alpha.sorted(by: &gt;)
+alpha.shuffle()
+alpha.shuffled()</code></pre>
+<h4 id="Enumerating"><a href="#Enumerating" class="headerlink" title="Enumerating"></a>Enumerating</h4><pre><code class="swift">var alpha = [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;, &quot;e&quot;, &quot;f&quot;]
+
+for value in alpha {
+    if let index = alpha.firstIndex(of: value) {
+        print(&quot;\(index) - \(value)&quot;)
+    }
+}
+
+for tuple in alpha.enumerated() {
+    print(&quot;\(tuple.0) - \(tuple.1)&quot;)
+}
 
 
-<h4 id="Find-Value-of-Index"><a href="#Find-Value-of-Index" class="headerlink" title="Find Value of Index"></a>Find Value of Index</h4><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">alpha[<span class="number">0</span>]</span><br><span class="line">alpha[<span class="number">4</span>]</span><br><span class="line"></span><br><span class="line">alpha.startIndex <span class="comment">// 0</span></span><br><span class="line">alpha[alpha.startIndex] <span class="comment">// "a"</span></span><br><span class="line">alpha.endIndex <span class="comment">// "c"가 아닌 그 다음, 즉 없는 값이므로 Error!</span></span><br><span class="line">alpha.endIndex-<span class="number">1</span> <span class="comment">// 2</span></span><br><span class="line">alpha[alpha.endIndex-<span class="number">1</span>] <span class="comment">// c</span></span><br></pre></td></tr></table></figure>
+for (index, element) in alpha.enumerated() {
+    print(&quot;\(index) - \(element)&quot;)
+}
 
-<h4 id="Search"><a href="#Search" class="headerlink" title="Search"></a>Search</h4><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> alpha.<span class="built_in">contains</span>(<span class="string">"a"</span>) &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"It's a"</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> alpha.<span class="built_in">contains</span>(<span class="keyword">where</span>: &#123; str -&gt; <span class="type">Bool</span> <span class="keyword">in</span></span><br><span class="line">    <span class="keyword">return</span> str == <span class="string">"a"</span></span><br><span class="line">&#125;) &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"It's a"</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> <span class="keyword">let</span> index = alpha.firstIndex(of: <span class="string">"c"</span>) &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"index if c : \(index)"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="Add"><a href="#Add" class="headerlink" title="Add"></a>Add</h4><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> menu: [<span class="type">String</span>] = []</span><br><span class="line"></span><br><span class="line"><span class="comment">// 1</span></span><br><span class="line">menu = [<span class="string">"치킨"</span>]</span><br><span class="line"><span class="comment">// 2</span></span><br><span class="line">menu.append[<span class="string">"피자"</span>]</span><br><span class="line"><span class="comment">// 3</span></span><br><span class="line">menu += [<span class="string">"떡볶이"</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> beverage = [<span class="string">"아이스라떼"</span>, <span class="string">"무조건아이스라떼"</span>]</span><br><span class="line"></span><br><span class="line">menu + beverage <span class="comment">// 치킨, 피자, 떡볶이, 아이스라떼, 무조건아이스라떼</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="Change"><a href="#Change" class="headerlink" title="Change"></a>Change</h4><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">menu = [<span class="string">"광어"</span>, <span class="string">"연어"</span>, <span class="string">"우럭"</span>]</span><br><span class="line">menu[<span class="number">2</span>] = <span class="string">"참치"</span></span><br><span class="line"></span><br><span class="line">menu = [<span class="string">"광어"</span>, <span class="string">"연어"</span>, <span class="string">"우럭"</span>, <span class="string">"참치"</span>, <span class="string">"도미"</span>]</span><br><span class="line">menu[<span class="number">2</span>...] = [<span class="string">"새우"</span>, <span class="string">"장어"</span>]</span><br><span class="line">menu <span class="comment">// 광어, 연어, 새우, 장어</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="Remove"><a href="#Remove" class="headerlink" title="Remove"></a>Remove</h4><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">menu = [<span class="string">"이거"</span>, <span class="string">"저거"</span>, <span class="string">"그거"</span>]</span><br><span class="line"><span class="keyword">let</span> removed = menu.remove(at: <span class="number">0</span>) <span class="comment">// remove 메소드는 반환하기 때문에 대입이 가능하다.</span></span><br><span class="line"></span><br><span class="line">menu.removeAll</span><br><span class="line"></span><br><span class="line">alpha = [<span class="string">"a"</span>, <span class="string">"b"</span>, <span class="string">"c"</span>, <span class="string">"d"</span>, <span class="string">"e"</span>, <span class="string">"f"</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> <span class="keyword">let</span> indexC  alpha.fistIndex(of: <span class="string">"c"</span>) &#123; <span class="comment">// 만약 "c"가 중복일 때, 가장 앞에 있는 "c"를 지운다. &lt;-&gt; lastIndex</span></span><br><span class="line">	alpha.remove(at: indexC</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="Sorting"><a href="#Sorting" class="headerlink" title="Sorting"></a>Sorting</h4><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">alpha.<span class="built_in">sort</span>()</span><br><span class="line">alpha.sorted()</span><br><span class="line">alpha.sorted &#123; $<span class="number">0</span> &gt; $<span class="number">01</span> &#125; </span><br><span class="line">alpha.sorted(by: &gt;)</span><br><span class="line">alpha.shuffle()</span><br><span class="line">alpha.shuffled()</span><br></pre></td></tr></table></figure>
-
-<h4 id="Enumerating"><a href="#Enumerating" class="headerlink" title="Enumerating"></a>Enumerating</h4><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> alpha = [<span class="string">"a"</span>, <span class="string">"b"</span>, <span class="string">"c"</span>, <span class="string">"d"</span>, <span class="string">"e"</span>, <span class="string">"f"</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> value <span class="keyword">in</span> alpha &#123;</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">let</span> index = alpha.firstIndex(of: value) &#123;</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"\(index) - \(value)"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> tuple <span class="keyword">in</span> alpha.enumerated() &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"\(tuple.0) - \(tuple.1)"</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (index, element) <span class="keyword">in</span> alpha.enumerated() &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"\(index) - \(element)"</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (index, element) <span class="keyword">in</span> alpha.reversed().enumerated() &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"\(index) - \(element)"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+for (index, element) in alpha.reversed().enumerated() {
+    print(&quot;\(index) - \(element)&quot;)
+}    </code></pre>
 <br>
 
 <hr>
-<h3 id="🌱-풀어보기"><a href="#🌱-풀어보기" class="headerlink" title="🌱 풀어보기"></a>🌱 풀어보기</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ["p", "u", "p", "p", "y"] 라는 값을 가진 배열에서 마지막 "p" 문자 하나만 삭제하기</span></span><br><span class="line"><span class="comment">// 정수 타입의 배열을 2개 선언하고 두 배열의 값 중 겹치는 숫자들로만 이루어진 배열 만들기</span></span><br><span class="line"><span class="comment">// 정수 타입의 배열을 선언하고 해당 배열 요소 중 가장 큰 값을 반환하는 함수</span></span><br></pre></td></tr></table></figure>
-
-
+<h3 id="🌱-풀어보기"><a href="#🌱-풀어보기" class="headerlink" title="🌱 풀어보기"></a>🌱 풀어보기</h3><pre><code class="swift">// [&quot;p&quot;, &quot;u&quot;, &quot;p&quot;, &quot;p&quot;, &quot;y&quot;] 라는 값을 가진 배열에서 마지막 &quot;p&quot; 문자 하나만 삭제하기
+// 정수 타입의 배열을 2개 선언하고 두 배열의 값 중 겹치는 숫자들로만 이루어진 배열 만들기
+// 정수 타입의 배열을 선언하고 해당 배열 요소 중 가장 큰 값을 반환하는 함수</code></pre>
 <br>
 
 <hr>
 <br>
 
-<h2 id="Dictionary"><a href="#Dictionary" class="headerlink" title="Dictionary"></a>Dictionary</h2><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> dic1: <span class="type">Dictionary</span>&lt;<span class="type">String</span>, <span class="type">Int</span>&gt; = [:]</span><br><span class="line"><span class="keyword">let</span> dic2: [<span class="type">String</span>: <span class="type">String</span>] = [:]</span><br><span class="line"><span class="keyword">let</span> dic3 = [<span class="string">"a"</span> : <span class="number">1</span>, <span class="string">"b"</span> : <span class="number">2</span>]</span><br></pre></td></tr></table></figure>
+<h2 id="Dictionary"><a href="#Dictionary" class="headerlink" title="Dictionary"></a>Dictionary</h2><pre><code class="swift">let dic1: Dictionary&lt;String, Int&gt; = [:]
+let dic2: [String: String] = [:]
+let dic3 = [&quot;a&quot; : 1, &quot;b&quot; : 2]</code></pre>
+<h3 id="Initialize-1"><a href="#Initialize-1" class="headerlink" title="Initialize"></a>Initialize</h3><h3 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h3><h4 id="Count-1"><a href="#Count-1" class="headerlink" title="Count"></a>Count</h4><pre><code class="swift">var alpha = [&quot;a&quot;: 1, &quot;b&quot;: 2, &quot;c&quot;: 3]
 
-<h3 id="Initialize-1"><a href="#Initialize-1" class="headerlink" title="Initialize"></a>Initialize</h3><h3 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h3><h4 id="Count-1"><a href="#Count-1" class="headerlink" title="Count"></a>Count</h4><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> alpha = [<span class="string">"a"</span>: <span class="number">1</span>, <span class="string">"b"</span>: <span class="number">2</span>, <span class="string">"c"</span>: <span class="number">3</span>]</span><br><span class="line"></span><br><span class="line">alpha.<span class="built_in">count</span></span><br><span class="line">alpha.isEmpty</span><br></pre></td></tr></table></figure>
+alpha.count
+alpha.isEmpty
+</code></pre>
+<h4 id="Find-Value-of-Key"><a href="#Find-Value-of-Key" class="headerlink" title="Find Value of Key"></a>Find Value of Key</h4><pre><code class="swift">alpha[&quot;a&quot;]
+alpha[&quot;z&quot;] // nil, 옵셔널 타입으로 반환
 
-<h4 id="Find-Value-of-Key"><a href="#Find-Value-of-Key" class="headerlink" title="Find Value of Key"></a>Find Value of Key</h4><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">alpha[<span class="string">"a"</span>]</span><br><span class="line">alpha[<span class="string">"z"</span>] <span class="comment">// nil, 옵셔널 타입으로 반환</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 옵셔널 벗겨서 값에 대입하기</span></span><br><span class="line"><span class="keyword">if</span> <span class="keyword">let</span> aValue = alpha[<span class="string">"a"</span>] &#123;   <span class="comment">// alpha 딕셔너리에 "a"키에 값이 있다면 aValue에 대입한다.</span></span><br><span class="line">	<span class="built_in">print</span>(aValue)</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">	<span class="built_in">print</span>(<span class="string">"is empty"</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(alpha.keys)</span><br><span class="line"><span class="built_in">print</span>(alpha.values)</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> keys = <span class="type">Array</span>(alpha.keys)</span><br><span class="line"><span class="keyword">let</span> values = <span class="type">Array</span>(alpha.values)</span><br></pre></td></tr></table></figure>
+// 옵셔널 벗겨서 값에 대입하기
+if let aValue = alpha[&quot;a&quot;] {   // alpha 딕셔너리에 &quot;a&quot;키에 값이 있다면 aValue에 대입한다.
+    print(aValue)
+} else {
+    print(&quot;is empty&quot;
+}
 
-<h4 id="Enumerating-1"><a href="#Enumerating-1" class="headerlink" title="Enumerating"></a>Enumerating</h4><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">for</span> (key, value) <span class="keyword">in</span> alpha &#123;</span><br><span class="line">	<span class="built_in">print</span>(<span class="string">"\(key): \(value)"</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (key, <span class="number">_</span>) <span class="keyword">in</span> alpha &#123;</span><br><span class="line">	<span class="built_in">print</span>(<span class="string">"key :"</span>, key)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="number">_</span>, value) <span class="keyword">in</span> alpha &#123;</span><br><span class="line">	<span class="built_in">print</span>(<span class="string">"Value: "</span>, value)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> value <span class="keyword">in</span> alpha.values &#123;</span><br><span class="line">	<span class="built_in">print</span>(<span class="string">"Value :"</span>, value)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+print(alpha.keys)
+print(alpha.values)
 
-<h4 id="Search-1"><a href="#Search-1" class="headerlink" title="Search"></a>Search</h4><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (key, <span class="number">_</span>) <span class="keyword">in</span> alpha &#123;</span><br><span class="line">	<span class="keyword">if</span> key == <span class="string">"a"</span> &#123;</span><br><span class="line">		<span class="built_in">print</span>(<span class="string">"a"</span>)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> alpha.<span class="built_in">contains</span>(<span class="keyword">where</span>: &#123; (key, value) -&gt; <span class="type">Bool</span> <span class="keyword">in</span></span><br><span class="line">	<span class="keyword">return</span> key == <span class="string">"a"</span></span><br><span class="line">	&#125;) &#123;</span><br><span class="line">	<span class="built_in">print</span>(<span class="string">"a"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+let keys = Array(alpha.keys)
+let values = Array(alpha.values)
+</code></pre>
+<h4 id="Enumerating-1"><a href="#Enumerating-1" class="headerlink" title="Enumerating"></a>Enumerating</h4><pre><code class="swift">
+for (key, value) in alpha {
+    print(&quot;\(key): \(value)&quot;)
+}
 
-<h4 id="Add-1"><a href="#Add-1" class="headerlink" title="Add"></a>Add</h4><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> some = [<span class="string">"aaa"</span> : <span class="number">100</span>]</span><br><span class="line"></span><br><span class="line">some[<span class="string">"aaa"</span>] = <span class="number">000</span> <span class="comment">// 값 교체</span></span><br><span class="line"></span><br><span class="line">some[<span class="string">"bbb"</span>] = <span class="number">100</span> <span class="comment">// key-value 교체</span></span><br><span class="line"></span><br><span class="line">some[<span class="string">"bbb"</span>] = <span class="number">200</span> <span class="comment">// 값 교체</span></span><br></pre></td></tr></table></figure>
+for (key, _) in alpha {
+    print(&quot;key :&quot;, key)
+}
 
+for (_, value) in alpha {
+    print(&quot;Value: &quot;, value)
+}
+
+for value in alpha.values {
+    print(&quot;Value :&quot;, value)
+}
+</code></pre>
+<h4 id="Search-1"><a href="#Search-1" class="headerlink" title="Search"></a>Search</h4><pre><code class="swift">for (key, _) in alpha {
+    if key == &quot;a&quot; {
+        print(&quot;a&quot;)
+    }
+}
+
+if alpha.contains(where: { (key, value) -&gt; Bool in
+    return key == &quot;a&quot;
+    }) {
+    print(&quot;a&quot;)
+}
+</code></pre>
+<h4 id="Add-1"><a href="#Add-1" class="headerlink" title="Add"></a>Add</h4><pre><code class="swift">var some = [&quot;aaa&quot; : 100]
+
+some[&quot;aaa&quot;] = 000 // 값 교체
+
+some[&quot;bbb&quot;] = 100 // key-value 교체
+
+some[&quot;bbb&quot;] = 200 // 값 교체
+</code></pre>
 <br>
 
-<h4 id="Change-1"><a href="#Change-1" class="headerlink" title="Change"></a>Change</h4><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> change = [<span class="type">String</span>:<span class="type">String</span>]()</span><br><span class="line"></span><br><span class="line">change[<span class="string">"a"</span>] = <span class="string">"a1"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> <span class="keyword">let</span> value = change.updateValue(<span class="string">"가"</span>, forKey: <span class="string">"a"</span>) &#123;</span><br><span class="line">    <span class="built_in">print</span>(value, change[<span class="string">"a"</span>]!)</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> <span class="keyword">let</span> value = change.updateValue(<span class="string">"하"</span>, forKey: <span class="string">"z"</span>) &#123;</span><br><span class="line">    <span class="built_in">print</span>(value, change[<span class="string">"z"</span>]!)</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="Change-1"><a href="#Change-1" class="headerlink" title="Change"></a>Change</h4><pre><code class="swift">var change = [String:String]()
 
+change[&quot;a&quot;] = &quot;a1&quot;
+
+if let value = change.updateValue(&quot;가&quot;, forKey: &quot;a&quot;) {
+    print(value, change[&quot;a&quot;]!)
+} else {
+
+}
+
+if let value = change.updateValue(&quot;하&quot;, forKey: &quot;z&quot;) {
+    print(value, change[&quot;z&quot;]!)
+} else {
+
+}</code></pre>
 <p>이해해서 사용하기 힘들었던 개념 중 하나!</p>
 <br>
 
@@ -271,19 +405,76 @@
 <br>
 
 
-<h4 id="Remove-1"><a href="#Remove-1" class="headerlink" title="Remove"></a>Remove</h4><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> info = [<span class="string">"person1"</span>: <span class="number">100</span>, <span class="string">"person2"</span>: <span class="number">200</span>, <span class="string">"person3"</span>: <span class="number">300</span>]</span><br><span class="line"></span><br><span class="line">info[<span class="string">"person1"</span>] = <span class="literal">nil</span> <span class="comment">// 값이 없어지면 키도 없어진다</span></span><br><span class="line">info[<span class="string">"person5"</span>] = <span class="literal">nil</span> <span class="comment">// 없는 키이므로 무시된다.</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> removedValue = info.removeValue(forKey: <span class="string">"person1"</span>)</span><br><span class="line"></span><br><span class="line">info.removeAll()</span><br></pre></td></tr></table></figure>
+<h4 id="Remove-1"><a href="#Remove-1" class="headerlink" title="Remove"></a>Remove</h4><pre><code class="swift">var info = [&quot;person1&quot;: 100, &quot;person2&quot;: 200, &quot;person3&quot;: 300]
 
+info[&quot;person1&quot;] = nil // 값이 없어지면 키도 없어진다
+info[&quot;person5&quot;] = nil // 없는 키이므로 무시된다.
+
+let removedValue = info.removeValue(forKey: &quot;person1&quot;)
+
+info.removeAll()
+</code></pre>
 <br> 
 
 
-<h4 id="Nested"><a href="#Nested" class="headerlink" title="Nested"></a>Nested</h4><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">var</span> dict1 = [<span class="type">String</span>: [<span class="type">String</span>]]()</span><br><span class="line">dict1[<span class="string">"arr1"</span>] = [<span class="string">"A"</span>, <span class="string">"B"</span>, <span class="string">"C"</span>]</span><br><span class="line">dict1[<span class="string">"arr2"</span>] = [<span class="string">"D"</span>, <span class="string">"E"</span>, <span class="string">"F"</span>]</span><br><span class="line">dict1</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> dict2 = [<span class="type">String</span>: [<span class="type">String</span>: <span class="type">String</span>]]()</span><br><span class="line">dict2[<span class="string">"user"</span>] = [</span><br><span class="line">  <span class="string">"name"</span>: <span class="string">"나개발"</span>,</span><br><span class="line">  <span class="string">"job"</span>: <span class="string">"iOS 개발자"</span>,</span><br><span class="line">  <span class="string">"hobby"</span>: <span class="string">"코딩"</span>,</span><br><span class="line">]</span><br><span class="line">dict2</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 서로 다른 타입을 다루기 - as [String: Any]</span></span><br><span class="line">[</span><br><span class="line">  <span class="string">"name"</span>: <span class="string">"나개발"</span>,</span><br><span class="line">  <span class="string">"job"</span>: <span class="string">"iOS 개발자"</span>,</span><br><span class="line">  <span class="string">"age"</span>: <span class="number">20</span>,</span><br><span class="line">  <span class="string">"hobby"</span>: <span class="string">"코딩"</span>,</span><br><span class="line">  <span class="string">"apps"</span>: [</span><br><span class="line">    <span class="string">"이런 앱"</span>,</span><br><span class="line">    <span class="string">"저런 앱"</span>,</span><br><span class="line">    <span class="string">"잘된 앱"</span>,</span><br><span class="line">    <span class="string">"망한 앱"</span>,</span><br><span class="line">  ],</span><br><span class="line">  <span class="string">"teamMember"</span>: [</span><br><span class="line">    <span class="string">"designer"</span>: <span class="string">"김철수"</span>,</span><br><span class="line">    <span class="string">"marketer"</span>: <span class="string">"홍길동"</span></span><br><span class="line">  ]</span><br><span class="line">] <span class="keyword">as</span> [<span class="type">String</span>: <span class="type">Any</span>]</span><br></pre></td></tr></table></figure>
+<h4 id="Nested"><a href="#Nested" class="headerlink" title="Nested"></a>Nested</h4><pre><code class="swift">
+var dict1 = [String: [String]]()
+dict1[&quot;arr1&quot;] = [&quot;A&quot;, &quot;B&quot;, &quot;C&quot;]
+dict1[&quot;arr2&quot;] = [&quot;D&quot;, &quot;E&quot;, &quot;F&quot;]
+dict1
 
+
+var dict2 = [String: [String: String]]()
+dict2[&quot;user&quot;] = [
+  &quot;name&quot;: &quot;나개발&quot;,
+  &quot;job&quot;: &quot;iOS 개발자&quot;,
+  &quot;hobby&quot;: &quot;코딩&quot;,
+]
+dict2
+
+
+// 서로 다른 타입을 다루기 - as [String: Any]
+[
+  &quot;name&quot;: &quot;나개발&quot;,
+  &quot;job&quot;: &quot;iOS 개발자&quot;,
+  &quot;age&quot;: 20,
+  &quot;hobby&quot;: &quot;코딩&quot;,
+  &quot;apps&quot;: [
+    &quot;이런 앱&quot;,
+    &quot;저런 앱&quot;,
+    &quot;잘된 앱&quot;,
+    &quot;망한 앱&quot;,
+  ],
+  &quot;teamMember&quot;: [
+    &quot;designer&quot;: &quot;김철수&quot;,
+    &quot;marketer&quot;: &quot;홍길동&quot;
+  ]
+] as [String: Any]
+</code></pre>
 <br>
 
 <h3 id="🌱-풀어보기-1"><a href="#🌱-풀어보기-1" class="headerlink" title="🌱 풀어보기"></a>🌱 풀어보기</h3><br>
 
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// - Dictionary로 저장되어 있는 시험 성적의 평균 점수 구하기</span></span><br><span class="line"><span class="comment">// - Dictionary로 저장된 scores 데이터를 튜플 타입을 지닌 배열로 변환하여 저장하기</span></span><br><span class="line"><span class="comment">// - 주어진 자료를 보고 Dictionary 자료형에 맞게 데이터를 변수에 저장하기</span></span><br><span class="line"><span class="comment">// - 위 문제에서 정의한 변수의 데이터 중 스쿨 배열에 저장된 첫번째 데이터를 꺼내어 출력하기</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">&lt;주어진 자료&gt;</span></span><br><span class="line"><span class="comment"> 패스트캠퍼스</span></span><br><span class="line"><span class="comment">  - 스쿨</span></span><br><span class="line"><span class="comment">    * iOS 스쿨</span></span><br><span class="line"><span class="comment">    * 백엔드 스쿨</span></span><br><span class="line"><span class="comment">    * 프론트엔드 스쿨</span></span><br><span class="line"><span class="comment">  - 캠프</span></span><br><span class="line"><span class="comment">    * A 강의</span></span><br><span class="line"><span class="comment">    * B 강의</span></span><br><span class="line"><span class="comment">  - 온라인</span></span><br><span class="line"><span class="comment">    * C 강의</span></span><br><span class="line"><span class="comment">    * D 강의</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+<pre><code class="swift">// - Dictionary로 저장되어 있는 시험 성적의 평균 점수 구하기
+// - Dictionary로 저장된 scores 데이터를 튜플 타입을 지닌 배열로 변환하여 저장하기
+// - 주어진 자료를 보고 Dictionary 자료형에 맞게 데이터를 변수에 저장하기
+// - 위 문제에서 정의한 변수의 데이터 중 스쿨 배열에 저장된 첫번째 데이터를 꺼내어 출력하기
 
+/*
+&lt;주어진 자료&gt;
+ 패스트캠퍼스
+  - 스쿨
+    * iOS 스쿨
+    * 백엔드 스쿨
+    * 프론트엔드 스쿨
+  - 캠프
+    * A 강의
+    * B 강의
+  - 온라인
+    * C 강의
+    * D 강의
+*/
+</code></pre>
 <p>내가 푼 코드 : </p>
 <p>br&gt;</p>
 <hr>
@@ -298,8 +489,9 @@
 <p>간단하게</p>
 <br>
 
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> fruitsSet: <span class="type">Set</span>&lt;<span class="type">String</span>&gt; = [<span class="string">"Apple"</span>, <span class="string">"Orange"</span>, <span class="string">"Melon"</span>]</span><br><span class="line"><span class="keyword">let</span> numbers: <span class="type">Set</span> = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">3</span>, <span class="number">3</span>] <span class="comment">// &#123;1, 2, 3&#125;</span></span><br><span class="line"><span class="keyword">let</span> emptySet = <span class="type">Set</span>&lt;<span class="type">String</span>&gt;()</span><br></pre></td></tr></table></figure>
-
+<pre><code class="swift">let fruitsSet: Set&lt;String&gt; = [&quot;Apple&quot;, &quot;Orange&quot;, &quot;Melon&quot;]
+let numbers: Set = [1, 2, 3, 3, 3] // {1, 2, 3}
+let emptySet = Set&lt;String&gt;()</code></pre>
 <br>
 
 <h4 id="Number"><a href="#Number" class="headerlink" title="Number"></a>Number</h4><ul>
@@ -313,8 +505,13 @@
 <ul>
 <li><code>.hasPrefix</code></li>
 </ul>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> productSet: <span class="type">Set</span> = [<span class="string">"iPhone"</span>, <span class="string">"iPad"</span>, <span class="string">"Mac Pro"</span>, <span class="string">"iPad Pro"</span>, <span class="string">"Macbook Pro"</span>]</span><br><span class="line"><span class="keyword">for</span> element <span class="keyword">in</span> productSet &#123;</span><br><span class="line">  <span class="keyword">if</span> element.hasPrefix(<span class="string">"i"</span>) &#123;</span><br><span class="line">    <span class="built_in">print</span>(element)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<pre><code class="swift">let productSet: Set = [&quot;iPhone&quot;, &quot;iPad&quot;, &quot;Mac Pro&quot;, &quot;iPad Pro&quot;, &quot;Macbook Pro&quot;]
+for element in productSet {
+  if element.hasPrefix(&quot;i&quot;) {
+    print(element)
+  }
+}
+</code></pre>
 <br>
 
 <h4 id="Add-2"><a href="#Add-2" class="headerlink" title="Add"></a>Add</h4><ul>
@@ -331,29 +528,33 @@
 <h4 id="Compare"><a href="#Compare" class="headerlink" title="Compare"></a>Compare</h4><ul>
 <li><code>elementsEqual</code></li>
 </ul>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> favoriteFruits1 = <span class="type">Set</span>([<span class="string">"Orange"</span>, <span class="string">"Melon"</span>, <span class="string">"Apple"</span>])</span><br><span class="line"><span class="keyword">var</span> favoriteFruits2 = <span class="type">Set</span>([<span class="string">"Apple"</span>, <span class="string">"Melon"</span>, <span class="string">"Orange"</span>])</span><br><span class="line"></span><br><span class="line">favoriteFruits1 == favoriteFruits2 <span class="comment">// true</span></span><br><span class="line">favoriteFruits1.elementsEqual(favoriteFruits2) <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+<pre><code class="swift">var favoriteFruits1 = Set([&quot;Orange&quot;, &quot;Melon&quot;, &quot;Apple&quot;])
+var favoriteFruits2 = Set([&quot;Apple&quot;, &quot;Melon&quot;, &quot;Orange&quot;])
 
+favoriteFruits1 == favoriteFruits2 // true
+favoriteFruits1.elementsEqual(favoriteFruits2) // false</code></pre>
 <ul>
 <li><code>.isSuperset</code></li>
 </ul>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> group1: <span class="type">Set</span> = [<span class="string">"A"</span>, <span class="string">"B"</span>, <span class="string">"C"</span>]</span><br><span class="line"><span class="keyword">let</span> group2: <span class="type">Set</span> = [<span class="string">"A"</span>, <span class="string">"B"</span>]</span><br><span class="line"></span><br><span class="line">group1.isSuperset(of: group2) <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+<pre><code class="swift">let group1: Set = [&quot;A&quot;, &quot;B&quot;, &quot;C&quot;]
+let group2: Set = [&quot;A&quot;, &quot;B&quot;]
 
+group1.isSuperset(of: group2) // true</code></pre>
 <ul>
 <li><code>.isStrictSuperset</code> 자기 요소 외 추가 요소가 최소 하나 이상 존재할 때</li>
 </ul>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">group1.isStrictSuperset(of: group2) <span class="comment">// true</span></span><br><span class="line">group1.isStrictSuperset(of: group1) <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
-
+<pre><code class="swift">group1.isStrictSuperset(of: group2) // true
+group1.isStrictSuperset(of: group1) // false</code></pre>
 <ul>
 <li><code>.isSubset</code></li>
 </ul>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">group2.isSubset(of: group1) <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
-
+<pre><code class="swift">group2.isSubset(of: group1) // true
+</code></pre>
 <ul>
 <li><code>.isStrictSubset</code></li>
 </ul>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">group2.isStrictSubset(of: group1) <span class="comment">// ture</span></span><br><span class="line">group2.isStrictSubset(of: group2) <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
-
-
+<pre><code class="swift">group2.isStrictSubset(of: group1) // ture
+group2.isStrictSubset(of: group2) // false</code></pre>
 <h4 id="Fundamental-Set-Operations"><a href="#Fundamental-Set-Operations" class="headerlink" title="Fundamental Set Operations"></a>Fundamental Set Operations</h4><ul>
 <li>intersection - 교집합</li>
 <li>symmetricDifference - 교집합의 여집합</li>
@@ -362,128 +563,244 @@
 </ul>
 <p>쓸 일이 거의 없다고 해서, 이런 것이 있다 정도만 확인하고<br>더 중요한 배열과 딕셔너리에 집중해봅니다..</p>
 
+            <hr>
+          </div>
+          <br>
+          <div>
+            <p>
+            
+              <span>
+                <i class="iconfont icon-inbox"></i>
+                
+                  <a class="hover-with-bg" href="/categories/TIL">TIL</a>
+                  &nbsp;
+                
+              </span>&nbsp;&nbsp;
+            
+            
+              <span>
+                <i class="iconfont icon-tag"></i>
+                
+                  <a class="hover-with-bg" href="/tags/swift">swift</a>
+                
+                  <a class="hover-with-bg" href="/tags/collection-type">collection-type</a>
+                
+                  <a class="hover-with-bg" href="/tags/array">array</a>
+                
+                  <a class="hover-with-bg" href="/tags/dictionary">dictionary</a>
+                
+                  <a class="hover-with-bg" href="/tags/set">set</a>
+                
+              </span>
+            
+            </p>
+            
+              <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" target="_blank" rel="nofollow noopener noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="d-none d-lg-block col-lg-2 toc-container">
+      
+  <div id="toc">
+    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;TOC</p>
+    <div id="tocbot"></div>
   </div>
-</article>
-
-
-
-        
-          <div id="footer-post-container">
-  <div id="footer-post">
-
-    <div id="nav-footer" style="display: none">
-      <ul>
-         
-          <li><a href="/">홈</a></li>
-         
-          <li><a href="/about/">소개</a></li>
-         
-          <li><a href="/archives/">글 목록</a></li>
-         
-          <li><a href="https://github.com/jisng/TIL" target="_blank" rel="noopener">프로젝트</a></li>
-         
-          <li><a href="/tags/">tags</a></li>
-         
-          <li><a href="/categories/index.html">categories</a></li>
-        
-      </ul>
-    </div>
-
-    <div id="toc-footer" style="display: none">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Collection"><span class="toc-number">1.</span> <span class="toc-text">Collection</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Array"><span class="toc-number">1.1.</span> <span class="toc-text">Array</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Initialize"><span class="toc-number">1.1.1.</span> <span class="toc-text">Initialize</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#method"><span class="toc-number">1.1.2.</span> <span class="toc-text">method</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Count"><span class="toc-number">1.1.2.1.</span> <span class="toc-text">Count</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Find-Value-of-Index"><span class="toc-number">1.1.2.2.</span> <span class="toc-text">Find Value of Index</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Search"><span class="toc-number">1.1.2.3.</span> <span class="toc-text">Search</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Add"><span class="toc-number">1.1.2.4.</span> <span class="toc-text">Add</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Change"><span class="toc-number">1.1.2.5.</span> <span class="toc-text">Change</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Remove"><span class="toc-number">1.1.2.6.</span> <span class="toc-text">Remove</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Sorting"><span class="toc-number">1.1.2.7.</span> <span class="toc-text">Sorting</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Enumerating"><span class="toc-number">1.1.2.8.</span> <span class="toc-text">Enumerating</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#🌱-풀어보기"><span class="toc-number">1.1.3.</span> <span class="toc-text">🌱 풀어보기</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Dictionary"><span class="toc-number">1.2.</span> <span class="toc-text">Dictionary</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Initialize-1"><span class="toc-number">1.2.1.</span> <span class="toc-text">Initialize</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Method"><span class="toc-number">1.2.2.</span> <span class="toc-text">Method</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Count-1"><span class="toc-number">1.2.2.1.</span> <span class="toc-text">Count</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Find-Value-of-Key"><span class="toc-number">1.2.2.2.</span> <span class="toc-text">Find Value of Key</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Enumerating-1"><span class="toc-number">1.2.2.3.</span> <span class="toc-text">Enumerating</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Search-1"><span class="toc-number">1.2.2.4.</span> <span class="toc-text">Search</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Add-1"><span class="toc-number">1.2.2.5.</span> <span class="toc-text">Add</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Change-1"><span class="toc-number">1.2.2.6.</span> <span class="toc-text">Change</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Remove-1"><span class="toc-number">1.2.2.7.</span> <span class="toc-text">Remove</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Nested"><span class="toc-number">1.2.2.8.</span> <span class="toc-text">Nested</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#🌱-풀어보기-1"><span class="toc-number">1.2.3.</span> <span class="toc-text">🌱 풀어보기</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Set"><span class="toc-number">1.3.</span> <span class="toc-text">Set</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Number"><span class="toc-number">1.3.0.1.</span> <span class="toc-text">Number</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Searching"><span class="toc-number">1.3.0.2.</span> <span class="toc-text">Searching</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Add-2"><span class="toc-number">1.3.0.3.</span> <span class="toc-text">Add</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Remove-2"><span class="toc-number">1.3.0.4.</span> <span class="toc-text">Remove</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Compare"><span class="toc-number">1.3.0.5.</span> <span class="toc-text">Compare</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Fundamental-Set-Operations"><span class="toc-number">1.3.0.6.</span> <span class="toc-text">Fundamental Set Operations</span></a></li></ol></li></ol></li></ol></li></ol>
-    </div>
-
-    <div id="share-footer" style="display: none">
-      <ul>
-  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://jisng.github.io/2019/11/TIL-swift-191113/" target="_blank" rel="noopener"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=http://jisng.github.io/2019/11/TIL-swift-191113/&text=TIL-swift-collection-191113" target="_blank" rel="noopener"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://jisng.github.io/2019/11/TIL-swift-191113/&title=TIL-swift-collection-191113" target="_blank" rel="noopener"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://jisng.github.io/2019/11/TIL-swift-191113/&is_video=false&description=TIL-swift-collection-191113" target="_blank" rel="noopener"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=TIL-swift-collection-191113&body=Check out this article: http://jisng.github.io/2019/11/TIL-swift-191113/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=http://jisng.github.io/2019/11/TIL-swift-191113/&title=TIL-swift-collection-191113" target="_blank" rel="noopener"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=http://jisng.github.io/2019/11/TIL-swift-191113/&title=TIL-swift-collection-191113" target="_blank" rel="noopener"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://jisng.github.io/2019/11/TIL-swift-191113/&title=TIL-swift-collection-191113" target="_blank" rel="noopener"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=http://jisng.github.io/2019/11/TIL-swift-191113/&title=TIL-swift-collection-191113" target="_blank" rel="noopener"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://jisng.github.io/2019/11/TIL-swift-191113/&name=TIL-swift-collection-191113&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-</ul>
 
     </div>
-
-    <div id="actions-footer">
-        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> 메뉴</a>
-        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
-        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> 공유</a>
-        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> 맨 위로</a>
-    </div>
-
   </div>
 </div>
 
-        
-        <footer id="footer">
-  <div class="footer-left">
-    저작권 &copy; 2019 jisng
+<!-- custom -->
+
+
+<!-- Comments -->
+<div class="col-lg-7 mx-auto nopadding-md">
+  <div class="container comments mx-auto" id="comments">
+    
   </div>
-  <div class="footer-right">
-    <nav>
-      <ul>
-         
-          <li><a href="/">홈</a></li>
-         
-          <li><a href="/about/">소개</a></li>
-         
-          <li><a href="/archives/">글 목록</a></li>
-         
-          <li><a href="https://github.com/jisng/TIL" target="_blank" rel="noopener">프로젝트</a></li>
-         
-          <li><a href="/tags/">tags</a></li>
-         
-          <li><a href="/categories/index.html">categories</a></li>
-        
-      </ul>
-    </nav>
+</div>
+
+    
+  </main>
+
+  
+    <a class="z-depth-1" id="scroll-top-button" href="#" role="button">
+      <i class="fa fa-chevron-up scroll-top-arrow" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><b>Hexo</b></a>
+    <i class="iconfont icon-love"></i>
+    <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"> <b>Fluid</b></a>
+    <br>
+
+    
+  
+    <!-- 不蒜子统计PV -->
+    
+    &nbsp;<span id="busuanzi_container_site_pv">总访问量 
+          <span id="busuanzi_value_site_pv"></span> 次</span>&nbsp;
+  
+  
+    <!-- 不蒜子统计UV -->
+    
+    &nbsp;<span id="busuanzi_container_site_uv">总访客数 
+            <span id="busuanzi_value_site_uv"></span> 人</span>&nbsp;
+  
+  <br>
+
+
+
+    
+
   </div>
 </footer>
 
-    </div>
-    <!-- styles -->
-<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
-<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+<!-- SCRIPTS -->
+<script src="/lib/jquery/jquery.min.js" ></script>
+<script src="/lib/popper/popper.min.js" ></script>
+<script src="/lib/bootstrap/js/bootstrap.min.js" ></script>
+<script src="/lib/mdbootstrap/js/mdb.min.js" ></script>
+<script src="/js/main.js" ></script>
 
-    <!-- jquery -->
-<script src="/lib/jquery/jquery.min.js"></script>
-<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
-<!-- clipboard -->
 
-  <script src="/lib/clipboard/clipboard.min.js"></script>
-  <script type="text/javascript">
-  $(function() {
-    // copy-btn HTML
-    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"클립보드에 복사하였습니다!\">";
-    btn += '<i class="far fa-clone"></i>';
-    btn += '</span>'; 
-    // mount it!
-    $(".highlight .code pre").before(btn);
-    var clip = new ClipboardJS('.btn-copy', {
-      target: function(trigger) {
-        return trigger.nextElementSibling;
-      }
-    });
-    clip.on('success', function(e) {
-      e.trigger.setAttribute('aria-label', "복사하였습니다!");
-      e.clearSelection();
+  <script src="/js/lazyload.js" ></script>
+
+
+
+  
+    <script src="/lib/tocbot/tocbot.min.js" ></script>
+  
+  <script src="/js/post.js" ></script>
+
+
+
+  <script src="/lib/smooth-scroll/smooth-scroll.min.js" ></script>
+
+
+
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+<!-- Plugins -->
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+  <script src="/lib/prettify/prettify.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      $('pre').addClass('prettyprint  linenums');
+      prettyPrint();
     })
-  })
   </script>
 
-<script src="/js/main.js"></script>
-<!-- search -->
 
-<!-- Google Analytics -->
 
-<!-- Baidu Analytics -->
+  <script src="/lib/typed/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "TIL-swift-collection-191113&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
 
-<!-- Disqus Comments -->
+
+
+  <script src="/lib/anchor/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "false",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      getSearchFile(path);
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script src="/lib/fancybox/jquery.fancybox.min.js" ></script>
+  <script>
+    $("#post img:not(.no-zoom img, img[no-zoom])").each(
+      function () {
+        var element = document.createElement("a");
+        $(element).attr("data-fancybox", "images");
+        $(element).attr("href", $(this).attr("src"));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
 
 
 </body>
