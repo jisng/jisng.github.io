@@ -4,6 +4,25 @@
   
   
   <entry>
+    <title>FirstExamReview-TIL-191129</title>
+    <link href="undefined2019/11/FirstExamReview-TIL-191129/"/>
+    <url>2019/11/FirstExamReview-TIL-191129/</url>
+    
+    <content type="html"><![CDATA[<h1 id="1차-시험"><a href="#1차-시험" class="headerlink" title="1차 시험"></a>1차 시험</h1><p>오전에는 그동안 배운 개념과 기초 문법, 이를 활용한 알고리즘 문제 (문제 은행에서 나오는. 그런 알고리즘은 아니지만…)<br>오후에는 문제에 나오는 화면처럼 만들어서 기능 구현하기</p><br><p>아직 결과는 안나왔지만, 일단 알고리즘 문제는 하나도 제대로 푼게 없기 때문에 이 부분을 다시 풀며 공부합니다.<br>추가로 AppLifeCycle 부분도!</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>TIL</category>
+      
+    </categories>
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>UI-TIL-191127</title>
     <link href="undefined2019/11/UI-TIL-191127/"/>
     <url>2019/11/UI-TIL-191127/</url>
@@ -151,9 +170,9 @@
       
       <tag>swift</tag>
       
-      <tag>OOP</tag>
-      
       <tag>class</tag>
+      
+      <tag>OOP</tag>
       
       <tag>protocol</tag>
       
@@ -182,11 +201,11 @@
       
       <tag>swift</tag>
       
-      <tag>OOP</tag>
-      
       <tag>class</tag>
       
       <tag>property</tag>
+      
+      <tag>OOP</tag>
       
     </tags>
     
