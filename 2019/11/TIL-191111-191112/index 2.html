@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-touch-icon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="description" content="">
+  <meta name="author" content="jisng">
+  <meta name="keywords" content="swift, iOS, git, dev">
+  <title>TIL-git-191111-191112 ~ jisng</title>
+
+  <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css"  >
+<link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css"  >
+<link rel="stylesheet" href="/lib/mdbootstrap/css/mdb.min.css"  >
+<link rel="stylesheet" href="/lib/github-markdown/github-markdown.min.css"  >
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1067060_qzomjdt8bmp.css">
+
+
+  <link rel="stylesheet" href="/lib/prettify/tomorrow-night-eighties.min.css"  >
+
+<link rel="stylesheet" href="/css/main.css"  >
+
+
+  <link rel="stylesheet" href="/lib/fancybox/jquery.fancybox.min.css"  >
+
+
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>jisng</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/">Home</a>
+          </li>
+        
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/archives/">Archives</a>
+          </li>
+        
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/categories/">Categories</a>
+          </li>
+        
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/tags/">Tags</a>
+          </li>
+        
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/about/">About</a>
+          </li>
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+</nav>
+
+    <div class="view intro-2" id="background"
+         style="background: url('/img/default.png')no-repeat center center;
+           background-size: cover;
+           background-attachment: fixed;">
+      <div class="full-bg-img">
+        <div class="mask rgba-black-light flex-center">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              <br>
+              
+                <p class="mt-3">
+                  <i class="fas fa-calendar-alt" aria-hidden="true"></i>&nbsp;
+                  Tuesday, November 12th 2019, 6:08 pm
+                </p>
+              
+
+              <p>
+                
+                  
+                  &nbsp;<i class="far fa-chart-bar"></i>
+                  <span class="post-count">
+                    824 words
+                  </span>&nbsp;
+                
+
+                
+                  
+                  &nbsp;<i class="far fa-clock"></i>
+                  <span class="post-count">
+                      5 time
+                  </span>&nbsp;
+                
+
+                
+                  <!-- 不蒜子统计文章PV -->
+                  
+                  &nbsp;<i class="far fa-eye" aria-hidden="true"></i>&nbsp;
+                  <span id="busuanzi_container_page_pv">
+                    <span id="busuanzi_value_page_pv"></span> view
+                  </span>&nbsp;
+                
+              </p>
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="py-5 z-depth-3" id="board">
+        <div class="post-content mx-auto" id="post">
+          <div class="markdown-body">
+            <h1 id="Git-특강"><a href="#Git-특강" class="headerlink" title="Git 특강"></a>Git 특강</h1><p>강사님 : <a href="https://github.com/ulgoon/essential-git" target="_blank" rel="noopener">https://github.com/ulgoon/essential-git</a></p>
+<h1 id="Repo-add-commit-push"><a href="#Repo-add-commit-push" class="headerlink" title="Repo, add, commit, push"></a>Repo, add, commit, push</h1><pre><code class="shell">mkdir Dev
+git clone &lt;https://~&gt;
+ls
+vi .gitignore
+// 추가한 내용
+    hidden/
+    *.pem
+    confidential.*
+
+git status // modified: .gitignore
+mkdir hidden
+touch hidden/Hello.swift
+touch key.pem
+touch confidential.swift</code></pre>
+<pre><code>git config --list
+git config --global user.name &quot;jisng&quot;
+git config --global user.email &quot;jxsxxng@gmail.com&quot;
+git config --global core.editor &quot;vim&quot;
+git config --global core.pager &quot;cat&quot;
+git config --list // 변경 된 사항 확인
+
+vi README.md
+git status // .gitignore, README.md
+git add .gitignore // 셋팅과 설명은 성격이 다르기 때문에 따로 올리기
+git commit
+git add README.md
+git commit -m &quot;docs: ~&quot;
+git remote // origin
+git remote get-url origin // https:~
+git push origin master</code></pre><p>commit 말머리 작성 </p>
+<ul>
+<li><p>feat : feature</p>
+</li>
+<li><p>conf : configuration</p>
+</li>
+<li><p>fix : bug fix</p>
+</li>
+<li><p>refactor : refactoring</p>
+</li>
+<li><p>docs:</p>
+</li>
+</ul>
+<h2 id="TIL"><a href="#TIL" class="headerlink" title="TIL"></a>TIL</h2><pre><code class="shell">git clone https:~
+cd TIL
+mkdir git
+touch git/191111-git-basic.md
+
+brew install tree
+// 레포들이 병렬 상태로 존재할 수 있도록 신경쓴다. (레포 아래 레포가 관리되지 않도록)</code></pre>
+<p>repository들이 병렬 상태로 존재할 수 있게 (레포 아래 레포 관리 되지 않도록) 신경쓰기</p>
+<pre><code>tree
+cd git
+vi 191111-git-basic.md
+git status
+git add 191111-git.basic.md
+git commit
+git push origin master</code></pre><h1 id="github-io"><a href="#github-io" class="headerlink" title="github.io"></a><a href="http://github.io" target="_blank" rel="noopener">github.io</a></h1><pre><code class="shell">pwd
+git clone &lt;https://github.com/jisng/jisng.github.io.git&gt;
+cd jisng.github.io
+touch index.html
+vi index.html
+
+&lt;!doctype html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;meta charset=&quot;utf-8&quot;&gt;
+        &lt;title&gt;firt github page&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;h1&gt;Home&lt;/h1&gt;
+        &lt;p&gt;paragraph&lt;/p&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+
+git status
+git add index.html
+git commit -m &quot;&quot;
+git push origin master</code></pre>
+<h2 id="github-io-hexo"><a href="#github-io-hexo" class="headerlink" title="github.io + hexo"></a><a href="http://github.io" target="_blank" rel="noopener">github.io</a> + hexo</h2><pre><code>brew install node
+node -v
+npm -v
+sudo npm install -g hexo-cli
+hexo
+pwd // Dev
+hexo init {ghbloc}
+ls // TIL, ghblog, jisng.github.io
+cd ghblog
+ls
+npm install
+hexo new post {start-my-github-blog-with-hexo}
+// INFO Createde: ~/Documents/Dev/ghblog/source/_posts/start-my-github-blog-with-hexo.md
+vi source/_posts/start-my-github-blog-with-hexo.md
+hexo generate
+hexo server // 로컬에서 사이트를 확인할 수 있다
+npm install --save-dev hexo-deployer-git
+vi _config.yml
+
+// _config.yml
+// :set nu 줄 번호가 나온다
+# Site
+title:
+subtitle:
+description:
+keywords:
+author:
+language:
+timezone:
+
+hexo deploy</code></pre><br>
+
+<p>제가 여기까지 했을 때, 절차들이 복잡하여 혼란스러웠거든요.<br><br><br>[local-dir]jisng.github.io &lt;-&gt; [github-repo]jisng.github.io 는 연결되어 있다는 걸 알겠는데..  터미널에서 확인해보면 [local-dir]ghblog는 깃관리가 안되는 것처럼 보이는데..  그럼 hexo blog 업로드는 github에 안찍히는건가? 뭐 그런 혼란스러움.. (글도 혼란스러워보이네..)<br><br><br>그래서 폴더들을 열어보면서 순서(?)들을 유추하여 강사님께 확인해서 알아냈습니다!<br>아직 git 쪼랩이라서 디테일하게 알 수는 없었지만, 대강 이렇게 업로드 되는구나~ 정도 파악한 점 고려해주세요..ㅎ<br><br><br>🤨  그럼 업로드 되는 논리를 야매로 이해해봅시다.<br><code>hexo new post {name}</code> 로 포스팅 할 파일을 생성하여<br><code>vi source/_posts/{name}</code> 을 열어서 내용을 작성하여<br><code>hexo clean &amp;&amp; hexo generate</code>, <code>hexo deploy</code>로 포스팅을 올리면<br>[dir]ghblog &gt; [dir]jisng.github.io &gt; [github-repo]jisng.github.io &gt; [hexo-blog]sjisng.github.io<br>의 순서를 거쳐 업로드 된다고 이해할 수 있습니다.<br>진짜 프로그램 처리 순서라고 보기는 어렵지만, 아무튼 저 폴더와 레포를 거친다고 보면 됩니다.</p>
+<br>
++
+<br>
+
+<p>추가로 [dir]ghblog &gt; public의 폴더 구조가 [repo]jisng.github.io에 반영됩니다.<br><code>[dir]ghblog &gt; source &gt; _posts &gt; md</code> 파일이 hexo에 의해 html로 변환되면 <code>[dir]ghblog &gt; public</code>에 저장된다고 보면 됩니다.<br>날짜별로 폴더가 생성되어 정리가 될텐데, 이 날짜별 폴더는 위에서 <code>ghblog &gt; _config.yml</code> 폴더에서 셋팅한대로 생성됩니다.  </p>
+<br>
+
+
+
+
+<h1 id="Theme-setting"><a href="#Theme-setting" class="headerlink" title="Theme setting"></a>Theme setting</h1><ol>
+<li>테마 결정</li>
+<li><code>git clone ~</code></li>
+<li><code>vi _config.yml</code> &gt; :93 &gt; theme: {theme-name}</li>
+<li><code>hexo clean &amp;&amp; hexo generate</code></li>
+<li><code>hexo deploy</code> </li>
+</ol>
+<h2 id="Theme-gt-confit-yml"><a href="#Theme-gt-confit-yml" class="headerlink" title="Theme &gt; _confit.yml"></a>Theme &gt; _confit.yml</h2><p>Theme 설치할 때 sudo 명령어로 설치했기 때문에, theme{theme-name} 안의 소유자는 root</p>
+<pre><code class="shell">cd themes/cactus
+ls -l
+//    &gt; -rw-r--r-- 1 root staff 4666 11 12 10:29 _config.yml
+sudo chown jisng cactus/* // cactus의 모든 파일의 소유자를 jisng 으로 바꾼다.
+cd cactus
+ls
+ls -l // cactus 폴더 소유자는 root, 내부 파일 소유자는 user
+vi _config.yml // 테마 설정 바꿈</code></pre>
+<h1 id="branch"><a href="#branch" class="headerlink" title="branch"></a>branch</h1><pre><code class="shell">~/Documents/Dev/gitTest
+git branch earth123
+git branch 
+git checkout earth123
+git checkout master
+git branch -D eart123 // earth123 branch 삭제</code></pre>
+<h1 id="Merge"><a href="#Merge" class="headerlink" title="Merge"></a>Merge</h1><pre><code class="shell">git branch edit-readme // 브랜치 이름만으로 무슨 일을 할 지 유추할 수 있도록 네이밍한다.
+git chekout edit-readme 
+// README.md 파일 수정 중..
+git add README.md
+git commit -m &quot;&quot;
+git checkout master
+git branch // master로 왔는지 재확인
+git diff edit-readme // 차이 확인
+git merge edit-readme</code></pre>
+<h1 id="git-flow"><a href="#git-flow" class="headerlink" title="git flow"></a>git flow</h1><ul>
+<li><a href="https://danielkummer.github.io/git-flow-cheatsheet/index.ko_KR.html" target="_blank" rel="noopener">git flow 설치 - 설명 페이지</a></li>
+</ul>
+<pre><code class="shell">git flow init
+git flow feature start flow-init // enter -----
+git branch
+git touch main.swift
+git add main.swift
+git commit - m &quot;&quot;
+git flow feature finish flow-init
+git branch // *develop
+git push origin develop</code></pre>
+<h2 id="Tip"><a href="#Tip" class="headerlink" title="Tip !"></a>Tip !</h2><ul>
+<li><p>bitbucket : 소수 인원(5명)이서 협업할 때 무료로 사용할 수 있다.</p>
+</li>
+<li><p>github - LICENSE</p>
+</li>
+<li><p><code>rm -fr .git</code> 해당 파일을 git 관리 해제한다.</p>
+</li>
+</ul>
+
+            <hr>
+          </div>
+          <br>
+          <div>
+            <p>
+            
+              <span>
+                <i class="iconfont icon-inbox"></i>
+                
+                  <a class="hover-with-bg" href="/categories/TIL">TIL</a>
+                  &nbsp;
+                
+              </span>&nbsp;&nbsp;
+            
+            
+              <span>
+                <i class="iconfont icon-tag"></i>
+                
+                  <a class="hover-with-bg" href="/tags/git">git</a>
+                
+                  <a class="hover-with-bg" href="/tags/hexo">hexo</a>
+                
+              </span>
+            
+            </p>
+            
+              <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" target="_blank" rel="nofollow noopener noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="d-none d-lg-block col-lg-2 toc-container">
+      
+  <div id="toc">
+    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;TOC</p>
+    <div id="tocbot"></div>
+  </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- custom -->
+
+
+<!-- Comments -->
+<div class="col-lg-7 mx-auto nopadding-md">
+  <div class="container comments mx-auto" id="comments">
+    
+  </div>
+</div>
+
+    
+  </main>
+
+  
+    <a class="z-depth-1" id="scroll-top-button" href="#" role="button">
+      <i class="fa fa-chevron-up scroll-top-arrow" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><b>Hexo</b></a>
+    <i class="iconfont icon-love"></i>
+    <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"> <b>Fluid</b></a>
+    <br>
+
+    
+  
+    <!-- 不蒜子统计PV -->
+    
+    &nbsp;<span id="busuanzi_container_site_pv">总访问量 
+          <span id="busuanzi_value_site_pv"></span> 次</span>&nbsp;
+  
+  
+    <!-- 不蒜子统计UV -->
+    
+    &nbsp;<span id="busuanzi_container_site_uv">总访客数 
+            <span id="busuanzi_value_site_uv"></span> 人</span>&nbsp;
+  
+  <br>
+
+
+
+    
+
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script src="/lib/jquery/jquery.min.js" ></script>
+<script src="/lib/popper/popper.min.js" ></script>
+<script src="/lib/bootstrap/js/bootstrap.min.js" ></script>
+<script src="/lib/mdbootstrap/js/mdb.min.js" ></script>
+<script src="/js/main.js" ></script>
+
+
+  <script src="/js/lazyload.js" ></script>
+
+
+
+  
+    <script src="/lib/tocbot/tocbot.min.js" ></script>
+  
+  <script src="/js/post.js" ></script>
+
+
+
+  <script src="/lib/smooth-scroll/smooth-scroll.min.js" ></script>
+
+
+
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+<!-- Plugins -->
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+  <script src="/lib/prettify/prettify.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      $('pre').addClass('prettyprint  linenums');
+      prettyPrint();
+    })
+  </script>
+
+
+
+  <script src="/lib/typed/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "TIL-git-191111-191112&nbsp;",
+      ],
+      cursorChar: " : JISNG",
+      typeSpeed: 100,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script src="/lib/anchor/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "false",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      getSearchFile(path);
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script src="/lib/fancybox/jquery.fancybox.min.js" ></script>
+  <script>
+    $("#post img:not(.no-zoom img, img[no-zoom])").each(
+      function () {
+        var element = document.createElement("a");
+        $(element).attr("data-fancybox", "images");
+        $(element).attr("href", $(this).attr("src"));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+</body>
+</html>
