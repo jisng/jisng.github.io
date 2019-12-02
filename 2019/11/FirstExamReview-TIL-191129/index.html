@@ -15,7 +15,7 @@
   <meta name="description" content="">
   <meta name="author" content="jisng">
   <meta name="keywords" content="swift, iOS, git, dev">
-  <title>FirstExamReview-TIL-191129 ~ jisng</title>
+  <title>FirstExamReview1-TIL-191129 ~ jisng</title>
 
   <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css"  >
 <link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css"  >
@@ -120,7 +120,7 @@
                   
                   &nbsp;<i class="far fa-chart-bar"></i>
                   <span class="post-count">
-                    141 words
+                    546 words
                   </span>&nbsp;
                 
 
@@ -128,7 +128,7 @@
                   
                   &nbsp;<i class="far fa-clock"></i>
                   <span class="post-count">
-                      1 times
+                      3 times
                   </span>&nbsp;
                 
 
@@ -185,6 +185,129 @@
 <li><code>applicationWillEnterForeground:</code><br>어플리케이션이 Active 상태가 되기 직전에, 화면에 보여지기 직전의 시점에 호출</li>
 <li><code>applicationWillTerminate:</code><br>어플리케이션이 종료되기 직전에 호출</li>
 </ul>
+<hr>
+<h2 id="오전-실습"><a href="#오전-실습" class="headerlink" title="오전 - 실습"></a>오전 - 실습</h2><p>&lt;1.&gt;.  다음의 클로져를 FullSyntax 로부터 Optimized Syntax 로 차근차근 줄여보세요. 그리고 그 과정에 일어나는 변화를 주석으로 설명하세요.</p>
+<pre><code class="swift"></code></pre>
+<br>
+
+<p>&lt;2.&gt; 자연수 하나를 입력받아 1년부터 그 해까지의 모든 윤년의 개수를 출력하는 함수</p>
+<pre><code class="swift">/*
+ (공식 : 매 4년 마다 윤년. 매 100년 째에는 윤년이 아님. 매 400년 째에는 윤년)
+ 윤년O 예시 - 160, 204, 400, 1996, 2000, 2800
+ 윤년X 예시 - 200, 300, 500, 600, 1900, 2100
+
+ Intput : 2019
+ Output : 윤년에 속하는 해는 총 489회입니다.
+*/
+
+func 윤년(num: Int) -&gt; Int {
+
+    // num % 4 == 0 // +
+    // num % 100 == 0 // -
+    // num % 400 == 0 // +
+
+    var result = 0
+    for num in 1...num {
+        if num % 4 == 0 {
+            result += 1
+        }
+        if num % 100 == 0 {
+            result -= 1
+            if num % 400 == 0 {
+                result += 1
+            }
+        }
+    }
+
+    return result
+}
+
+윤년(num: 2019)
+</code></pre>
+<br>
+
+
+
+<p>&lt;3.&gt; 주어진 문자 배열에서 중복되지 않는 문자만을 뽑아내 배열로 반환해주는 함수</p>
+<pre><code class="swift">/*
+ &gt; Input : [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;a&quot;, &quot;e&quot;, &quot;d&quot;, &quot;c&quot;]
+ &gt; Output : [&quot;b&quot;, &quot;e&quot; ,&quot;d&quot;]
+*/
+
+func uniqArr(inputArr: [String]) -&gt; [String] {
+
+    var result = [String]()     // 유일한 값일때만 남기는 용도
+    var check = [String]()      // 두 번째로 들어오는 값인지 확인
+
+    for item in inputArr {
+        if result.contains(item) {
+            if let index = result.index(of: item) {
+                result.remove(at: index)
+
+            }
+        } else {
+            result.append(item)
+            check.append(item)
+        }
+    }
+
+    return result
+}</code></pre>
+<br>
+
+
+
+<p>&lt;4.&gt; 자연수를 입력받아 그 숫자보다 작거나 같은 모든 소수와 그 개수를 출력하는 함수를 정의</p>
+<pre><code class="swift">/*
+ &gt; Input : 10
+ &gt; Output : 10보다 작거나 같은 소수는 [2, 3, 5, 7]이고, 총 4개입니다.
+*/
+
+
+func primeNum(number: Int) -&gt; Bool {
+
+    var isPrime = true
+
+    for i in 2...number-1 {
+        if number % i == 0 {
+            isPrime = false
+        }
+    }
+    return isPrime
+}
+
+
+func checkPrimeNumbers1(number: Int) -&gt; String {
+
+    guard number &gt; 1 else { return &quot;1은 소수가 아닙니다.&quot; }
+
+    var arr = [2]
+
+    for i in 3...number {
+        if primeNum(number: i) {
+            arr.append(i)
+        }
+    }
+
+    return &quot;\(number)보다 작거나 같은 소수는 \(arr), 총\(arr.count)개입니다.&quot;
+}</code></pre>
+<br>
+
+
+
+<p>&lt;5.&gt; 구글(google), 카카오(kakao), 네이버(naver) 로그인을 위해 Site라는 이름의 Enum 타입을 만들고자 합니다.</p>
+<p> 각 case는 사용자의 아이디(String)와 비밀번호(String)를 위한 연관 값(associated value)을 가집니다.</p>
+<p> 그리고 Site 타입 내부에는 signIn()이라는 이름의 메서드를 만들어 다음과 같이 문자열을 출력하는 기능을 구현해보세요.</p>
+<pre><code class="swift">/*
+e.g.
+ enum Site {}
+ &gt; Input
+ let google = Site.google(&quot;google@gmail.com&quot;, &quot;0000&quot;)
+ google.signIn()
+
+ &gt; Output
+ 구글에 로그인하였습니다. (아이디 - google@gmail.com, 비밀번호 - 0000)
+*/</code></pre>
 
             <hr>
           </div>
@@ -347,7 +470,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "FirstExamReview-TIL-191129&nbsp;",
+        "FirstExamReview1-TIL-191129&nbsp;",
       ],
       cursorChar: " : JISNG",
       typeSpeed: 100,
