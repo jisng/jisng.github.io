@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>Segue-TIL-191203</title>
+    <link href="undefined2019/12/segue-til-191203/"/>
+    <url>2019/12/segue-til-191203/</url>
+    
+    <content type="html"><![CDATA[<h1 id="Segue-Action-Segue"><a href="#Segue-Action-Segue" class="headerlink" title="Segue : Action Segue"></a>Segue : Action Segue</h1><ol><li>(Storyboard)First &lt;-&gt; (Class)FirstVC</li><li>(Storyboard)Second &lt;-&gt; (Class)SecondVC</li><li>각 스토리보드에 버튼 생성</li></ol><br><h2 id="Present-Modally"><a href="#Present-Modally" class="headerlink" title="Present Modally"></a>Present Modally</h2><ol><li>(Storyboard)First : 버튼 선택, control 누른 상태에서, (Storyboard)Second로 연결 “Present Modally”</li></ol><img src="/2019/12/segue-til-191203/segue.png" srcset="undefined" alt="segue" style="zoom:50%;"><br><h2 id="Unwind"><a href="#Unwind" class="headerlink" title="Unwind"></a>Unwind</h2><ol><li>(Class)FirstVC 에 unwind 작성</li></ol><img src="/2019/12/segue-til-191203/un.png" srcset="undefined" alt="un" style="zoom:50%;"><img src="/2019/12/segue-til-191203/unwind.png" srcset="undefined" alt="unwind" style="zoom:50%;"><ol start="2"><li>(Storyboard)SecondVC 버튼에서 unwind 연결</li></ol><img src="/2019/12/segue-til-191203/exit1.png" srcset="undefined" alt="exit1" style="zoom:50%;"><br><ol start="3"><li><p>Segue 에서 자주 쓰는 함수  </p><ol><li><code>shouldPerformSegue~</code> : 화면을 전환하기 전 “어떤 조건”을 확인하여, 화면 전환 여부를 결정하는 함수</li><li><code>prepare</code> : 화면을 전환하면서, 다음 화면의 저장 프로퍼티를 컨트롤 할 수 있는 함수</li><li><code>unwind~</code> : 전환한 화면을 내리면서 현재 화면으로 돌아올 때, 프로퍼티들을 컨트롤 할 함수</li></ol></li></ol><pre><code class="swift">   override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -&gt; Bool {           super.shouldPerformSegue(withIdentifier: identifier, sender: sender)           var temp = 0           // count 값이 50이 넘어가면 화면전환 불가           if identifier == &quot;Plus1&quot; {               temp = count + 1           } else {               temp = count + 40           }           if temp &gt; 50 {               return false           } else {               count = temp               return true           }           // count 값이 50이전이면 화면전환 가능       }   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {           super.prepare(for: segue, sender: sender) // super 역할을 할 수도 있고 , 안할 수도 있지만, 하나하나 확인하고 쓸지 말지 결정하기 보다 무조건 씁니다.           guard let secondVC = segue.destination as? SecondViewController else { return }           if segue.identifier == &quot;Plus1&quot; {               //            count += 1               secondVC.count = count           } else if segue.identifier == &quot;Plus40&quot; {               //            count += 40               secondVC.count = count           }           else if segue.identifier == &quot;Card&quot; {               secondVC.secondLabel.text = &quot;Card&quot;           } else {               secondVC.secondLabel.text = &quot;FullScreen&quot;           }       }   @IBAction func unwindToFirstVC(_ unwindSegue: UIStoryboardSegue) {           let sourceViewController = unwindSegue.source // secondVC           guard let secondVC = sourceViewController as? SecondViewController else { return }   //        guard let secondVC = unwindSegue.source as? SecondViewController else { return }           self.count -= secondVC.tftext           print(count, secondVC.tftext)           firstCount.text = &quot;\(count)&quot;       }</code></pre>   <img src="/2019/12/segue-til-191203/segueFunc.png" srcset="undefined" alt="segueFunc" style="zoom:50%;"><br><h1 id="Segue-Manual-Segue"><a href="#Segue-Manual-Segue" class="headerlink" title="Segue: Manual Segue"></a>Segue: Manual Segue</h1><p>위에서 한 액션 세그웨이는 특정 버튼으로 연결시켰지만, 메뉴얼 세그웨이는 특정 버튼(액션)과 연결되지 않습니다.<br>필요할 때 메뉴얼 세그웨이의 identifier 값을 이용하여 연결시켜서 작동합니다.  </p><br><p>제가 메뉴얼 세그웨이를 사용한 코드를 올릴게요.<br>저는 첫번째 화면에서 액션 세그웨이를 통해 화면을 전환 시켰고,<br>unwind 함수에서 실행할 내용을,<br>두번째 화면 버튼의 작동 여부에 따라 실행시키기 위해 두번째 화면에서 메뉴얼 세그웨이를 사용하였습니다. </p><br><pre><code class="swift">func alert() {        let alert = UIAlertController(title: &quot;주문 확인&quot;, message: &quot;주문 받았습니다&quot;, preferredStyle: .alert)        let ok = UIAlertAction(title: &quot;주문&quot;, style: .default) { _ in            self.performSegue(withIdentifier: &quot;ManualUnwind&quot;, sender: nil)        }        let cancle = UIAlertAction(title: &quot;취소&quot;, style: .cancel, handler: nil)        alert.addAction(ok)        alert.addAction(cancle)        present(alert, animated: true)    }</code></pre><br><p>버튼에 얼럿 함수를 연결, 얼럿 확인 버튼을 눌렀을 때 첫번째 화면으로 전환하는 기능입니다.<br><code>self.performSegue(withIdentifier: &quot;ManualUnwind&quot;, sender: nil)</code><br>“ManualUnwind” 는 메뉴얼 세그웨이의 identifier 입니다.</p><br><p>해당 내용에 대한 자세한 설명은 링크로 대체할게요 ㅠ.. <a href="https://stackoverflow.com/questions/12509422/how-to-perform-unwind-segue-programmatically" target="_blank" rel="noopener">HowToPerfromSegueProgrammatically?</a></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>TIL</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>segue</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>FirstExamReview2-TIL-191201</title>
     <link href="undefined2019/12/til-191201/"/>
     <url>2019/12/til-191201/</url>
@@ -116,9 +141,9 @@
     
     <tags>
       
-      <tag>iOS</tag>
-      
       <tag>UIViewController</tag>
+      
+      <tag>iOS</tag>
       
     </tags>
     
