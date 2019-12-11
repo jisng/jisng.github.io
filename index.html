@@ -134,6 +134,136 @@
     
     
     <div class="col-12 col-md-8 m-auto">
+      <a href="/2019/12/view-controller-til-191211/">
+        <p class="h4 index-header">View 와 Controller</p>
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">View + Controller오늘 조교님이 준비해주신 실습을 통해 그동안 합쳐써 써오던 ViewController를 View와 Controller로 떼어서 쓸 수 있게 되었습니다!이제 MVC 패턴을 쓸 수 있게 되었어요 :) (그동안 Model + ViewController로 썼음)이렇게 나누었을 때, View를 어떻게 구성해야 재사용이 가능한지도 배웠으니배우고 익힌 내용을 한 번 담아보겠습니다. (땡쓰업쓰!) 
+1. 폴더링하기단축키 cmd + option + n    
+저는 다음과 같이 폴더링했습니다.
+
+View
+BaseUI
+
+
+Controller
+FirstViewController
+
+
+
+2. View 만들기(BaseUI.swift)import UIKit
+
+class BaseUI: UIView {
+
+    private let titleLabel = UILabel()
+    private let textField = UITextField()
+    private let lineF</div>
+        </div>
+      </a>
+
+      <div>
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2019-12-11&nbsp;&nbsp;
+        
+        
+          <i class="iconfont icon-inbox"></i>
+          
+            <a href="/categories/TIL">TIL</a>&nbsp;
+          &nbsp;
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/iOS">iOS</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-4 mx-auto">
+    
+    
+    <div class="col-12 col-md-8 m-auto">
+      <a href="/2019/12/struct-til-191209/">
+        <p class="h4 index-header">Struct</p>
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">StructComparing Structures and Classes클래스와 구조체 공통점
+값을 저장하기 위한 프로퍼티
+
+기능을 제공하기 위한 메서드
+
+초기 상태를 설정하기 위한 생성자
+
+기본 구현에서 기능을 추가하기 위한 확장(Extension)
+
+특정 값에 접근할 수 있는 첨자(Subscript)
+
+특정한 기능을 수행하기 위한 프로토콜 채택
+
+Upper Camel Case 사용
+
+
+클래스만 제공하는 기능
+상속 (Inheritance)
+
+소멸자 (Deinitializer) -  deinit 메서드
+
+참조 카운트 (Reference counting)
+
+
+값 타입 Vs 참조 타입class Dog {
+  var name = &quot;똘똘이&quot;
+}
+struct Cat {
+  var name = &quot;애옹이&quot;
+}
+
+let dog = Dog()
+let cat = Cat()
+
+dog.name = &quot;똘똘이2&quot; // 가능
+cat.name = &quot;애옹</div>
+        </div>
+      </a>
+
+      <div>
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2019-12-09&nbsp;&nbsp;
+        
+        
+          <i class="iconfont icon-inbox"></i>
+          
+            <a href="/categories/TIL">TIL</a>&nbsp;
+          &nbsp;
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/swift">swift</a>&nbsp;
+          
+            <a href="/tags/iOS">iOS</a>&nbsp;
+          
+            <a href="/tags/sturct">sturct</a>&nbsp;
+          
+            <a href="/tags/ARC">ARC</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-4 mx-auto">
+    
+    
+    <div class="col-12 col-md-8 m-auto">
       <a href="/2019/12/segue-til-191203/">
         <p class="h4 index-header">Segue-TIL-191203</p>
         
@@ -571,188 +701,6 @@ Info.Plist &gt; Application S</div>
           <i class="iconfont icon-tag"></i>
           
             <a href="/tags/Xcode">Xcode</a>&nbsp;
-          
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mb-4 mx-auto">
-    
-    
-    <div class="col-12 col-md-8 m-auto">
-      <a href="/2019/11/TIL-swift-OOP2-191119/">
-        <p class="h4 index-header">TIL-swift-OOP2-191119</p>
-        
-        
-          
-        
-        <div class="index-excerpt" >
-          <div class="index-text mb-1">Access Control
-이 부분은, 개념적인 부분만 가볍게 훑고 지나간 뒤 나중에 실제 코드를 만났을 때 다시 살펴보기로 합니다. 
-
-
-
-
-다른 모듈의 코드 또는 다른 소스 파일 등으로부터 접근을 제한하는 것
-세부 구현 내용을 숨기고 접근할 수 있는 인터페이스 지정 가능
-
-
-
-
-모듈 Module
-import 를 통해 다른 모듈로부터 불러들일 수 있는 하나의 코드 배포 단위
-Library / Framework / Application 
-
-
-소스 파일 Source File
-모듈 내에 포함된 각각의 Swift 소스 코드 파일
-
-
-
-Access Levles
-
-
-5가지
-open
-public
-internal
-fileprivate
-private
-
-
-
-
-
-
-fileprivate class SomeFileprivateClass {
-   var name = &quot;name&quot;
-   var age = 0
-}
-
-fileprivate let someFileprivateClass = SomeF</div>
-        </div>
-      </a>
-
-      <div>
-        
-          <i class="iconfont icon-riqi2"></i>&nbsp;2019-11-19&nbsp;&nbsp;
-        
-        
-          <i class="iconfont icon-inbox"></i>
-          
-            <a href="/categories/TIL">TIL</a>&nbsp;
-          &nbsp;
-        
-        
-          <i class="iconfont icon-tag"></i>
-          
-            <a href="/tags/swift">swift</a>&nbsp;
-          
-            <a href="/tags/class">class</a>&nbsp;
-          
-            <a href="/tags/OOP">OOP</a>&nbsp;
-          
-            <a href="/tags/protocol">protocol</a>&nbsp;
-          
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mb-4 mx-auto">
-    
-    
-    <div class="col-12 col-md-8 m-auto">
-      <a href="/2019/11/TIL-swift-OOP1-191118/">
-        <p class="h4 index-header">TIL-swift-OOP1-191118</p>
-        
-        
-          
-        
-        <div class="index-excerpt" >
-          <div class="index-text mb-1">OOP : Object-Oriented-Programming
-
-Value Type : struct, enum ( Stack에 저장)
-Reference Type : class ( Heap 에 저장)
-
-
-
-
-
-
-
-x
-y
-z
-
-
-
-Stack
-5
-0x5F17
-0x2C90
-
-
-
-
-
-
-
-
-
-0x2C90
-0x5F16
-0x517
-
-
-Heap
-z’s user data
-SomeData
-y’s user data
-
-
-
-
-Equatablem, Identical1 == 1 // True
-2 == 1 // False
-&quot;ABC&quot; == &quot;ABC&quot; // True
-
-
-class Person {
-  let name = &quot;이순신&quot;
-  let age = 30
-}
-
-let person1 = Person()
-let person2 = Person()
-
-person1 == &quot;이순신&quot;    // 오류, 타입이 다름
-
-person1 == person2   // </div>
-        </div>
-      </a>
-
-      <div>
-        
-          <i class="iconfont icon-riqi2"></i>&nbsp;2019-11-18&nbsp;&nbsp;
-        
-        
-          <i class="iconfont icon-inbox"></i>
-          
-            <a href="/categories/TIL">TIL</a>&nbsp;
-          &nbsp;
-        
-        
-          <i class="iconfont icon-tag"></i>
-          
-            <a href="/tags/swift">swift</a>&nbsp;
-          
-            <a href="/tags/class">class</a>&nbsp;
-          
-            <a href="/tags/property">property</a>&nbsp;
-          
-            <a href="/tags/OOP">OOP</a>&nbsp;
           
         
       </div>

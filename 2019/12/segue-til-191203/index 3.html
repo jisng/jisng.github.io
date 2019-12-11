@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-touch-icon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="description" content="">
+  <meta name="author" content="jisng">
+  <meta name="keywords" content="swift, iOS, git, dev">
+  <title>Segue-TIL-191203 ~ jisng</title>
+
+  <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css"  >
+<link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css"  >
+<link rel="stylesheet" href="/lib/mdbootstrap/css/mdb.min.css"  >
+<link rel="stylesheet" href="/lib/github-markdown/github-markdown.min.css"  >
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1067060_qzomjdt8bmp.css">
+
+
+  <link rel="stylesheet" href="/lib/prettify/tomorrow-night-eighties.min.css"  >
+
+<link rel="stylesheet" href="/css/main.css"  >
+
+
+  <link rel="stylesheet" href="/lib/fancybox/jquery.fancybox.min.css"  >
+
+
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>jisng</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/">Home</a>
+          </li>
+        
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/archives/">Archives</a>
+          </li>
+        
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/Categories/">Categories</a>
+          </li>
+        
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/tags/">Tags</a>
+          </li>
+        
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/about/">About</a>
+          </li>
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+</nav>
+
+    <div class="view intro-2" id="background"
+         style="background: url('/img/default.png')no-repeat center center;
+           background-size: cover;
+           background-attachment: fixed;">
+      <div class="full-bg-img">
+        <div class="mask rgba-black-light flex-center">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              <br>
+              
+                <p class="mt-3">
+                  <i class="fas fa-calendar-alt" aria-hidden="true"></i>&nbsp;
+                  Tuesday, December 3rd 2019, 1:38 pm
+                </p>
+              
+
+              <p>
+                
+                  
+                  &nbsp;<i class="far fa-chart-bar"></i>
+                  <span class="post-count">
+                    416 words
+                  </span>&nbsp;
+                
+
+                
+                  
+                  &nbsp;<i class="far fa-clock"></i>
+                  <span class="post-count">
+                      2 times
+                  </span>&nbsp;
+                
+
+                
+                  <!-- 不蒜子统计文章PV -->
+                  
+                  &nbsp;<i class="far fa-eye" aria-hidden="true"></i>&nbsp;
+                  <span id="busuanzi_container_page_pv">
+                    <span id="busuanzi_value_page_pv"></span> views
+                  </span>&nbsp;
+                
+              </p>
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="py-5 z-depth-3" id="board">
+        <div class="post-content mx-auto" id="post">
+          <div class="markdown-body">
+            <h1 id="Segue-Action-Segue"><a href="#Segue-Action-Segue" class="headerlink" title="Segue : Action Segue"></a>Segue : Action Segue</h1><ol>
+<li>(Storyboard)First &lt;-&gt; (Class)FirstVC</li>
+<li>(Storyboard)Second &lt;-&gt; (Class)SecondVC</li>
+<li>각 스토리보드에 버튼 생성</li>
+</ol>
+<br>
+
+<h2 id="Present-Modally"><a href="#Present-Modally" class="headerlink" title="Present Modally"></a>Present Modally</h2><ol>
+<li>(Storyboard)First : 버튼 선택, control 누른 상태에서, (Storyboard)Second로 연결 “Present Modally”</li>
+</ol>
+<img src="/2019/12/segue-til-191203/segue.png" srcset="undefined" alt="segue" style="zoom:50%;">
+
+
+
+<br>
+
+<h2 id="Unwind"><a href="#Unwind" class="headerlink" title="Unwind"></a>Unwind</h2><ol>
+<li>(Class)FirstVC 에 unwind 작성</li>
+</ol>
+<img src="/2019/12/segue-til-191203/un.png" srcset="undefined" alt="un" style="zoom:50%;">
+
+<img src="/2019/12/segue-til-191203/unwind.png" srcset="undefined" alt="unwind" style="zoom:50%;">
+
+<ol start="2">
+<li>(Storyboard)SecondVC 버튼에서 unwind 연결</li>
+</ol>
+<img src="/2019/12/segue-til-191203/exit1.png" srcset="undefined" alt="exit1" style="zoom:50%;">
+
+
+
+<br>
+
+<ol start="3">
+<li><p>Segue 에서 자주 쓰는 함수  </p>
+<ol>
+<li><code>shouldPerformSegue~</code> : 화면을 전환하기 전 “어떤 조건”을 확인하여, 화면 전환 여부를 결정하는 함수</li>
+<li><code>prepare</code> : 화면을 전환하면서, 다음 화면의 저장 프로퍼티를 컨트롤 할 수 있는 함수</li>
+<li><code>unwind~</code> : 전환한 화면을 내리면서 현재 화면으로 돌아올 때, 프로퍼티들을 컨트롤 할 함수</li>
+</ol>
+</li>
+</ol>
+<pre><code class="swift">   override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -&gt; Bool {
+           super.shouldPerformSegue(withIdentifier: identifier, sender: sender)
+
+           var temp = 0
+
+           // count 값이 50이 넘어가면 화면전환 불가
+           if identifier == &quot;Plus1&quot; {
+               temp = count + 1
+           } else {
+               temp = count + 40
+           }
+
+
+           if temp &gt; 50 {
+               return false
+           } else {
+               count = temp
+               return true
+           }
+           // count 값이 50이전이면 화면전환 가능
+
+
+       }
+
+   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+           super.prepare(for: segue, sender: sender) // super 역할을 할 수도 있고 , 안할 수도 있지만, 하나하나 확인하고 쓸지 말지 결정하기 보다 무조건 씁니다.
+
+           guard let secondVC = segue.destination as? SecondViewController else { return }
+
+           if segue.identifier == &quot;Plus1&quot; {
+               //            count += 1
+               secondVC.count = count
+           } else if segue.identifier == &quot;Plus40&quot; {
+               //            count += 40
+               secondVC.count = count
+           }
+           else if segue.identifier == &quot;Card&quot; {
+               secondVC.secondLabel.text = &quot;Card&quot;
+           } else {
+               secondVC.secondLabel.text = &quot;FullScreen&quot;
+           }
+
+       }
+
+   @IBAction func unwindToFirstVC(_ unwindSegue: UIStoryboardSegue) {
+           let sourceViewController = unwindSegue.source // secondVC
+
+           guard let secondVC = sourceViewController as? SecondViewController else { return }
+
+   //        guard let secondVC = unwindSegue.source as? SecondViewController else { return }
+
+           self.count -= secondVC.tftext
+           print(count, secondVC.tftext)
+
+
+           firstCount.text = &quot;\(count)&quot;
+
+       }</code></pre>
+   <img src="/2019/12/segue-til-191203/segueFunc.png" srcset="undefined" alt="segueFunc" style="zoom:50%;">
+
+
+
+<br>
+
+
+
+<h1 id="Segue-Manual-Segue"><a href="#Segue-Manual-Segue" class="headerlink" title="Segue: Manual Segue"></a>Segue: Manual Segue</h1><p>위에서 한 액션 세그웨이는 특정 버튼으로 연결시켰지만, 메뉴얼 세그웨이는 특정 버튼(액션)과 연결되지 않습니다.<br>필요할 때 메뉴얼 세그웨이의 identifier 값을 이용하여 연결시켜서 작동합니다.  </p>
+<br>
+
+<p>제가 메뉴얼 세그웨이를 사용한 코드를 올릴게요.<br>저는 첫번째 화면에서 액션 세그웨이를 통해 화면을 전환 시켰고,<br>unwind 함수에서 실행할 내용을,<br>두번째 화면 버튼의 작동 여부에 따라 실행시키기 위해 두번째 화면에서 메뉴얼 세그웨이를 사용하였습니다. </p>
+<br>
+
+<pre><code class="swift">func alert() {
+
+        let alert = UIAlertController(title: &quot;주문 확인&quot;, message: &quot;주문 받았습니다&quot;, preferredStyle: .alert)
+        let ok = UIAlertAction(title: &quot;주문&quot;, style: .default) { _ in
+            self.performSegue(withIdentifier: &quot;ManualUnwind&quot;, sender: nil)
+        }
+        let cancle = UIAlertAction(title: &quot;취소&quot;, style: .cancel, handler: nil)
+
+        alert.addAction(ok)
+        alert.addAction(cancle)
+        present(alert, animated: true)
+
+    }</code></pre>
+<br>
+
+<p>버튼에 얼럿 함수를 연결, 얼럿 확인 버튼을 눌렀을 때 첫번째 화면으로 전환하는 기능입니다.<br><code>self.performSegue(withIdentifier: &quot;ManualUnwind&quot;, sender: nil)</code><br>“ManualUnwind” 는 메뉴얼 세그웨이의 identifier 입니다.</p>
+<br>
+
+<p>해당 내용에 대한 자세한 설명은 링크로 대체할게요 ㅠ.. <a href="https://stackoverflow.com/questions/12509422/how-to-perform-unwind-segue-programmatically" target="_blank" rel="noopener">HowToPerfromSegueProgrammatically?</a></p>
+
+            <hr>
+          </div>
+          <br>
+          <div>
+            <p>
+            
+              <span>
+                <i class="iconfont icon-inbox"></i>
+                
+                  <a class="hover-with-bg" href="/categories/TIL">TIL</a>
+                  &nbsp;
+                
+              </span>&nbsp;&nbsp;
+            
+            
+              <span>
+                <i class="iconfont icon-tag"></i>
+                
+                  <a class="hover-with-bg" href="/tags/segue">segue</a>
+                
+              </span>
+            
+            </p>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="d-none d-lg-block col-lg-2 toc-container">
+      
+  <div id="toc">
+    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;TOC</p>
+    <div id="tocbot"></div>
+  </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- custom -->
+
+
+<!-- Comments -->
+<div class="col-lg-7 mx-auto nopadding-md">
+  <div class="container comments mx-auto" id="comments">
+    
+  </div>
+</div>
+
+    
+  </main>
+
+  
+    <a class="z-depth-1" id="scroll-top-button" href="#" role="button">
+      <i class="fa fa-chevron-up scroll-top-arrow" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><b>Hexo</b></a>
+    <i class="iconfont icon-love"></i>
+    <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"> <b>Fluid</b></a>
+    <br>
+
+    
+  
+    <!-- 不蒜子统计PV -->
+    
+    &nbsp;<span id="busuanzi_container_site_pv">총방문횟수 
+          <span id="busuanzi_value_site_pv"></span> 번</span>&nbsp;
+  
+  
+    <!-- 不蒜子统计UV -->
+    
+    &nbsp;<span id="busuanzi_container_site_uv">총방문객 
+            <span id="busuanzi_value_site_uv"></span> 명</span>&nbsp;
+  
+  <br>
+
+
+
+    
+
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script src="/lib/jquery/jquery.min.js" ></script>
+<script src="/lib/popper/popper.min.js" ></script>
+<script src="/lib/bootstrap/js/bootstrap.min.js" ></script>
+<script src="/lib/mdbootstrap/js/mdb.min.js" ></script>
+<script src="/js/main.js" ></script>
+
+
+  <script src="/js/lazyload.js" ></script>
+
+
+
+  
+    <script src="/lib/tocbot/tocbot.min.js" ></script>
+  
+  <script src="/js/post.js" ></script>
+
+
+
+  <script src="/lib/smooth-scroll/smooth-scroll.min.js" ></script>
+
+
+
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+<!-- Plugins -->
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+  <script src="/lib/prettify/prettify.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      $('pre').addClass('prettyprint  linenums');
+      prettyPrint();
+    })
+  </script>
+
+
+
+  <script src="/lib/typed/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "Segue-TIL-191203&nbsp;",
+      ],
+      cursorChar: " : JISNG",
+      typeSpeed: 100,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script src="/lib/anchor/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "false",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      getSearchFile(path);
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script src="/lib/fancybox/jquery.fancybox.min.js" ></script>
+  <script>
+    $("#post img:not(.no-zoom img, img[no-zoom])").each(
+      function () {
+        var element = document.createElement("a");
+        $(element).attr("data-fancybox", "images");
+        $(element).attr("href", $(this).attr("src"));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+</body>
+</html>

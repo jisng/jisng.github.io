@@ -4,6 +4,62 @@
   
   
   <entry>
+    <title>View 와 Controller</title>
+    <link href="undefined2019/12/view-controller-til-191211/"/>
+    <url>2019/12/view-controller-til-191211/</url>
+    
+    <content type="html"><![CDATA[<h1 id="View-Controller"><a href="#View-Controller" class="headerlink" title="View + Controller"></a>View + Controller</h1><p>오늘 조교님이 준비해주신 실습을 통해 그동안 합쳐써 써오던 ViewController를 View와 Controller로 떼어서 쓸 수 있게 되었습니다!<br>이제 MVC 패턴을 쓸 수 있게 되었어요 :) (그동안 Model + ViewController로 썼음)<br>이렇게 나누었을 때, View를 어떻게 구성해야 재사용이 가능한지도 배웠으니<br>배우고 익힌 내용을 한 번 담아보겠습니다. (땡쓰업쓰!) </p><h2 id="1-폴더링하기"><a href="#1-폴더링하기" class="headerlink" title="1. 폴더링하기"></a>1. 폴더링하기</h2><p>단축키 <code>cmd + option + n</code>    </p><p>저는 다음과 같이 폴더링했습니다.</p><ul><li>View<ul><li>BaseUI</li></ul></li><li>Controller<ul><li>FirstViewController</li></ul></li></ul><h2 id="2-View-만들기-BaseUI-swift"><a href="#2-View-만들기-BaseUI-swift" class="headerlink" title="2. View 만들기(BaseUI.swift)"></a>2. View 만들기(BaseUI.swift)</h2><pre><code class="swift">import UIKitclass BaseUI: UIView {    private let titleLabel = UILabel()    private let textField = UITextField()    private let lineForTextField = UILabel()    private let button = UIButton()    override init(frame: CGRect) {        super.init(frame: frame)        drawUI()    }    // 스토리보드, xib 개입을 대비하여 기본적으로 작성합니다.    required init?(coder: NSCoder) {        fatalError(&quot;init(coder:) has not been implemented&quot;)    }    private func drawUI() {        titleLabel.frame = CGRect(x: 0, y: 0, width: self.bounds.width - 30, height: 100)        titleLabel.center = CGPoint(x: self.bounds.width / 2, y: 100)        titleLabel.textColor = UIColor(ciColor: .black)        titleLabel.font = UIFont.systemFont(ofSize: 30, weight: .heavy)        self.addSubview(titleLabel)        textField.frame = CGRect(x: 0, y: 0, width: self.bounds.width - 30, height: 30)        textField.center = CGPoint(x: self.bounds.width / 2, y: titleLabel.frame.maxY + 50)        textField.borderStyle = .none        self.addSubview(textField)        lineForTextField.frame = CGRect(x: 0, y: 0, width: textField.frame.width - 5, height: 2)        lineForTextField.center = CGPoint(x: self.bounds.width / 2, y: textField.frame.maxY + 10)        lineForTextField.text = &quot;&quot;        lineForTextField.backgroundColor = .gray        self.addSubview(lineForTextField)        button.frame = CGRect(x: 0, y: 0, width: 300, height: 50)        button.center = CGPoint(x: self.bounds.width / 2, y: textField.frame.maxY + 100)        button.setTitle(&quot;NEXT&quot;, for: .normal)        button.backgroundColor = .black        button.setTitleColor(.white, for: .normal)        button.layer.cornerRadius = 16        button.addTarget(self, action: #selector(actionButton(_:)), for: .touchUpInside)        self.addSubview(button)    }    @objc func actionButton(_ sender: UIButton) {        // 버튼은 장식    }}</code></pre><h2 id="3-Controller에서-띄우기-ViewController-swift"><a href="#3-Controller에서-띄우기-ViewController-swift" class="headerlink" title="3. Controller에서 띄우기 (ViewController.swift)"></a>3. Controller에서 띄우기 (ViewController.swift)</h2><pre><code class="swift">import UIKitclass ViewController: UIViewController {    override func viewDidLoad() {        super.viewDidLoad()        let custom = BaseUI(frame: view.frame)        view.addSubview(custom)    }}extension ViewController: UITextFieldDelegate {    func textFieldShouldReturn(_ textField: UITextField) -&gt; Bool {        textField.resignFirstResponder()        return true    }}</code></pre><h2 id="4-자주-실수하는-부분-체크하기"><a href="#4-자주-실수하는-부분-체크하기" class="headerlink" title="4. 자주 실수하는 부분 체크하기"></a>4. 자주 실수하는 부분 체크하기</h2><pre><code class="swift">// UIViewoverride init(frame: CGRect) {        super.init(frame: frame)        drawUI()    }</code></pre><p>아직은 이니셜라이즈를 커스텀해서 사용하지 않을 거라서 override해서 사용할거에요.<br>override를 한다는 것은? 이미 부모클래스에서 구현이 되어 있다는 뜻!</p><pre><code class="swift">// ViewControlleroverride func viewDidLoad() {        super.viewDidLoad()        let custom = BaseUI(frame: view.frame)        view.addSubview(custom)    }</code></pre><p>UIView의 초기화 구문을 사용해야 하는데, 이 때 frame 값을 <code>view.frame</code>으로 적어줘야 화면에 사이즈가 딱 잡혀서 나옵니다 :) </p><h2 id="5-재사용-할-수-있는-View로-만들기-BaseUI-swift"><a href="#5-재사용-할-수-있는-View로-만들기-BaseUI-swift" class="headerlink" title="5. 재사용 할 수 있는 View로 만들기 (BaseUI.swift)"></a>5. 재사용 할 수 있는 View로 만들기 (BaseUI.swift)</h2><p>뷰컨트롤러가 10개쯤 있다고 가정해볼게요.<br>방금 만들어놓은 뷰를 가져다 쓸껀데 각 뷰컨의 제목은 모두 다르게 즉, <code>titleLabel.text</code> 를 뷰컨마다 다르게 작성하고 싶다면?<br>3가지 방법이 있습니다! </p><ol><li>초기화 구문을 커스텀해서 사용하기</li><li>함수 만들어서 사용하기</li><li>델리게이트 사용하기</li></ol><p>개인적으로 쉽다고 생각한 순서대로 적었으니, 하나씩 코드로 구현해볼게요.</p><h3 id="1-초기화-구문-커스텀"><a href="#1-초기화-구문-커스텀" class="headerlink" title="1. 초기화 구문 커스텀"></a>1. 초기화 구문 커스텀</h3><pre><code class="swift">// UIViewinit(frame: CGRect, title: String) {        super.init(frame: frame)        titleLabel.text = title        drawUI()    }</code></pre><p>기존의 오버라이드 초기화 구문을 지우고, 위와 같이 작성합니다.</p><pre><code class="swift">// ViewControlleroverride func viewDidLoad() {        super.viewDidLoad()        let custom = BaseUI(frame: view.frame, title: &quot;첫번째 화면에 오셨네요!&quot;)        view.addSubview(custom)    }</code></pre><p>이렇게 하면 각 뷰컨트롤러마다 View를 가져다 쓸 때마다 손쉽게 바꿀 수 있습니다 ! 진짜 간단 !</p><h3 id="2-함수-사용"><a href="#2-함수-사용" class="headerlink" title="2. 함수 사용"></a>2. 함수 사용</h3><pre><code class="swift">// UIViewfunc customUI(_ label: String) {        titleLabel.text = label    }</code></pre><pre><code class="swift">// ViewControlleroverride func viewDidLoad() {        super.viewDidLoad()        let custom = BaseUI(frame: view.frame, title: &quot;첫번째 화면에 오셨네요!&quot;)        custom.customUI(&quot;hi?&quot;)        view.addSubview(custom)    }</code></pre><p>처음에 가정한 것처럼 뷰컨트롤러들의 <code>textLabel.text</code> 만 바꾸는 거라면, 첫 번째 방법이 간편할 것이고<br>텍스트필드나 버튼의 텍스트들 등 여러개를 바꾼다면 함수를 사용하는 것이 좀 더 깔끔하지 않을까 생각되네요! </p><h3 id="3-델리게이트-사용"><a href="#3-델리게이트-사용" class="headerlink" title="3. 델리게이트 사용 (?)"></a>3. 델리게이트 사용 (?)</h3><p>아시다시피 델리게이트를 사용하려면 몇 가지 작업들을 해야합니다…</p><pre><code class="swift">// BaseUI.swiftprotocol BaseUIDelegate: class {    func storage() -&gt; String}</code></pre><pre><code class="swift">// BaseUIweak var delegate: BaseUIDelegate?</code></pre><pre><code class="swift">// drawUI()titleLabel.text = delegate?.storage()</code></pre><p>View 그리는 곳에서 델리게이트 선언을 해줄꺼에요</p><pre><code class="swift">// ViewControlleroverride func viewDidLoad() {        super.viewDidLoad()        let custom = BaseUI(frame: view.frame, title: &quot;첫번째 화면에 오셨네요!&quot;)        custom.delegate = self        view.addSubview(custom)    }</code></pre><pre><code class="swift">extension ViewController: StorageDelegate {    func storage() -&gt; String {        &quot;델리게이트 사용!&quot;    }}</code></pre><p>Controller 에서 델리게이트 구현하고 실행해보면,<br>… 안돼요.  </p><br><p>컴퓨터가 코드를 읽는 순서 : </p><ol><li>VC 초기화 </li><li>BaseUI 읽기 시작 </li><li><code>titleLabel.text = delegate?.storage()</code> 만남 </li><li>delegate 찾으러 VC를 감 </li><li>.. 없음!!  </li></ol><br><p><code>custom.delegate = self</code> 코드는 초기화가 끝난 다음에 읽을 수 있기 때문에, 상상하던대로 구현되지 않습니다. </p><h3 id="4-어떻게든-델리게이트-사용"><a href="#4-어떻게든-델리게이트-사용" class="headerlink" title="4. 어떻게든 델리게이트 사용"></a>4. 어떻게든 델리게이트 사용</h3><pre><code class="swift">// BaseUI.swiftprotocol BaseUIDelegate: class {    func storage() -&gt; String      func force() -&gt; String}</code></pre><pre><code class="swift">// BaseUIfunc forceFunc() {      titleLabel.text = delegate?.force()    }</code></pre><p>프로토콜 메서드를 추가합니다.  그리고 BaseUI에서 델리게이트 메서드를 실행 할 메서드를 작성합니다.</p><pre><code class="swift">// View Controllerextension ViewController: BaseUIDelegate {    func force() -&gt; String {        &quot;델리게이트 진짜 진짜 사용!&quot;    }    func storage() -&gt; String { &quot;델리게이트 사용!&quot; }}</code></pre><pre><code class="swift">// ViewControllerprivate func customUI() {      let custom = BaseUI(frame: view.frame, title: &quot;&quot;)      custom.delegate = self      custom.forceFunc()      view.addSubview(customView)    }</code></pre><pre><code class="swift">override func viewDidLoad() {        super.viewDidLoad()//        let custom = BaseUI(frame: view.frame, title: &quot;첫번째 화면에 오셨네요!&quot;)//        custom.delegate = self//        view.addSubview(custom)        customUI()    }</code></pre><p>Controller 부분에서는 프로토콜의 메서드들을 구현한 뒤, UI를 만들어주는 메서드를 작성합니다.<br>이전에 <code>viewDidLoad()</code> 에 작성해주었던 코드를 그대로 옮겨왔고, View에서 새로 만든 메서드 <code>forceFun()</code> 를 추가해주세요.<br>마지막으로 <code>viewDidLoad()</code> 의 기존 코드들은 주석처리하고, UI를 만들어주는 <code>customUI()</code> 를 작성해주세요.<br>그럼 이제 잘 나오는걸 확인할 수 있습니다 :) </p><br><p>이렇게 작성한 코드는 “델리게이트로 할 수는 있다” 정도로만 알아두면 좋을 것 같습니다 :) </p>]]></content>
+    
+    
+    <categories>
+      
+      <category>TIL</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>iOS</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>Struct</title>
+    <link href="undefined2019/12/struct-til-191209/"/>
+    <url>2019/12/struct-til-191209/</url>
+    
+    <content type="html"><![CDATA[<h1 id="Struct"><a href="#Struct" class="headerlink" title="Struct"></a>Struct</h1><h2 id="Comparing-Structures-and-Classes"><a href="#Comparing-Structures-and-Classes" class="headerlink" title="Comparing Structures and Classes"></a>Comparing Structures and Classes</h2><h3 id="클래스와-구조체-공통점"><a href="#클래스와-구조체-공통점" class="headerlink" title="클래스와 구조체 공통점"></a>클래스와 구조체 공통점</h3><ul><li><p>값을 저장하기 위한 프로퍼티</p></li><li><p>기능을 제공하기 위한 메서드</p></li><li><p>초기 상태를 설정하기 위한 생성자</p></li><li><p>기본 구현에서 기능을 추가하기 위한 확장(Extension)</p></li><li><p>특정 값에 접근할 수 있는 첨자(Subscript)</p></li><li><p>특정한 기능을 수행하기 위한 프로토콜 채택</p></li><li><p>Upper Camel Case 사용</p></li></ul><h4 id="클래스만-제공하는-기능"><a href="#클래스만-제공하는-기능" class="headerlink" title="클래스만 제공하는 기능"></a>클래스만 제공하는 기능</h4><ul><li><p>상속 (Inheritance)</p></li><li><p>소멸자 (Deinitializer) -  deinit 메서드</p></li><li><p>참조 카운트 (Reference counting)</p></li></ul><h3 id="값-타입-Vs-참조-타입"><a href="#값-타입-Vs-참조-타입" class="headerlink" title="값 타입 Vs 참조 타입"></a>값 타입 Vs 참조 타입</h3><pre><code class="swift">class Dog {  var name = &quot;똘똘이&quot;}struct Cat {  var name = &quot;애옹이&quot;}let dog = Dog()let cat = Cat()dog.name = &quot;똘똘이2&quot; // 가능cat.name = &quot;애옹이2&quot; // 에러 : Stack, 값참조, 접근 불가let cat1 = catcat === cat1 // 사용불가, 값타입으로 해당 연산자 사용 불가</code></pre><h3 id="생성자-비교"><a href="#생성자-비교" class="headerlink" title="생성자 비교"></a>생성자 비교</h3><table><thead><tr><th></th><th>구조체</th><th>클래스</th></tr></thead><tbody><tr><td>초기화</td><td>필수</td><td>자동 생성</td></tr><tr><td>일부만 초기화</td><td>나머지 필수 초기화</td><td>나머지 자동 초기화</td></tr><tr><td>편의 생성자</td><td>사용 가능</td><td>지정 생성자와 <br>별도 구분 없이 사용</td></tr></tbody></table><h3 id="프로퍼티-변경"><a href="#프로퍼티-변경" class="headerlink" title="프로퍼티 변경"></a>프로퍼티 변경</h3><pre><code class="swift">struct PointStruct {  var x = 0 mutating func updateX() {  // 값 타입은 mutating 붙여줘야 한다 / enum, struct    self.x = 5  }  var updateProperty: Int {  // 연산프로퍼티는 사용 안해도 된다    get { x }    set { x = newValue }    // 연산 프로퍼티의 setter는 기본적으로 mutating  }}let p2 = PointStruct()p2.updateX() // error : constantp2.updateProperty = 3 // error : constantp2.updateProperty // 0var p3 = PointStruct()p3.updateX() // p3.x // 5p3.updateProperty = 3p3.updateProperty // 3</code></pre><h3 id="프로토콜-적용"><a href="#프로토콜-적용" class="headerlink" title="프로토콜 적용"></a>프로토콜 적용</h3><pre><code class="swift">protocol Mutate {  mutating func update() // struct 에서 mutating 을 사용하고 싶으면, 프로토콜에서부터 ...}struct PointStruct1: Mutate {  var x = 0  mutating func update() {    self.x = 5  }}</code></pre><hr><h1 id="ARC"><a href="#ARC" class="headerlink" title="ARC"></a>ARC</h1><h2 id="Memory-Management"><a href="#Memory-Management" class="headerlink" title="Memory Management"></a>Memory Management</h2><p>다른 언어에서는 다음과 같은 방식들로 메모리 관리를 한다.</p><ul><li>GC(Garbage Collection)</li><li>MRR(Manual Retain-Release) / MRC(Manual Reference Counting)</li></ul><p>메모리 문제</p><ul><li>Memory Leak : 더 이상 사용하지 않는 메모리들이 많음</li><li>Dangling Pointer : 찾아야 하는데 찾을 수 없는 허상 메모리들이 생김</li></ul><h2 id="ARC-Automatic-Reference-Counting"><a href="#ARC-Automatic-Reference-Counting" class="headerlink" title="ARC - Automatic Reference Counting"></a>ARC - Automatic Reference Counting</h2><ul><li>컴파일러가 개발자를 대신하여 메모리 관리 코드를 적절한 위치에 자동으로 삽입</li><li>컴파일 단에서 처리 (Heap 에 대한 스캔 불필요 / 앱 일시 정시 현상 없음)</li><li>메모리 관리 이슈를 줄이고 개발자가 코딩 자체에 집중할 수 있도록 함</li></ul><h3 id="적용"><a href="#적용" class="headerlink" title="적용"></a>적용</h3><ul><li><p>ARC는 클래스의 인스턴스에만 적용 (Class - Reference타입, Struct / Enum - Value 타입)</p></li><li><p>활성화된 참조카운트가 하나라도 있을 경우 메모리에서 해제 되지 않는다.</p></li></ul><ul><li>참조 타입<ul><li>강한 참조 (Strong): 기본값, 참조될 때마다 참조 카운트 1 증가</li><li>약한 참조 (Weak), 미소유 참조(Unowned): 참조 카운트를 증가시키지 않음</li><li><strong>주의 !!</strong> 강한 순환 참조 (Strong Reference Cycles) </li></ul></li></ul><table><thead><tr><th></th><th align="center">var</th><th align="center">let</th><th align="center">Optional</th><th align="center">Non-Optional</th></tr></thead><tbody><tr><td>strong</td><td align="center">⭕️</td><td align="center">⭕️</td><td align="center">⭕️</td><td align="center">⭕️</td></tr><tr><td>weak</td><td align="center">⭕️</td><td align="center">❌</td><td align="center">⭕️</td><td align="center">❌</td></tr><tr><td>unowned</td><td align="center">⭕️</td><td align="center">⭕️</td><td align="center">❌</td><td align="center">⭕️</td></tr></tbody></table><h4 id="ARC-in-Class"><a href="#ARC-in-Class" class="headerlink" title="ARC in Class"></a>ARC in Class</h4><p><video src="struct-til-191209/classReferenceCounting.mov"></video></p><h4 id="ARC-in-Struct"><a href="#ARC-in-Struct" class="headerlink" title="ARC in Struct"></a>ARC in Struct</h4><p><video src="struct-til-191209/structReferenceCounting.mov"></video></p><h4 id="Strong-Reference-Cycle"><a href="#Strong-Reference-Cycle" class="headerlink" title="Strong Reference Cycle"></a>Strong Reference Cycle</h4><ul><li>객체에 접근 가능한 모든 연결을 끊었음에도 순환 참조로 인해 활성화된 참조 카운트가 남아 있어 메모리 누수가 발생</li><li>앱의 실행이 느려지거나 오동작 또는 오류를 발생시키는 원인</li></ul><p><video src="struct-til-191209/StrongReference.mov"></video></p><h4 id="Weak-Reference"><a href="#Weak-Reference" class="headerlink" title="Weak Reference"></a>Weak Reference</h4><p><video src="struct-til-191209/WeakReference.mov"></video></p><h4 id="strong-vs-weak-vs-unowned"><a href="#strong-vs-weak-vs-unowned" class="headerlink" title="strong vs. weak vs. unowned"></a>strong vs. weak vs. unowned</h4><table><thead><tr><th></th><th>strong</th><th>weak</th><th>unowned</th></tr></thead><tbody><tr><td>-</td><td>기본값</td><td></td><td></td></tr><tr><td>참조</td><td>강한 참조</td><td>약한 참조</td><td>미소유 참조</td></tr><tr><td>Count</td><td>Reference Count + 1</td><td>참조하던 객체 해제 시 <br>nil값으로 변경</td><td>참조 객체 해제 시에도 <br>기존 포인터 주소 유지</td></tr><tr><td>nil</td><td>명시적으로 대입</td><td>자동 deinit <br>nil 처리 된 속성에 접근하면 nil 반환</td><td>자동 deinit <br> nil 처리 된 속성에 접근하면 nil 반환</td></tr></tbody></table><pre><code class="swift">class Person {  let testCase: String  init(testCase: String) {    self.testCase = testCase  }  deinit {    print(&quot;\(testCase) is being deinitialized&quot;)  }}var strongObj4 = Person(testCase: &quot;case4&quot;)print(strongObj4)weak var weakObj4 = Person(testCase: &quot;case4&quot;)print(weakObj4)unowned var unownedObj4 = Person(testCase: &quot;case4&quot;) // count 0 -&gt; unowned (카운터 증가시키지 않음) =&gt; 사라짐print(unownedObj4) // 사라진 주소값에 접근하므로 오류</code></pre><h2 id="Scope"><a href="#Scope" class="headerlink" title="Scope"></a>Scope</h2><pre><code class="swift">class LocalScope {  func doSomething() {}  deinit {    print(&quot;LocalScope is being deinitialized&quot;)  }}class ClassProperty {  func doSomething() {}  deinit {    print(&quot;ClassProperty is being deinitialized&quot;)  }}class Application {  var prop = ClassProperty()  func allocateInstance() {    let local = LocalScope()    local.doSomething()  }  deinit {    print(&quot;Application is being deinitialized&quot;)  }}// Q. 아래의 코드 실행 시 출력되는 메시지는?var app: Application? = Application()app?.prop.doSomething()app?.allocateInstance() // &quot;LocalScope is being deinitialized&quot;// Q. ClassProperty 객체의 deinit 메서드가 호출되려면 어떻게 할까요?app = nil</code></pre><h2 id="Strong-Reference-Cycles"><a href="#Strong-Reference-Cycles" class="headerlink" title="Strong Reference Cycles"></a>Strong Reference Cycles</h2><pre><code class="swift">// 강한순환참조발생class Person {  var pet: Dog?  func doSomething() {}  deinit {    print(&quot;Person is being deinitialized&quot;)  }}class Dog {  var owner: Person?  func doSomething() {}  deinit {    print(&quot;Dog is being deinitialized&quot;)  }}var me: Person? = Person() // count 1var viva: Dog? = Dog() // count 1me?.pet = viva // count2viva?.owner = me // count2me?.doSomething()viva?.doSomething()//me = nil // person count = 1//viva = nil // person count = 1// 메모리 누수// 순서 주의me?.pet = nilviva?.owner = nilme = nilviva = nil</code></pre>]]></content>
+    
+    
+    <categories>
+      
+      <category>TIL</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>swift</tag>
+      
+      <tag>iOS</tag>
+      
+      <tag>sturct</tag>
+      
+      <tag>ARC</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Segue-TIL-191203</title>
     <link href="undefined2019/12/segue-til-191203/"/>
     <url>2019/12/segue-til-191203/</url>
@@ -220,9 +276,9 @@
       
       <tag>swift</tag>
       
-      <tag>class</tag>
-      
       <tag>OOP</tag>
+      
+      <tag>class</tag>
       
       <tag>protocol</tag>
       
@@ -251,11 +307,11 @@
       
       <tag>swift</tag>
       
+      <tag>OOP</tag>
+      
       <tag>class</tag>
       
       <tag>property</tag>
-      
-      <tag>OOP</tag>
       
     </tags>
     
