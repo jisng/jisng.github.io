@@ -120,7 +120,7 @@
                   
                   &nbsp;<i class="far fa-chart-bar"></i>
                   <span class="post-count">
-                    851 words
+                    864 words
                   </span>&nbsp;
                 
 
@@ -161,8 +161,8 @@
       <div class="py-5 z-depth-3" id="board">
         <div class="post-content mx-auto" id="post">
           <div class="markdown-body">
-            <h1 id="View-Controller"><a href="#View-Controller" class="headerlink" title="View + Controller"></a>View + Controller</h1><p>오늘 조교님이 준비해주신 실습을 통해 그동안 합쳐써 써오던 ViewController를 View와 Controller로 떼어서 쓸 수 있게 되었습니다!<br>이제 MVC 패턴을 쓸 수 있게 되었어요 :) (그동안 Model + ViewController로 썼음)<br>이렇게 나누었을 때, View를 어떻게 구성해야 재사용이 가능한지도 배웠으니<br>배우고 익힌 내용을 한 번 담아보겠습니다. (땡쓰업쓰!) </p>
-<h2 id="1-폴더링하기"><a href="#1-폴더링하기" class="headerlink" title="1. 폴더링하기"></a>1. 폴더링하기</h2><p>단축키 <code>cmd + option + n</code>    </p>
+            <h1 id="View-Controller"><a href="#View-Controller" class="headerlink" title="View + Controller"></a>View + Controller</h1><p>오늘 조교님이 준비해주신 실습을 통해 그동안 합쳐서 써오던 ViewController를 View와 Controller로 떼어서 쓸 수 있게 되었습니다!<br>이제 MVC 패턴을 쓸 수 있게 되었어요 :) (그동안 Model + ViewController로 썼음)<br>이렇게 나누었을 때, View를 어떻게 구성해야 재사용이 가능한지도 배웠으니<br>배우고 익힌 내용을 한 번 담아보겠습니다. (땡쓰업쓰!) </p>
+<h2 id="1-폴더링하기"><a href="#1-폴더링하기" class="headerlink" title="1. 폴더링하기"></a>1. 폴더링하기</h2><p>폴더 만드는 단축키 <code>cmd + option + n</code>    </p>
 <p>저는 다음과 같이 폴더링했습니다.</p>
 <ul>
 <li>View<ul>
@@ -292,7 +292,7 @@ override func viewDidLoad() {
         custom.customUI(&quot;hi?&quot;)
         view.addSubview(custom)
     }</code></pre>
-<p>처음에 가정한 것처럼 뷰컨트롤러들의 <code>textLabel.text</code> 만 바꾸는 거라면, 첫 번째 방법이 간편할 것이고<br>텍스트필드나 버튼의 텍스트들 등 여러개를 바꾼다면 함수를 사용하는 것이 좀 더 깔끔하지 않을까 생각되네요! </p>
+<p>처음에 가정한 것처럼 뷰컨트롤러들의 <code>textLabel.text</code> 만 바꾸는 거라면, 첫 번째 방법이 간편할 것이고<br>텍스트필드나 버튼의 텍스트들 등 여러개를 바꾼다면 함수를 사용하는 것이 좀 더 깔끔할 것 같아요. </p>
 <h3 id="3-델리게이트-사용"><a href="#3-델리게이트-사용" class="headerlink" title="3. 델리게이트 사용 (?)"></a>3. 델리게이트 사용 (?)</h3><p>아시다시피 델리게이트를 사용하려면 몇 가지 작업들을 해야합니다…</p>
 <pre><code class="swift">// BaseUI.swift
 protocol BaseUIDelegate: class {
@@ -302,7 +302,7 @@ protocol BaseUIDelegate: class {
 weak var delegate: BaseUIDelegate?</code></pre>
 <pre><code class="swift">// drawUI()
 titleLabel.text = delegate?.storage()</code></pre>
-<p>View 그리는 곳에서 델리게이트 선언을 해줄꺼에요</p>
+<p>View 그리는 곳에서 델리게이트 선언을 합니다.</p>
 <pre><code class="swift">// ViewController
 override func viewDidLoad() {
         super.viewDidLoad()
@@ -315,16 +315,16 @@ override func viewDidLoad() {
         &quot;델리게이트 사용!&quot;
     }
 }</code></pre>
-<p>Controller 에서 델리게이트 구현하고 실행해보면,<br>… 안돼요.  </p>
+<p>Controller 에서 델리게이트 구현하고 실행해보면,<br>… <strong>안돼요.</strong>  </p>
 <br>
 
 <p>컴퓨터가 코드를 읽는 순서 : </p>
 <ol>
-<li>VC 초기화 </li>
-<li>BaseUI 읽기 시작 </li>
+<li>VC <code>viewDidLoad()</code>  -&gt; 초기화 시작</li>
+<li>BaseUI 읽으면서 UI 그리는 중…</li>
 <li><code>titleLabel.text = delegate?.storage()</code> 만남 </li>
-<li>delegate 찾으러 VC를 감 </li>
-<li>.. 없음!!  </li>
+<li>delegate 메서드를 구현 할 객체를 찾으러 떠남…</li>
+<li>.. 없음!!  찾을 수 없음..!</li>
 </ol>
 <br>
 
@@ -361,10 +361,10 @@ private func customUI() {
 //        view.addSubview(custom)
         customUI()
     }</code></pre>
-<p>Controller 부분에서는 프로토콜의 메서드들을 구현한 뒤, UI를 만들어주는 메서드를 작성합니다.<br>이전에 <code>viewDidLoad()</code> 에 작성해주었던 코드를 그대로 옮겨왔고, View에서 새로 만든 메서드 <code>forceFun()</code> 를 추가해주세요.<br>마지막으로 <code>viewDidLoad()</code> 의 기존 코드들은 주석처리하고, UI를 만들어주는 <code>customUI()</code> 를 작성해주세요.<br>그럼 이제 잘 나오는걸 확인할 수 있습니다 :) </p>
+<p>Controller 부분에서는 프로토콜의 메서드들을 구현한 뒤, UI를 만들어주는 메서드를 작성합니다.<br>이전에 <code>viewDidLoad()</code> 에 작성해주었던 코드를 그대로 옮겨왔고, View에서 새로 만든 메서드 <code>forceFun()</code> 를 추가해주세요.<br>마지막으로 <code>viewDidLoad()</code> 의 기존 코드들은 주석처리하고, UI를 만들어주는 <code>customUI()</code> 를 작성해주세요.<br>그럼 이제 잘 나오는걸 확인할 수 있습니다. </p>
 <br>
 
-<p>이렇게 작성한 코드는 “델리게이트로 할 수는 있다” 정도로만 알아두면 좋을 것 같습니다 :) </p>
+<p>이렇게 어떻게든(?) 델리게이트로 구현해보았는데,<br> “델리게이트로 할 수는 있다” 정도로만 알아두면 좋을 것 같습니다 :) </p>
 
             <hr>
           </div>
