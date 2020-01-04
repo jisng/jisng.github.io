@@ -4,6 +4,29 @@
   
   
   <entry>
+    <title>200104-xcode-font</title>
+    <link href="undefined2020/01/200104-xcode-font/"/>
+    <url>2020/01/200104-xcode-font/</url>
+    
+    <content type="html"><![CDATA[<h1 id="Xcode-폰트-추가하기"><a href="#Xcode-폰트-추가하기" class="headerlink" title="Xcode 폰트 추가하기"></a>Xcode 폰트 추가하기</h1><ol><li>폰트 otf 파일 받기<img src="/2020/01/200104-xcode-font/downloadOTF.png" srcset="undefined" alt="downloadOTF" style="zoom:50%;"></li><li>Xcode 프로젝트 리소스에 파일 넣기<img src="/2020/01/200104-xcode-font/inputOTF.png" srcset="undefined" alt="inputOTF" style="zoom:50%;"></li><li>폰트 파일을 사용할 수 있도록 Info.plist 파일에 추가하기<img src="/2020/01/200104-xcode-font/setInfoplist.png" srcset="undefined" alt="setInfoplist" style="zoom:50%;"><img src="/2020/01/200104-xcode-font/info1.png" srcset="undefined" alt="info1" style="zoom:50%;"><img src="/2020/01/200104-xcode-font/info2.png" srcset="undefined" alt="info2" style="zoom:50%;"></li><li>코드에서 사용법<img src="/2020/01/200104-xcode-font/useCode.png" srcset="undefined" alt="useCode" style="zoom:50%;"></li></ol>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>xcode</tag>
+      
+      <tag>iOS</tag>
+      
+      <tag>TIL</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>View 와 Controller</title>
     <link href="undefined2019/12/view-controller-til-191211/"/>
     <url>2019/12/view-controller-til-191211/</url>
@@ -45,9 +68,9 @@
     
     <tags>
       
-      <tag>swift</tag>
-      
       <tag>iOS</tag>
+      
+      <tag>swift</tag>
       
       <tag>sturct</tag>
       
@@ -197,9 +220,9 @@
     
     <tags>
       
-      <tag>UIViewController</tag>
-      
       <tag>iOS</tag>
+      
+      <tag>UIViewController</tag>
       
     </tags>
     

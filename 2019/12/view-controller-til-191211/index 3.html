@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-touch-icon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="description" content="">
+  <meta name="author" content="jisng">
+  <meta name="keywords" content="swift, iOS, git, dev">
+  <title>View 와 Controller ~ jisng</title>
+
+  <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css"  >
+<link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css"  >
+<link rel="stylesheet" href="/lib/mdbootstrap/css/mdb.min.css"  >
+<link rel="stylesheet" href="/lib/github-markdown/github-markdown.min.css"  >
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1067060_qzomjdt8bmp.css">
+
+
+  <link rel="stylesheet" href="/lib/prettify/tomorrow-night-eighties.min.css"  >
+
+<link rel="stylesheet" href="/css/main.css"  >
+
+
+  <link rel="stylesheet" href="/lib/fancybox/jquery.fancybox.min.css"  >
+
+
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>jisng</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/">Home</a>
+          </li>
+        
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/archives/">Archives</a>
+          </li>
+        
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/Categories/">Categories</a>
+          </li>
+        
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/tags/">Tags</a>
+          </li>
+        
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/about/">About</a>
+          </li>
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+</nav>
+
+    <div class="view intro-2" id="background"
+         style="background: url('/img/default.png')no-repeat center center;
+           background-size: cover;
+           background-attachment: fixed;">
+      <div class="full-bg-img">
+        <div class="mask rgba-black-light flex-center">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              <br>
+              
+                <p class="mt-3">
+                  <i class="fas fa-calendar-alt" aria-hidden="true"></i>&nbsp;
+                  Wednesday, December 11th 2019, 6:11 pm
+                </p>
+              
+
+              <p>
+                
+                  
+                  &nbsp;<i class="far fa-chart-bar"></i>
+                  <span class="post-count">
+                    864 words
+                  </span>&nbsp;
+                
+
+                
+                  
+                  &nbsp;<i class="far fa-clock"></i>
+                  <span class="post-count">
+                      5 times
+                  </span>&nbsp;
+                
+
+                
+                  <!-- 不蒜子统计文章PV -->
+                  
+                  &nbsp;<i class="far fa-eye" aria-hidden="true"></i>&nbsp;
+                  <span id="busuanzi_container_page_pv">
+                    <span id="busuanzi_value_page_pv"></span> views
+                  </span>&nbsp;
+                
+              </p>
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="py-5 z-depth-3" id="board">
+        <div class="post-content mx-auto" id="post">
+          <div class="markdown-body">
+            <h1 id="View-Controller"><a href="#View-Controller" class="headerlink" title="View + Controller"></a>View + Controller</h1><p>오늘 조교님이 준비해주신 실습을 통해 그동안 합쳐서 써오던 ViewController를 View와 Controller로 떼어서 쓸 수 있게 되었습니다!<br>이제 MVC 패턴을 쓸 수 있게 되었어요 :) (그동안 Model + ViewController로 썼음)<br>이렇게 나누었을 때, View를 어떻게 구성해야 재사용이 가능한지도 배웠으니<br>배우고 익힌 내용을 한 번 담아보겠습니다. (땡쓰업쓰!) </p>
+<h2 id="1-폴더링하기"><a href="#1-폴더링하기" class="headerlink" title="1. 폴더링하기"></a>1. 폴더링하기</h2><p>폴더 만드는 단축키 <code>cmd + option + n</code>    </p>
+<p>저는 다음과 같이 폴더링했습니다.</p>
+<ul>
+<li>View<ul>
+<li>BaseUI</li>
+</ul>
+</li>
+<li>Controller<ul>
+<li>FirstViewController</li>
+</ul>
+</li>
+</ul>
+<h2 id="2-View-만들기-BaseUI-swift"><a href="#2-View-만들기-BaseUI-swift" class="headerlink" title="2. View 만들기(BaseUI.swift)"></a>2. View 만들기(BaseUI.swift)</h2><pre><code class="swift">import UIKit
+
+class BaseUI: UIView {
+
+    private let titleLabel = UILabel()
+    private let textField = UITextField()
+    private let lineForTextField = UILabel()
+    private let button = UIButton()
+
+
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        drawUI()
+    }
+
+    // 스토리보드, xib 개입을 대비하여 기본적으로 작성합니다.
+    required init?(coder: NSCoder) {
+        fatalError(&quot;init(coder:) has not been implemented&quot;)
+    }
+
+
+    private func drawUI() {
+        titleLabel.frame = CGRect(x: 0, y: 0, width: self.bounds.width - 30, height: 100)
+        titleLabel.center = CGPoint(x: self.bounds.width / 2, y: 100)
+        titleLabel.textColor = UIColor(ciColor: .black)
+        titleLabel.font = UIFont.systemFont(ofSize: 30, weight: .heavy)
+        self.addSubview(titleLabel)
+
+        textField.frame = CGRect(x: 0, y: 0, width: self.bounds.width - 30, height: 30)
+        textField.center = CGPoint(x: self.bounds.width / 2, y: titleLabel.frame.maxY + 50)
+        textField.borderStyle = .none
+        self.addSubview(textField)
+
+        lineForTextField.frame = CGRect(x: 0, y: 0, width: textField.frame.width - 5, height: 2)
+        lineForTextField.center = CGPoint(x: self.bounds.width / 2, y: textField.frame.maxY + 10)
+        lineForTextField.text = &quot;&quot;
+        lineForTextField.backgroundColor = .gray
+        self.addSubview(lineForTextField)
+
+        button.frame = CGRect(x: 0, y: 0, width: 300, height: 50)
+        button.center = CGPoint(x: self.bounds.width / 2, y: textField.frame.maxY + 100)
+        button.setTitle(&quot;NEXT&quot;, for: .normal)
+        button.backgroundColor = .black
+        button.setTitleColor(.white, for: .normal)
+        button.layer.cornerRadius = 16
+        button.addTarget(self, action: #selector(actionButton(_:)), for: .touchUpInside)
+        self.addSubview(button)
+    }
+
+
+    @objc func actionButton(_ sender: UIButton) {
+        // 버튼은 장식
+    }
+}</code></pre>
+<h2 id="3-Controller에서-띄우기-ViewController-swift"><a href="#3-Controller에서-띄우기-ViewController-swift" class="headerlink" title="3. Controller에서 띄우기 (ViewController.swift)"></a>3. Controller에서 띄우기 (ViewController.swift)</h2><pre><code class="swift">import UIKit
+
+class ViewController: UIViewController {
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        let custom = BaseUI(frame: view.frame)
+        view.addSubview(custom)
+    }
+
+
+}
+
+extension ViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -&gt; Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+}</code></pre>
+<h2 id="4-자주-실수하는-부분-체크하기"><a href="#4-자주-실수하는-부분-체크하기" class="headerlink" title="4. 자주 실수하는 부분 체크하기"></a>4. 자주 실수하는 부분 체크하기</h2><pre><code class="swift">// UIView
+override init(frame: CGRect) {
+        super.init(frame: frame)
+        drawUI()
+    }</code></pre>
+<p>아직은 이니셜라이즈를 커스텀해서 사용하지 않을 거라서 override해서 사용할거에요.<br>override를 한다는 것은? 이미 부모클래스에서 구현이 되어 있다는 뜻!</p>
+<pre><code class="swift">// ViewController
+override func viewDidLoad() {
+        super.viewDidLoad()
+        let custom = BaseUI(frame: view.frame)
+        view.addSubview(custom)
+    }</code></pre>
+<p>UIView의 초기화 구문을 사용해야 하는데, 이 때 frame 값을 <code>view.frame</code>으로 적어줘야 화면에 사이즈가 딱 잡혀서 나옵니다 :) </p>
+<h2 id="5-재사용-할-수-있는-View로-만들기-BaseUI-swift"><a href="#5-재사용-할-수-있는-View로-만들기-BaseUI-swift" class="headerlink" title="5. 재사용 할 수 있는 View로 만들기 (BaseUI.swift)"></a>5. 재사용 할 수 있는 View로 만들기 (BaseUI.swift)</h2><p>뷰컨트롤러가 10개쯤 있다고 가정해볼게요.<br>방금 만들어놓은 뷰를 가져다 쓸껀데 각 뷰컨의 제목은 모두 다르게 즉, <code>titleLabel.text</code> 를 뷰컨마다 다르게 작성하고 싶다면?<br>3가지 방법이 있습니다! </p>
+<ol>
+<li>초기화 구문을 커스텀해서 사용하기</li>
+<li>함수 만들어서 사용하기</li>
+<li>델리게이트 사용하기</li>
+</ol>
+<p>개인적으로 쉽다고 생각한 순서대로 적었으니, 하나씩 코드로 구현해볼게요.</p>
+<h3 id="1-초기화-구문-커스텀"><a href="#1-초기화-구문-커스텀" class="headerlink" title="1. 초기화 구문 커스텀"></a>1. 초기화 구문 커스텀</h3><pre><code class="swift">// UIView
+init(frame: CGRect, title: String) {
+        super.init(frame: frame)
+        titleLabel.text = title
+        drawUI()
+    }</code></pre>
+<p>기존의 오버라이드 초기화 구문을 지우고, 위와 같이 작성합니다.</p>
+<pre><code class="swift">// ViewController
+override func viewDidLoad() {
+        super.viewDidLoad()
+        let custom = BaseUI(frame: view.frame, title: &quot;첫번째 화면에 오셨네요!&quot;)
+        view.addSubview(custom)
+    }</code></pre>
+<p>이렇게 하면 각 뷰컨트롤러마다 View를 가져다 쓸 때마다 손쉽게 바꿀 수 있습니다 ! 진짜 간단 !</p>
+<h3 id="2-함수-사용"><a href="#2-함수-사용" class="headerlink" title="2. 함수 사용"></a>2. 함수 사용</h3><pre><code class="swift">// UIView
+func customUI(_ label: String) {
+        titleLabel.text = label
+    }</code></pre>
+<pre><code class="swift">// ViewController
+override func viewDidLoad() {
+        super.viewDidLoad()
+        let custom = BaseUI(frame: view.frame, title: &quot;첫번째 화면에 오셨네요!&quot;)
+        custom.customUI(&quot;hi?&quot;)
+        view.addSubview(custom)
+    }</code></pre>
+<p>처음에 가정한 것처럼 뷰컨트롤러들의 <code>textLabel.text</code> 만 바꾸는 거라면, 첫 번째 방법이 간편할 것이고<br>텍스트필드나 버튼의 텍스트들 등 여러개를 바꾼다면 함수를 사용하는 것이 좀 더 깔끔할 것 같아요. </p>
+<h3 id="3-델리게이트-사용"><a href="#3-델리게이트-사용" class="headerlink" title="3. 델리게이트 사용 (?)"></a>3. 델리게이트 사용 (?)</h3><p>아시다시피 델리게이트를 사용하려면 몇 가지 작업들을 해야합니다…</p>
+<pre><code class="swift">// BaseUI.swift
+protocol BaseUIDelegate: class {
+    func storage() -&gt; String
+}</code></pre>
+<pre><code class="swift">// BaseUI
+weak var delegate: BaseUIDelegate?</code></pre>
+<pre><code class="swift">// drawUI()
+titleLabel.text = delegate?.storage()</code></pre>
+<p>View 그리는 곳에서 델리게이트 선언을 합니다.</p>
+<pre><code class="swift">// ViewController
+override func viewDidLoad() {
+        super.viewDidLoad()
+        let custom = BaseUI(frame: view.frame, title: &quot;첫번째 화면에 오셨네요!&quot;)
+        custom.delegate = self
+        view.addSubview(custom)
+    }</code></pre>
+<pre><code class="swift">extension ViewController: StorageDelegate {
+    func storage() -&gt; String {
+        &quot;델리게이트 사용!&quot;
+    }
+}</code></pre>
+<p>Controller 에서 델리게이트 구현하고 실행해보면,<br>… <strong>안돼요.</strong>  </p>
+<br>
+
+<p>컴퓨터가 코드를 읽는 순서 : </p>
+<ol>
+<li>VC <code>viewDidLoad()</code>  -&gt; 초기화 시작</li>
+<li>BaseUI 읽으면서 UI 그리는 중…</li>
+<li><code>titleLabel.text = delegate?.storage()</code> 만남 </li>
+<li>delegate 메서드를 구현 할 객체를 찾으러 떠남…</li>
+<li>.. 없음!!  찾을 수 없음..!</li>
+</ol>
+<br>
+
+<p><code>custom.delegate = self</code> 코드는 초기화가 끝난 다음에 읽을 수 있기 때문에, 상상하던대로 구현되지 않습니다. </p>
+<h3 id="4-어떻게든-델리게이트-사용"><a href="#4-어떻게든-델리게이트-사용" class="headerlink" title="4. 어떻게든 델리게이트 사용"></a>4. 어떻게든 델리게이트 사용</h3><pre><code class="swift">// BaseUI.swift
+protocol BaseUIDelegate: class {
+    func storage() -&gt; String
+      func force() -&gt; String
+}</code></pre>
+<pre><code class="swift">// BaseUI
+func forceFunc() {
+      titleLabel.text = delegate?.force()
+    }</code></pre>
+<p>프로토콜 메서드를 추가합니다.  그리고 BaseUI에서 델리게이트 메서드를 실행 할 메서드를 작성합니다.</p>
+<pre><code class="swift">// View Controller
+extension ViewController: BaseUIDelegate {
+    func force() -&gt; String {
+        &quot;델리게이트 진짜 진짜 사용!&quot;
+    }
+
+    func storage() -&gt; String { &quot;델리게이트 사용!&quot; }
+}</code></pre>
+<pre><code class="swift">// ViewController
+private func customUI() {
+      let custom = BaseUI(frame: view.frame, title: &quot;&quot;)
+      custom.delegate = self
+      custom.forceFunc()
+      view.addSubview(customView)
+    }</code></pre>
+<pre><code class="swift">override func viewDidLoad() {
+        super.viewDidLoad()
+//        let custom = BaseUI(frame: view.frame, title: &quot;첫번째 화면에 오셨네요!&quot;)
+//        custom.delegate = self
+//        view.addSubview(custom)
+        customUI()
+    }</code></pre>
+<p>Controller 부분에서는 프로토콜의 메서드들을 구현한 뒤, UI를 만들어주는 메서드를 작성합니다.<br>이전에 <code>viewDidLoad()</code> 에 작성해주었던 코드를 그대로 옮겨왔고, View에서 새로 만든 메서드 <code>forceFun()</code> 를 추가해주세요.<br>마지막으로 <code>viewDidLoad()</code> 의 기존 코드들은 주석처리하고, UI를 만들어주는 <code>customUI()</code> 를 작성해주세요.<br>그럼 이제 잘 나오는걸 확인할 수 있습니다. </p>
+<br>
+
+<p>이렇게 어떻게든(?) 델리게이트로 구현해보았는데,<br> “델리게이트로 할 수는 있다” 정도로만 알아두면 좋을 것 같습니다 :) </p>
+
+            <hr>
+          </div>
+          <br>
+          <div>
+            <p>
+            
+              <span>
+                <i class="iconfont icon-inbox"></i>
+                
+                  <a class="hover-with-bg" href="/categories/TIL">TIL</a>
+                  &nbsp;
+                
+              </span>&nbsp;&nbsp;
+            
+            
+              <span>
+                <i class="iconfont icon-tag"></i>
+                
+                  <a class="hover-with-bg" href="/tags/iOS">iOS</a>
+                
+              </span>
+            
+            </p>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="d-none d-lg-block col-lg-2 toc-container">
+      
+  <div id="toc">
+    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;TOC</p>
+    <div id="tocbot"></div>
+  </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- custom -->
+
+
+<!-- Comments -->
+<div class="col-lg-7 mx-auto nopadding-md">
+  <div class="container comments mx-auto" id="comments">
+    
+  </div>
+</div>
+
+    
+  </main>
+
+  
+    <a class="z-depth-1" id="scroll-top-button" href="#" role="button">
+      <i class="fa fa-chevron-up scroll-top-arrow" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><b>Hexo</b></a>
+    <i class="iconfont icon-love"></i>
+    <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"> <b>Fluid</b></a>
+    <br>
+
+    
+  
+    <!-- 不蒜子统计PV -->
+    
+    &nbsp;<span id="busuanzi_container_site_pv">총방문횟수 
+          <span id="busuanzi_value_site_pv"></span> 번</span>&nbsp;
+  
+  
+    <!-- 不蒜子统计UV -->
+    
+    &nbsp;<span id="busuanzi_container_site_uv">총방문객 
+            <span id="busuanzi_value_site_uv"></span> 명</span>&nbsp;
+  
+  <br>
+
+
+
+    
+
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script src="/lib/jquery/jquery.min.js" ></script>
+<script src="/lib/popper/popper.min.js" ></script>
+<script src="/lib/bootstrap/js/bootstrap.min.js" ></script>
+<script src="/lib/mdbootstrap/js/mdb.min.js" ></script>
+<script src="/js/main.js" ></script>
+
+
+  <script src="/js/lazyload.js" ></script>
+
+
+
+  
+    <script src="/lib/tocbot/tocbot.min.js" ></script>
+  
+  <script src="/js/post.js" ></script>
+
+
+
+  <script src="/lib/smooth-scroll/smooth-scroll.min.js" ></script>
+
+
+
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+<!-- Plugins -->
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+  <script src="/lib/prettify/prettify.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      $('pre').addClass('prettyprint  linenums');
+      prettyPrint();
+    })
+  </script>
+
+
+
+  <script src="/lib/typed/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "View 와 Controller&nbsp;",
+      ],
+      cursorChar: " : JISNG",
+      typeSpeed: 100,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script src="/lib/anchor/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "false",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      getSearchFile(path);
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script src="/lib/fancybox/jquery.fancybox.min.js" ></script>
+  <script>
+    $("#post img:not(.no-zoom img, img[no-zoom])").each(
+      function () {
+        var element = document.createElement("a");
+        $(element).attr("data-fancybox", "images");
+        $(element).attr("href", $(this).attr("src"));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+</body>
+</html>

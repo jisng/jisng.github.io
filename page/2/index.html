@@ -134,6 +134,54 @@
     
     
     <div class="col-12 col-md-8 m-auto">
+      <a href="/2019/11/TIL-191121/">
+        <p class="h4 index-header">TIL-191121-Xcode 시작하기</p>
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">
+AppLifeCycle
+
+Xcode 1 : SettingAppDelegate.swift, SceneDelegate.swift SETTINGWWDC2019 대격변 업데이트로 인해 다음 중 선택해야 하는 상황이 생겼습니다.
+
+SceneDelegate.swift 사용 : 
+iOS 13 미만 (현업, 개인앱 사용시) : SceneDelegate.swift, AppDelegate.swift : SceneSession -&gt; @available (iOS13, *) AppDelegate.swift -&gt; var window: UIWindow? 추가
+iOS 13 이상 : 델리게이트 사용이 필요한 순간 직전까지 AppDelegated.swift, SceneDelegate.swift 무시 (ㅋㅋ)
+
+
+SceneDelegate 사용하지 않을 때 : 
+SceneDelegate 파일 삭제
+AppDelegate에서 Scene과 관련 된 코드 삭제
+Info.Plist &gt; Application S</div>
+        </div>
+      </a>
+
+      <div>
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2019-11-21&nbsp;&nbsp;
+        
+        
+          <i class="iconfont icon-inbox"></i>
+          
+            <a href="/categories/TIL">TIL</a>&nbsp;
+          &nbsp;
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/Xcode">Xcode</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-4 mx-auto">
+    
+    
+    <div class="col-12 col-md-8 m-auto">
       <a href="/2019/11/TIL-swift-OOP2-191119/">
         <p class="h4 index-header">TIL-swift-OOP2-191119</p>
         
@@ -759,45 +807,11 @@ $ hexo new post {post-name}
     </div>
   </div>
 
-  <div class="row mb-4 mx-auto">
-    
-    
-    <div class="col-12 col-md-8 m-auto">
-      <a href="/2019/11/hello-world/">
-        <p class="h4 index-header">Hello World</p>
-        
-        
-          
-        
-        <div class="index-excerpt" >
-          <div class="index-text mb-1">Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick StartCreate a new post$ hexo new &quot;My New Post&quot;
-More info: Writing
-Run server$ hexo server
-More info: Server
-Generate static files$ hexo generate
-More info: Generating
-Deploy to remote sites$ hexo deploy
-More info: Deployment
-</div>
-        </div>
-      </a>
-
-      <div>
-        
-          <i class="iconfont icon-riqi2"></i>&nbsp;2019-11-11&nbsp;&nbsp;
-        
-        
-        
-      </div>
-    </div>
-  </div>
-
 
 
   <nav aria-label="index posts navigation">
     <span class="pagination pg-blue justify-content-center mt-5" id="pagination">
-      <a class="extend prev" rel="prev" href="/"><i class="fas fa-angle-double-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+      <a class="extend prev" rel="prev" href="/"><i class="fas fa-angle-double-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/"><i class="fas fa-angle-double-right"></i></a>
     </span>
   </nav>
   
