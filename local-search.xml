@@ -4,7 +4,30 @@
   
   
   <entry>
-    <title>200104-xcode-font</title>
+    <title>Install CocoaPods</title>
+    <link href="undefined2020/01/installcocoapods-200105/"/>
+    <url>2020/01/installcocoapods-200105/</url>
+    
+    <content type="html"><![CDATA[<h1 id="How-to-install-CocoaPods"><a href="#How-to-install-CocoaPods" class="headerlink" title="How to install CocoaPods?"></a>How to install CocoaPods?</h1><h2 id="What-is-CocoaPods"><a href="#What-is-CocoaPods" class="headerlink" title="What is CocoaPods?"></a>What is CocoaPods?</h2><p>오픈소스 라이브러리를 사용하기 위한 도구입니다.</p><ul><li>라이브러리 추가, 삭제, 업데이트 등의 관리</li><li>라이브러리 버전을 직접 지정할 수 있어, 라이브러리 강제 업데이트를 당하지(?) 않고 계속 사용할 수 있다.</li></ul><h2 id="How-to-use-CocoaPods"><a href="#How-to-use-CocoaPods" class="headerlink" title="How to use CocoaPods?"></a>How to use CocoaPods?</h2><ol><li><p>터미널 -&gt; <code>sudo gem install cocoapods</code></p><img src="/2020/01/installcocoapods-200105/img1.png" srcset="undefined" alt="img1" style="zoom:50%;"></li><li><p>(선택사항) <code>pod setup --verbose</code></p><img src="/2020/01/installcocoapods-200105/img2.png" srcset="undefined" alt="img2" style="zoom:50%;"></li><li><p>라이브러리를 사용 할 프로젝트 파일로 이동, <code>pod init</code></p><img src="/2020/01/installcocoapods-200105/img3.png" srcset="undefined" alt="img3" style="zoom:50%;"></li><li><p>생성 된 Podfile 열기, <code>vi Podfile</code></p><img src="/2020/01/installcocoapods-200105/img4.png" srcset="undefined" alt="img4" style="zoom:50%;"></li><li><p>사용 할 라이브러리 적기, <code>pod Snapkit, ~&gt;5.0</code></p><p> 버전은 cocoapods 사이트에서 사용 라이브러리를 검색, 버전을 선택하세요.</p><img src="/2020/01/installcocoapods-200105/img5.png" srcset="undefined" alt="img5" style="zoom:50%;"></li><li><p><code>pod install -verbose</code></p><img src="/2020/01/installcocoapods-200105/img6.png" srcset="undefined" alt="img6" style="zoom:50%;"></li><li><p>생성된 xcworkspace로 들어가서 <code>import Snapkit</code></p><ol><li><img src="/2020/01/installcocoapods-200105/img7.png" srcset="undefined" alt="img7" style="zoom:50%;"></li><li><img src="/2020/01/installcocoapods-200105/img8.png" srcset="undefined" alt="img8" style="zoom:50%;"></li><li><img src="/2020/01/installcocoapods-200105/img9.png" srcset="undefined" alt="img9" style="zoom:50%;"></li></ol></li></ol><h2 id="How-to-delete-library"><a href="#How-to-delete-library" class="headerlink" title="How to delete library?"></a>How to delete library?</h2><ol><li>Podfile 에서 작성한 library 부분을 지웁니다.</li><li><code>pod install</code></li></ol>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>iOS</tag>
+      
+      <tag>TIL</tag>
+      
+      <tag>CocoaPods</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>Xcode Font 추가하기</title>
     <link href="undefined2020/01/200104-xcode-font/"/>
     <url>2020/01/200104-xcode-font/</url>
     
