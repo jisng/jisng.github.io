@@ -4,6 +4,37 @@
   
   
   <entry>
+    <title>JTAppleCalendar Programmatically</title>
+    <link href="undefined2020/01/jtapplecalendar-programmatically/"/>
+    <url>2020/01/jtapplecalendar-programmatically/</url>
+    
+    <content type="html"><![CDATA[<h3 id="JTAppleCalendar-사용하기에-앞서-…"><a href="#JTAppleCalendar-사용하기에-앞서-…" class="headerlink" title="JTAppleCalendar 사용하기에 앞서 …"></a>JTAppleCalendar 사용하기에 앞서 …</h3><p>해커톤(이라 쓰고 프로젝트라 읽는) 기간에 가계부 앱을 구현하였는데, 이 때 일부 기능으로 캘린더를 구현하였습니다.<br>iOS 에서 캘린더 구현이 극악 난이도라고 하길래, 외부 라이브러리를 사용하였는데 캘린더는 라이브러리 갖다 쓰는 것도 쉽지 않았습니다 (…)<br>결과적으로 구현하긴 했지만, 제가 하자고 해놓고 다른 조원이 피땀흘려 구현해주셔서 ㅎㅎ..<br>이걸 제 것으로 만들기 위해 차분히 뜯어보며 튜토리얼을 블로그에 적고자 합니다.  </p><br><p>캘린더 라이브러리를 검색하면 대표적인 라이브러리가 몇 개 있습니다.<br>저희가 필요했던 라이브러리는 시간까지 다루는 “일정” 기능이 필요한 게 아니였고, 디자인을 자유롭게 만지길 원했습니다.<br>니즈에 딱 맞는 라이브러리면서 찾아보니 가장 유명해보이는(?) JTAppleCalendar 를 사용하기로 했습니다.  </p><p><a href="https://github.com/patchthecode/JTAppleCalendar" target="_blank" rel="noopener">JTAppleCalendar</a></p><br><p>들어가 보시면 Wiki 에 사용 방법이 모~두 나와 있..는 줄 알았는데,<br>스토리보드 사용법 + Wiki 업데이트 안함 .. 이라 달력 띄우는 것 부터 난항이었습니다.<br>그래도 스토리보드 사용을 원하시면 저 Wiki를 참고하는 것이 좋습니다. </p><hr><h1 id="JTAppleCalendar-사용하기-1"><a href="#JTAppleCalendar-사용하기-1" class="headerlink" title="JTAppleCalendar 사용하기 1"></a>JTAppleCalendar 사용하기 1</h1><h2 id="import-JTAppleCalendar"><a href="#import-JTAppleCalendar" class="headerlink" title="import JTAppleCalendar"></a>import JTAppleCalendar</h2><p>아직 코코아팟 안깔렸다면 .. -&gt; <a href="https://jisng.github.io/2020/01/installcocoapods-200105/">Install CocoaPods</a> </p><ol><li>프로젝트 파일로 이동, <code>pod init</code></li><li><code>vi Podfile</code> </li><li>Pod ‘JTAppleCalendar’ (원하시는 분들은 지원 버전까지)</li><li><code>pod install</code></li></ol><p>라이브러리 공식 wiki를 참고하셔도 좋습니다 -&gt; <a href="https://patchthecode.com/jtapplecalendar-home/installation/" target="_blank" rel="noopener">installation</a></p><h2 id="달력-띄우기"><a href="#달력-띄우기" class="headerlink" title="달력 띄우기"></a>달력 띄우기</h2><ol><li><p>DateCell.swift</p><pre><code class="swift">import JTAppleCalendarimport UIKitclass DateCell: JTACDayCell {    let dateLabel = UILabel()  override init(frame: CGRect) {      super.init(frame:frame)    baseUI()  }  required init?(coder aDecoder: NSCoder) {      fatalError(&quot;init(coder:) has not been implemented&quot;)  }  private func baseUI() {      dateLabel.textAlignment = .center    contentView.addSubview(dateLabel)    dateLabel.translatesAutoresizingMaskIntoConstraints = false    dateLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true    dateLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true    }}</code></pre><p>테이블뷰에서 커스텀셀 만들 듯 만드시면 됩니다.  </p></li></ol><ol start="2"><li><p>MonthViewController.swift</p><pre><code class="swift">import JTAppleCalendarimport UIKitclass MonthViewController: UIViewController {    private let calenderView = JTACMonthView(frame: .zero)  override func viewDidLoad() {      super.viewDidLoad()        addCalender()  }  private func addCalender() {  calenderView.backgroundColor = .white     calenderView.register(DateCell.self, forCellWithReuseIdentifier: &quot;date&quot;)  calenderView.calendarDelegate = self  calenderView.calendarDataSource = self  view.addSubview(calenderView)  calenderView.translatesAutoresizingMaskIntoConstraints = false  calenderView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true  calenderView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true  calenderView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true  calenderView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true  }</code></pre><p>테이블뷰 만드는 거랑 비슷하죠? </p><ul><li>오토레이아웃은 코드가 짧아보이게 적었습니다. 실제 사용할 때는 원하는 위치에 맞춰 적으시면 됩니다.</li><li>캘린더가 이전달-다음달 등 보기 위해서는 CollecitonView 또는 ScrollView위에 올려야 합니다.<br>이 부분은 다음에 다룰 예정입니다. (지금은 무조건 달력만 띄우는 걸로)</li></ul><br><p>이어서…</p><pre><code class="swift">extension MonthViewController: JTACMonthViewDataSource {    func configureCalendar(_ calendar: JTACMonthView) -&gt; ConfigurationParameters {  let formatter = DateFormatter()  formatter.dateFormat = &quot;yyyy MM dd&quot;  let startDate = formatter.date(from: &quot;2020 01 01&quot;)!  let endDate = Date()  return ConfigurationParameters(startDate: startDate, endDate: endDate)  }}extension MonthViewController: JTACMonthViewDelegate {  func calendar(_ calendar: JTACMonthView, cellForItemAt date: Date, cellState: CellState, indexPath: IndexPath) -&gt; JTACDayCell {  let cell = calendar.dequeueReusableJTAppleCell(withReuseIdentifier: &quot;date&quot;, for: indexPath) as! DateCell  cell.dateLabel.text = cellState.text    return cell    }    func calendar(_ calendar: JTACMonthView, willDisplay cell: JTACDayCell, forItemAt date: Date, cellState: CellState, indexPath: IndexPath) {  let cell = cell as! DateCell  cell.dateLabel.text = cellState.text    }}</code></pre><p>보통 테이블뷰 datasource 에서 구현 내용이 여기서는 delegate에서 이루어집니다.</p></li></ol><br><p><img src="/2020/01/jtapplecalendar-programmatically/calender1.png" srcset="undefined" alt="calender1"></p><p>실행해보면, 이런 모양이 나옵니다.</p><h2 id="달력-날짜-구분하기"><a href="#달력-날짜-구분하기" class="headerlink" title="달력 날짜 구분하기"></a>달력 날짜 구분하기</h2><p><img src="/2020/01/jtapplecalendar-programmatically/calender2.png" srcset="undefined" alt="calender2"></p><p>보통 달력들은 이런 모양 혹은, 이번달을 제외한 날짜가 안보이는 모양일 것입니다. 일단 달력 구분부터 해보겠습니다.<br>JTAMonthViewDelegate 에 다음과 같은 함수를 작성합니다. </p><pre><code class="swift">private func configureCell(view: JTACDayCell?, cellState: CellState) {    guard let cell = view as? DateCell  else { return }  cell.dateLabel.text = cellState.text  handleCellTextColor(cell: cell, cellState: cellState)}private func handleCellTextColor(cell: DateCell, cellState: CellState) {    if cellState.dateBelongsTo == .thisMonth {  cell.dateLabel.textColor = UIColor.black  } else {  cell.dateLabel.textColor = UIColor.gray  }}</code></pre><p>앞서 구현한 <code>cellForItemAtDate</code> 함수와 <code>willDisplayCell</code> 의 함수 내용도 다음과 같이 작성합니다. </p><pre><code class="swift">func calendar(_ calendar: JTACMonthView, cellForItemAt date: Date, cellState: CellState, indexPath: IndexPath) -&gt; JTACDayCell {    let cell = calendar.dequeueReusableJTAppleCell(withReuseIdentifier: &quot;date&quot;, for: indexPath) as! DateCell  self.calendar(calendar, willDisplay: cell, forItemAt: date, cellState: cellState, indexPath: indexPath)  return cell}func calendar(_ calendar: JTACMonthView, willDisplay cell: JTACDayCell, forItemAt date: Date, cellState: CellState, indexPath: IndexPath) {    configureCell(view: cell, cellState: cellState)}</code></pre><br><p>실행해보면 원하던 모양이 나옵니다.<br>그럼 이제 숨겨보겠습니다.</p><pre><code class="swift">private func handleCellTextColor(cell: DateCell, cellState: CellState) {    if cellState.dateBelongsTo == .thisMonth {        cell.isHidden = false    } else {        cell.isHidden = true  }}</code></pre><p><code>handleCellTextColor</code> 부분을 이렇게 바꾼 후 실행해보면, 다음과 같이 나옵니다. </p><p><img src="/2020/01/jtapplecalendar-programmatically/calender3.png" srcset="undefined" alt="calender3"></p><p>짠!</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>TIL</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>iOS</tag>
+      
+      <tag>JTAppleCalendar</tag>
+      
+      <tag>Calender</tag>
+      
+      <tag>Library</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Install CocoaPods</title>
     <link href="undefined2020/01/installcocoapods-200105/"/>
     <url>2020/01/installcocoapods-200105/</url>
