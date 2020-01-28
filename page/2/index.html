@@ -134,6 +134,61 @@
     
     
     <div class="col-12 col-md-8 m-auto">
+      <a href="/2019/11/UI-TIL-191127/">
+        <p class="h4 index-header">UI-TIL-191127</p>
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">UI Guide..?
+19년 11월 22일에 배운 내용이지만, 당일에 typora 글을 올리고 배운 내용은 깃헙 에만 올렸기 때문에 .. 오늘에서야 코드도 추가하여 올립니다. 
+
+
+
+Frame, Bounds 이런 내용은 빼고, 코드로 UIView 올리는 법을 담았습니다. 
+
+
+
+이미지를 Assets.scassets 파일에 넣습니다.
+기억 포인트 : 
+UIImageView 안에다가 UIImage를 넣는다.
+contentMode 를 활용하여 만든 ImageView에 Image를 어떻게 채울 지 설정한다.
+
+
+
+let imgView = UIImageView()
+
+func createImg(_ img: UIImageView) {
+        img.frame = CGRect(x: 0, y: 0, width: view.frame.width / 2, height: view.frame.height / 2)
+        img.image = UIImage(named: &quot;firecrac</div>
+        </div>
+      </a>
+
+      <div>
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2019-11-27&nbsp;&nbsp;
+        
+        
+          <i class="iconfont icon-inbox"></i>
+          
+            <a href="/categories/TIL">TIL</a>&nbsp;
+          &nbsp;
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/UI">UI</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-4 mx-auto">
+    
+    
+    <div class="col-12 col-md-8 m-auto">
       <a href="/2019/11/Alert-TextField-TIL-191126/">
         <p class="h4 index-header">Alert/TextField-TIL-191126</p>
         
@@ -734,82 +789,6 @@ var nonOptional2: Int = </div>
             <a href="/tags/optional">optional</a>&nbsp;
           
             <a href="/tags/enum">enum</a>&nbsp;
-          
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mb-4 mx-auto">
-    
-    
-    <div class="col-12 col-md-8 m-auto">
-      <a href="/2019/11/TIL-swift-191113/">
-        <p class="h4 index-header">TIL-swift-collection-191113</p>
-        
-        
-          
-        
-        <div class="index-excerpt" >
-          <div class="index-text mb-1">Collection
-
-
-Value Type (Swift Collection)
-
-Array
-Dictionary
-Set
-
-
-Object Type (Foundaiton Collection)
-
-NSArray, NSMutableArray
-NSDictionary, NSMutableDictionary
-NSSet, NSMutableSet
-
-
-Copy-on-Write Optimization
-
-Generic Collection
-
-Mutablility
-
-let -&gt; Immutable Collection
-var -&gt; Mutable Collection
-
-
-
-
-
-이번 시간에 배운 내용은 Value Type 입니다.미리 예습을 해서 아는 내용..인 줄 알았지?… 진짜 봐서 아는 것과 사용하는 것의 차이가 너무 큽니다..ㅠㅠ  
-
-
-아무튼 정의를 요약 하자면,Array - ordered collection of values.배열 - 순서가 있고, 인덱스로 분류 되기 때문에 중복 값이 있을 수 있다.S</div>
-        </div>
-      </a>
-
-      <div>
-        
-          <i class="iconfont icon-riqi2"></i>&nbsp;2019-11-13&nbsp;&nbsp;
-        
-        
-          <i class="iconfont icon-inbox"></i>
-          
-            <a href="/categories/TIL">TIL</a>&nbsp;
-          &nbsp;
-        
-        
-          <i class="iconfont icon-tag"></i>
-          
-            <a href="/tags/swift">swift</a>&nbsp;
-          
-            <a href="/tags/collection-type">collection-type</a>&nbsp;
-          
-            <a href="/tags/array">array</a>&nbsp;
-          
-            <a href="/tags/dictionary">dictionary</a>&nbsp;
-          
-            <a href="/tags/set">set</a>&nbsp;
           
         
       </div>

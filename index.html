@@ -134,6 +134,69 @@
     
     
     <div class="col-12 col-md-8 m-auto">
+      <a href="/2020/01/jtapplecalendar-programmatically-3/">
+        <p class="h4 index-header">JTAppleCalendar Programmatically (3)</p>
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">JTAppleCalendar 사용하기 3 - 달력 헤더(월) 표시
+
+
+
+사진처럼 달력에 ‘월’을 표시합니다.
+DateHeader.swiftimport JTAppleCalendar
+import UIKit
+
+class DateHeader: JTACMonthReusableView {
+
+    static let identifier = &quot;month&quot;
+
+    let dateHeader = UILabel()
+
+  override init(frame: CGRect) {
+      super.init(frame: frame)
+    baseUI()
+  }
+
+  required init?(coder aDecoder: NSCoder) {
+      fatalError(&quot;init(coder:) has not been implemented&quot;)
+  }
+
+  private func baseUI() {
+      dateHeader.textAlignment = .cente</div>
+        </div>
+      </a>
+
+      <div>
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2020-01-28&nbsp;&nbsp;
+        
+        
+          <i class="iconfont icon-inbox"></i>
+          
+            <a href="/categories/TIL">TIL</a>&nbsp;
+          &nbsp;
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/iOS">iOS</a>&nbsp;
+          
+            <a href="/tags/JTAppleCalendar">JTAppleCalendar</a>&nbsp;
+          
+            <a href="/tags/Library">Library</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-4 mx-auto">
+    
+    
+    <div class="col-12 col-md-8 m-auto">
       <a href="/2020/01/jtapplecalendar-programmatically-2/">
         <p class="h4 index-header">JTAppleCalendar Programmatically (2)</p>
         
@@ -218,9 +281,9 @@ JTAppleCalendar
           
             <a href="/tags/JTAppleCalendar">JTAppleCalendar</a>&nbsp;
           
-            <a href="/tags/Calender">Calender</a>&nbsp;
-          
             <a href="/tags/Library">Library</a>&nbsp;
+          
+            <a href="/tags/Calender">Calender</a>&nbsp;
           
         
       </div>
@@ -622,61 +685,6 @@ application:did</div>
             <a href="/categories/TIL">TIL</a>&nbsp;
           &nbsp;
         
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mb-4 mx-auto">
-    
-    
-    <div class="col-12 col-md-8 m-auto">
-      <a href="/2019/11/UI-TIL-191127/">
-        <p class="h4 index-header">UI-TIL-191127</p>
-        
-        
-          
-        
-        <div class="index-excerpt" >
-          <div class="index-text mb-1">UI Guide..?
-19년 11월 22일에 배운 내용이지만, 당일에 typora 글을 올리고 배운 내용은 깃헙 에만 올렸기 때문에 .. 오늘에서야 코드도 추가하여 올립니다. 
-
-
-
-Frame, Bounds 이런 내용은 빼고, 코드로 UIView 올리는 법을 담았습니다. 
-
-
-
-이미지를 Assets.scassets 파일에 넣습니다.
-기억 포인트 : 
-UIImageView 안에다가 UIImage를 넣는다.
-contentMode 를 활용하여 만든 ImageView에 Image를 어떻게 채울 지 설정한다.
-
-
-
-let imgView = UIImageView()
-
-func createImg(_ img: UIImageView) {
-        img.frame = CGRect(x: 0, y: 0, width: view.frame.width / 2, height: view.frame.height / 2)
-        img.image = UIImage(named: &quot;firecrac</div>
-        </div>
-      </a>
-
-      <div>
-        
-          <i class="iconfont icon-riqi2"></i>&nbsp;2019-11-27&nbsp;&nbsp;
-        
-        
-          <i class="iconfont icon-inbox"></i>
-          
-            <a href="/categories/TIL">TIL</a>&nbsp;
-          &nbsp;
-        
-        
-          <i class="iconfont icon-tag"></i>
-          
-            <a href="/tags/UI">UI</a>&nbsp;
-          
         
       </div>
     </div>

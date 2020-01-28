@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-touch-icon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="description" content="">
+  <meta name="author" content="jisng">
+  <meta name="keywords" content="swift, iOS, git, dev">
+  <title>jisng</title>
+
+  <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css"  >
+<link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css"  >
+<link rel="stylesheet" href="/lib/mdbootstrap/css/mdb.min.css"  >
+<link rel="stylesheet" href="/lib/github-markdown/github-markdown.min.css"  >
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1067060_qzomjdt8bmp.css">
+
+
+  <link rel="stylesheet" href="/lib/prettify/tomorrow-night-eighties.min.css"  >
+
+<link rel="stylesheet" href="/css/main.css"  >
+
+
+  <link rel="stylesheet" href="/lib/fancybox/jquery.fancybox.min.css"  >
+
+
+</head>
+
+
+<body>
+  <header style="height: 100vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>jisng</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/">Home</a>
+          </li>
+        
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/archives/">Archives</a>
+          </li>
+        
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/Categories/">Categories</a>
+          </li>
+        
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/tags/">Tags</a>
+          </li>
+        
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/about/">About</a>
+          </li>
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+</nav>
+
+    <div class="view intro-2" id="background"
+         style="background: url('/img/default.png')no-repeat center center;
+           background-size: cover;
+           background-attachment: fixed;">
+      <div class="full-bg-img">
+        <div class="mask rgba-black-light flex-center">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+          </div>
+
+          
+            <div class="scroll-down-bar">
+              <i class="fas fa-angle-down scroll-down-arrow"></i>
+            </div>
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      <div class="container nopadding-md">
+        <div class="py-5 z-depth-3" id="board">
+          
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-10 m-auto">
+                
+
+
+  <div class="row mb-4 mx-auto">
+    
+    
+    <div class="col-12 col-md-8 m-auto">
+      <a href="/2019/11/Alert-TextField-TIL-191126/">
+        <p class="h4 index-header">Alert/TextField-TIL-191126</p>
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">AlertController얼럿창을 띄웁니다.먼저 버튼을 만든다음, 버튼을 눌렀을 때 얼럿을 띄웁니다.
+
+
+UIAlertAction(titile:style:handler:) 에 handler 부분에서 해당 버튼을 눌렀을 때 동작하길 원하는 코드를 클로져로 작성합니다. 
+
+
+alert는 present 방식으로 띄웁니다. (화면 전환과 같은 방식이죠!)
+
+
+@objc func buttonTab(_ button: UIButton) {
+
+        let alertController = UIAlertController(title: &quot;알림&quot;, message: &quot;버튼을 눌러보세요&quot;, preferredStyle: .alert)
+
+        let okAction = UIAlertAction(title: &quot;ok&quot;, style: .default) { _ in
+            print(&quot;ok&quot;)
+        }
+ </div>
+        </div>
+      </a>
+
+      <div>
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2019-11-26&nbsp;&nbsp;
+        
+        
+          <i class="iconfont icon-inbox"></i>
+          
+            <a href="/categories/TIL">TIL</a>&nbsp;
+          &nbsp;
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/alert">alert</a>&nbsp;
+          
+            <a href="/tags/textField">textField</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-4 mx-auto">
+    
+    
+    <div class="col-12 col-md-8 m-auto">
+      <a href="/2019/11/UIViewController-TIL-191125/">
+        <p class="h4 index-header">UIViewController-TIL-191125</p>
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">UIViewControllerThe Role of View Controllers
+
+
+
+앱 구조의 뼈대.모든 앱에 반드시 하나 이상, 대부분 많은 수의 ViewController로 구성
+
+View Management
+Data Marshaling
+User Interactions
+Resource Management
+Adaptivity
+
+
+
+
+
+View Management
+
+
+
+주요 역할 - 뷰 계층 관리모든 뷰컨트롤러마다 RootView를 지나며, 화면에 표시하기 위해서는 해당 RootView 계층에 속해야 한다.
+
+
+
+
+
+
+
+
+
+Two types of view controllers
+
+Content View Controllers
+모든 뷰를 단독으로 관리
+UIViewController, UITableViewController, UICollectionViewController􏰋 
+
+
+
+
+
+Containter View Controllers
+자체 뷰 + 하나 이상의 자식 뷰 컨트롤러가 가진 루</div>
+        </div>
+      </a>
+
+      <div>
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2019-11-25&nbsp;&nbsp;
+        
+        
+          <i class="iconfont icon-inbox"></i>
+          
+            <a href="/categories/TIL">TIL</a>&nbsp;
+          &nbsp;
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/iOS">iOS</a>&nbsp;
+          
+            <a href="/tags/UIViewController">UIViewController</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-4 mx-auto">
+    
+    
+    <div class="col-12 col-md-8 m-auto">
+      <a href="/2019/11/TIL-191122/">
+        <p class="h4 index-header">Typora-TIL-191122</p>
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">Typora
+
+이미지 넣기 그렇게 편하다는 Typora.이미지 파일 드래그앤드롭 하면 끝이라고 해서 써보니까 안되던데요..???이걸로 README.md 썼는데, 이미지 안올라가서 5번은 add-commit-push 했거든요알고보니 초반에 설정을 해야 했습니다…
+
+
+왜 아무도 안알려줬어?.. 왜 나만 몰랐어 ..?
+
+
+혹시 저 같은 분이 계실까봐 이렇게 블로그를 열었습니다.  
+
+
+이미지 외에도 해놓으면 편한 설정도 적어봤습니다.
+Image
+
+md 파일에 쓸 이미지들은 img 폴더에 넣어서 쓸거에요.먼저 md 파일이 있는 곳에 img 폴더를 만듭니다.이미지 파일 이름은 영어로 만들어주세요.  
+
+
+
+Typora 를 연 뒤 이미지 설정을 하러 들어갑니다.서식 &gt; 이미지 &gt; 전역 이미지 설정…
+
+
+
+다음과 같이 체크해줍니다.로컬 이미지에 위 규칙을 적용 / 가능하다면 상대적 위치 사용
+
+보통 아무 설정이 없는 경우 ‘절대 경로’를 통해 이미지 파일을 불러오는데요, 그 상태로 깃</div>
+        </div>
+      </a>
+
+      <div>
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2019-11-22&nbsp;&nbsp;
+        
+        
+          <i class="iconfont icon-inbox"></i>
+          
+            <a href="/categories/TIL">TIL</a>&nbsp;
+          &nbsp;
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/Typora">Typora</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-4 mx-auto">
+    
+    
+    <div class="col-12 col-md-8 m-auto">
+      <a href="/2019/11/TIL-191121/">
+        <p class="h4 index-header">TIL-191121-Xcode 시작하기</p>
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">
+AppLifeCycle
+
+Xcode 1 : SettingAppDelegate.swift, SceneDelegate.swift SETTINGWWDC2019 대격변 업데이트로 인해 다음 중 선택해야 하는 상황이 생겼습니다.
+
+SceneDelegate.swift 사용 : 
+iOS 13 미만 (현업, 개인앱 사용시) : SceneDelegate.swift, AppDelegate.swift : SceneSession -&gt; @available (iOS13, *) AppDelegate.swift -&gt; var window: UIWindow? 추가
+iOS 13 이상 : 델리게이트 사용이 필요한 순간 직전까지 AppDelegated.swift, SceneDelegate.swift 무시 (ㅋㅋ)
+
+
+SceneDelegate 사용하지 않을 때 : 
+SceneDelegate 파일 삭제
+AppDelegate에서 Scene과 관련 된 코드 삭제
+Info.Plist &gt; Application S</div>
+        </div>
+      </a>
+
+      <div>
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2019-11-21&nbsp;&nbsp;
+        
+        
+          <i class="iconfont icon-inbox"></i>
+          
+            <a href="/categories/TIL">TIL</a>&nbsp;
+          &nbsp;
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/Xcode">Xcode</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-4 mx-auto">
+    
+    
+    <div class="col-12 col-md-8 m-auto">
+      <a href="/2019/11/TIL-swift-OOP2-191119/">
+        <p class="h4 index-header">TIL-swift-OOP2-191119</p>
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">Access Control
+이 부분은, 개념적인 부분만 가볍게 훑고 지나간 뒤 나중에 실제 코드를 만났을 때 다시 살펴보기로 합니다. 
+
+
+
+
+다른 모듈의 코드 또는 다른 소스 파일 등으로부터 접근을 제한하는 것
+세부 구현 내용을 숨기고 접근할 수 있는 인터페이스 지정 가능
+
+
+
+
+모듈 Module
+import 를 통해 다른 모듈로부터 불러들일 수 있는 하나의 코드 배포 단위
+Library / Framework / Application 
+
+
+소스 파일 Source File
+모듈 내에 포함된 각각의 Swift 소스 코드 파일
+
+
+
+Access Levles
+
+
+5가지
+open
+public
+internal
+fileprivate
+private
+
+
+
+
+
+
+fileprivate class SomeFileprivateClass {
+   var name = &quot;name&quot;
+   var age = 0
+}
+
+fileprivate let someFileprivateClass = SomeF</div>
+        </div>
+      </a>
+
+      <div>
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2019-11-19&nbsp;&nbsp;
+        
+        
+          <i class="iconfont icon-inbox"></i>
+          
+            <a href="/categories/TIL">TIL</a>&nbsp;
+          &nbsp;
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/swift">swift</a>&nbsp;
+          
+            <a href="/tags/class">class</a>&nbsp;
+          
+            <a href="/tags/OOP">OOP</a>&nbsp;
+          
+            <a href="/tags/protocol">protocol</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-4 mx-auto">
+    
+    
+    <div class="col-12 col-md-8 m-auto">
+      <a href="/2019/11/TIL-swift-OOP1-191118/">
+        <p class="h4 index-header">TIL-swift-OOP1-191118</p>
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">OOP : Object-Oriented-Programming
+
+Value Type : struct, enum ( Stack에 저장)
+Reference Type : class ( Heap 에 저장)
+
+
+
+
+
+
+
+x
+y
+z
+
+
+
+Stack
+5
+0x5F17
+0x2C90
+
+
+
+
+
+
+
+
+
+0x2C90
+0x5F16
+0x517
+
+
+Heap
+z’s user data
+SomeData
+y’s user data
+
+
+
+
+Equatablem, Identical1 == 1 // True
+2 == 1 // False
+&quot;ABC&quot; == &quot;ABC&quot; // True
+
+
+class Person {
+  let name = &quot;이순신&quot;
+  let age = 30
+}
+
+let person1 = Person()
+let person2 = Person()
+
+person1 == &quot;이순신&quot;    // 오류, 타입이 다름
+
+person1 == person2   // </div>
+        </div>
+      </a>
+
+      <div>
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2019-11-18&nbsp;&nbsp;
+        
+        
+          <i class="iconfont icon-inbox"></i>
+          
+            <a href="/categories/TIL">TIL</a>&nbsp;
+          &nbsp;
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/swift">swift</a>&nbsp;
+          
+            <a href="/tags/class">class</a>&nbsp;
+          
+            <a href="/tags/property">property</a>&nbsp;
+          
+            <a href="/tags/OOP">OOP</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-4 mx-auto">
+    
+    
+    <div class="col-12 col-md-8 m-auto">
+      <a href="/2019/11/TIL-contribution-191116/">
+        <p class="h4 index-header">TIL-contribution-191116</p>
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">오픈소스에 PR 보낸 경험
+
+
+제목만 보면 엄청 대단한 걸 줄 알겠지만, 그렇지 않습니다.왜냐면 “번역” 이거든요.단어만 60개여서 번역이라고 하기도 민망하네요 ㅎ.. 
+
+
+
+계기
+
+지금 사용중인 hexo theme - cactus 에서 카테고리 메뉴를 추가 하고 싶어서, 동현님께 도움을 구하러 갔습니다.설정 방법을 확인하려고 테마의 깃헙 페이지를 열어서 찾아보는데, 갑자기 동현님이,“어, 이거 한국어 파일 없네요?”“어떻게 되어 있나 그냥 봐볼까..” 라며 열었는데,아주 단순한 단어가 1줄에 1개씩, 60줄로 적혀있었어요. (문장 아니고 진짜 단어만)“이거 뭐 금방 하겠는데요? 이거 만들어요!”라고 얘기하시는거에요!!!   
+
+
+안그래도 깃특강 들을 때 강사님이 테마 번역해서 기여한거 있다며 보여주셨거든요.이런것도 오픈소스 기여 아니겠냐며~가볍게 도전할 수 있으니 해봐라~ 라는 얘기를 하셨어요.
+
+
+해봤습니다.
+ 
+
+이게 말로만 듣던 “오픈소스 기여”란 말인가 (거창)
+
+
+낄낄
+
+</div>
+        </div>
+      </a>
+
+      <div>
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2019-11-16&nbsp;&nbsp;
+        
+        
+          <i class="iconfont icon-inbox"></i>
+          
+            <a href="/categories/TIL">TIL</a>&nbsp;
+          &nbsp;
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/git">git</a>&nbsp;
+          
+            <a href="/tags/github">github</a>&nbsp;
+          
+            <a href="/tags/opensource">opensource</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-4 mx-auto">
+    
+    
+    <div class="col-12 col-md-8 m-auto">
+      <a href="/2019/11/TIL-swift-Closure-191115/">
+        <p class="h4 index-header">TIL-swift-Closure-191115</p>
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">
+Closure 기초까지만.
+
+
+
+Snippet
+
+쉽게 말해 코드 틀을 자동완성 시켜주는 기능입니다. 
+
+
+
+
+Editor &gt; Create Code Snippet 에 여러가지 Snippet이 있습니다.
+만드는 방법 :
+코드창에서 만들고 싶은 코드를 긁은 블록으로 긁은 다음
+1번에서처럼 눌러 들어가거나, 플레이그라운드 경우 오른쪽 상단에 [+] 버튼을 누릅니다.
+Snippet의 이름, 설명, 언어, 플랫폼 등 설정하는데 Completion 부분은 단축어 설정입니다.
+
+
+이렇게 저장한 Snippet은 ~/Library/Developer/Xcode/UserData/CodeSnippets에 있습니다.
+IDE 안에서 설정한 Snippet과 이름이 다르게 저장되어 있으니, 폴더-파일 관리를 하고 싶으실 경우 파일 이름을 바꿔주세요. 
+
+
+
+
+Closure
+
+클로저는 다음 3가지 중 한 가지 유형을 가집니다.
+
+
+
+Global functions: 이름을 가지며, 어떤 값도 캡쳐하지 않는 클</div>
+        </div>
+      </a>
+
+      <div>
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2019-11-15&nbsp;&nbsp;
+        
+        
+          <i class="iconfont icon-inbox"></i>
+          
+            <a href="/categories/TIL">TIL</a>&nbsp;
+          &nbsp;
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/swift">swift</a>&nbsp;
+          
+            <a href="/tags/closure">closure</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-4 mx-auto">
+    
+    
+    <div class="col-12 col-md-8 m-auto">
+      <a href="/2019/11/TIL-swift-Optional-Enum-191114/">
+        <p class="h4 index-header">TIL-swift-Optional+Enum-191114</p>
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">Optional값이 없다. nil0은 데이터.
+옵셔널 타입의 2가지 가능성    1. 값이 전혀 없음    2. 값이 있으며, 그 값에 접근하기 위해 옵셔널을 벗겨냄(unwrap)
+
+
+
+let possibleNumber = &quot;123&quot;
+var convertedNumber = Int(possibleNumber)
+type(of: convertedNumber) //Optional&lt;Int&gt;.type
+possibeNumber가 값이 있을 수도 있고, 없을 수도 있기 때문에Int로 형변환이 될 수도 있고 안될 수도 있기 때문에convertedNumber에 대입하면 타입은 옵셔널이 된다.
+
+
+
+// Optional Type Declaration
+
+ var variable name: Type?
+ var variable name: Optional&lt;Type&gt;
+
+
+
+//Error!
+var nonOptional1 = nil
+var nonOptional2: Int = </div>
+        </div>
+      </a>
+
+      <div>
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2019-11-14&nbsp;&nbsp;
+        
+        
+          <i class="iconfont icon-inbox"></i>
+          
+            <a href="/categories/TIL">TIL</a>&nbsp;
+          &nbsp;
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/swift">swift</a>&nbsp;
+          
+            <a href="/tags/optional">optional</a>&nbsp;
+          
+            <a href="/tags/enum">enum</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-4 mx-auto">
+    
+    
+    <div class="col-12 col-md-8 m-auto">
+      <a href="/2019/11/TIL-swift-191113/">
+        <p class="h4 index-header">TIL-swift-collection-191113</p>
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">Collection
+
+
+Value Type (Swift Collection)
+
+Array
+Dictionary
+Set
+
+
+Object Type (Foundaiton Collection)
+
+NSArray, NSMutableArray
+NSDictionary, NSMutableDictionary
+NSSet, NSMutableSet
+
+
+Copy-on-Write Optimization
+
+Generic Collection
+
+Mutablility
+
+let -&gt; Immutable Collection
+var -&gt; Mutable Collection
+
+
+
+
+
+이번 시간에 배운 내용은 Value Type 입니다.미리 예습을 해서 아는 내용..인 줄 알았지?… 진짜 봐서 아는 것과 사용하는 것의 차이가 너무 큽니다..ㅠㅠ  
+
+
+아무튼 정의를 요약 하자면,Array - ordered collection of values.배열 - 순서가 있고, 인덱스로 분류 되기 때문에 중복 값이 있을 수 있다.S</div>
+        </div>
+      </a>
+
+      <div>
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2019-11-13&nbsp;&nbsp;
+        
+        
+          <i class="iconfont icon-inbox"></i>
+          
+            <a href="/categories/TIL">TIL</a>&nbsp;
+          &nbsp;
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/swift">swift</a>&nbsp;
+          
+            <a href="/tags/collection-type">collection-type</a>&nbsp;
+          
+            <a href="/tags/array">array</a>&nbsp;
+          
+            <a href="/tags/dictionary">dictionary</a>&nbsp;
+          
+            <a href="/tags/set">set</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+
+
+  <nav aria-label="index posts navigation">
+    <span class="pagination pg-blue justify-content-center mt-5" id="pagination">
+      <a class="extend prev" rel="prev" href="/"><i class="fas fa-angle-double-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/"><i class="fas fa-angle-double-right"></i></a>
+    </span>
+  </nav>
+  
+  <script>
+    for (ele of document.getElementById("pagination").getElementsByClassName("page-number")) {
+      ele.href += '#board';
+    }
+  </script>
+
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+  </main>
+
+  
+    <a class="z-depth-1" id="scroll-top-button" href="#" role="button">
+      <i class="fa fa-chevron-up scroll-top-arrow" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><b>Hexo</b></a>
+    <i class="iconfont icon-love"></i>
+    <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"> <b>Fluid</b></a>
+    <br>
+
+    
+  
+    <!-- 不蒜子统计PV -->
+    
+    &nbsp;<span id="busuanzi_container_site_pv">총방문횟수 
+          <span id="busuanzi_value_site_pv"></span> 번</span>&nbsp;
+  
+  
+    <!-- 不蒜子统计UV -->
+    
+    &nbsp;<span id="busuanzi_container_site_uv">총방문객 
+            <span id="busuanzi_value_site_uv"></span> 명</span>&nbsp;
+  
+  <br>
+
+
+
+    
+
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script src="/lib/jquery/jquery.min.js" ></script>
+<script src="/lib/popper/popper.min.js" ></script>
+<script src="/lib/bootstrap/js/bootstrap.min.js" ></script>
+<script src="/lib/mdbootstrap/js/mdb.min.js" ></script>
+<script src="/js/main.js" ></script>
+
+
+  <script src="/js/lazyload.js" ></script>
+
+
+
+
+
+  <script src="/lib/smooth-scroll/smooth-scroll.min.js" ></script>
+
+
+
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+<!-- Plugins -->
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+  <script src="/lib/prettify/prettify.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      $('pre').addClass('prettyprint  linenums');
+      prettyPrint();
+    })
+  </script>
+
+
+
+  <script src="/lib/typed/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "dev&nbsp;",
+      ],
+      cursorChar: " : JISNG",
+      typeSpeed: 100,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script src="/lib/anchor/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "false",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      getSearchFile(path);
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script src="/lib/fancybox/jquery.fancybox.min.js" ></script>
+  <script>
+    $("#post img:not(.no-zoom img, img[no-zoom])").each(
+      function () {
+        var element = document.createElement("a");
+        $(element).attr("data-fancybox", "images");
+        $(element).attr("href", $(this).attr("src"));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+</body>
+</html>
