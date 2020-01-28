@@ -120,7 +120,7 @@
                   
                   &nbsp;<i class="far fa-chart-bar"></i>
                   <span class="post-count">
-                    249 words
+                    245 words
                   </span>&nbsp;
                 
 
@@ -173,8 +173,8 @@ selectedView.isHidden = true</code></pre>
 contentView.addSubview(dateLabel)</code></pre>
 <p>addSubView 하실 때 <strong>dateLabel 보다 먼저</strong> 해줘야 합니다. 나중에 하면 날짜를 가려버려요.</p>
 <pre><code class="swift">selectedView.translatesAutoresizingMaskIntoConstraints = false
-selectedView.widthAnchor.constraint(equalTo: dateLabel.widthAnchor, multiplier: 2).isActive = true
-selectedView.heightAnchor.constraint(equalTo: dateLabel.heightAnchor, multiplier: 2).isActive = true
+selectedView.widthAnchor.constraint(equalTo: contentView.widthAnchor).isActive = true
+selectedView.heightAnchor.constraint(equalTo: selectedView.widthAnchor).isActive = true
 selectedView.centerYAnchor.constraint(equalTo: dateLabel.centerYAnchor).isActive = true
 selectedView.centerXAnchor.constraint(equalTo: dateLabel.centerXAnchor).isActive = true</code></pre>
 <p>위치는 다음과 같이 잡아줍니다. width와 height 값은 여러번 바꿔보면서 마음에 드는 사이즈를 찾아보세요. </p>
